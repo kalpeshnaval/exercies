@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kalpesh — Fat‑Loss • Abs • Posture Plan</title>
+    <style>
+      :root {
+        --bg: #f7f9fc;
+        --card: #ffffff;
+        --accent: #0f6;
+        --muted: #6b7280;
+        --accent2: #0b84ff;
+      }
+      body {
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        background: var(--bg);
+        color: #111;
+        margin: 0;
+        padding: 24px;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+      .subtitle {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+      }
+      button {
+        background: var(--card);
+        border: 1px solid #e6e9ef;
+        padding: 8px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .card {
+        background: var(--card);
+        padding: 18px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(12, 18, 26, 0.06);
+        margin-bottom: 12px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 12px;
+      }
+      .full {
+        grid-column: 1/-1;
+      }
+      h2 {
+        font-size: 16px;
+        margin: 0 0 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      td,
+      th {
+        padding: 8px;
+        border-bottom: 1px dashed #eee;
+        vertical-align: top;
+      }
+      th {
+        text-align: left;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .emoji {
+        font-size: 18px;
+        margin-right: 6px;
+      }
+      .day-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      details {
+        margin-bottom: 8px;
+      }
+      summary {
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .note {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        background: #eef8ff;
+        border-radius: 999px;
+        border: 1px solid #dbefff;
+        font-size: 13px;
+      }
+      .small {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      @media (max-width: 880px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div>
+          <h1>🏋️ Fat‑Loss • Abs • Posture Plan</h1>
+          <div class="subtitle">
+            6‑day workout + 2‑meal diet • Includes ab finishers & posture work
+          </div>
+        </div>
+        <div class="controls">
+          <button id="printBtn">🖨️ Print</button>
+          <button id="downloadBtn">⬇️ Download HTML</button>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <h2>📅 Weekly structure</h2>
+          <p class="note">
+            Repeat this weekly for <strong>4–6 weeks</strong>. Add intensity in
+            weeks 5–8 (more reps or less rest). After 8 weeks, switch to a new
+            phase.
+          </p>
+          <div
+            style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap"
+          >
+            <div class="pill">Day 1 — Upper Body + Posture</div>
+            <div class="pill">Day 2 — Lower Body + Core</div>
+            <div class="pill">Day 3 — HIIT + Mobility</div>
+            <div class="pill">Day 4 — Full Body Strength</div>
+            <div class="pill">Day 5 — Posture & Flexibility</div>
+            <div class="pill">Day 6 — Cardio + Abs Shred</div>
+            <div class="pill">Day 7 — Rest & Recovery</div>
+          </div>
+
+          <hr style="margin: 12px 0" />
+          <h2>⚙️ Equipment summary</h2>
+          <ul>
+            <li>
+              🔸 <strong>5 kg dumbbells</strong> — main strength exercises
+            </li>
+            <li>
+              🔸 <strong>1.2 kg rods</strong> — front/lateral raises, Russian
+              twists, scapular retractions
+            </li>
+            <li>🔸 <strong>Hand gripper</strong> — grip training</li>
+            <li>🔸 Bodyweight for core, mobility, and many posture drills</li>
+          </ul>
+        </section>
+
+        <aside class="card">
+          <h2>📝 Quick notes</h2>
+          <p class="small">
+            ⏱️ Workout time ≈ 45–60 min. Warm up 5–7 min before, cool down 5 min
+            after. Keep oil low & sleep 7–8 hrs for best fat loss.
+          </p>
+          <h3 style="margin-top: 12px">📌 Progression</h3>
+          <ul class="small">
+            <li>Weeks 1–4: Learn form & consistency</li>
+            <li>Weeks 5–8: Increase reps (+2) or reduce rest</li>
+            <li>After 8 weeks: Switch to Phase 2 (advanced moves)</li>
+          </ul>
+        </aside>
+
+        <section class="card full">
+          <h2>🧭 Day‑wise plan (with ab finishers)</h2>
+
+          <details open>
+            <summary class="day-title">
+              1. Day 1 — Upper Body Strength + Posture 🧑‍💼
+            </summary>
+            <table>
+              <tr>
+                <th>Exercise</th>
+                <th>Sets × Reps</th>
+                <th>Equipment / Notes</th>
+              </tr>
+              <tr>
+                <td>Push‑ups</td>
+                <td>3 × 12</td>
+                <td>Bodyweight — keep spine straight</td>
+              </tr>
+              <tr>
+                <td>Dumbbell Shoulder Press</td>
+                <td>3 × 10</td>
+                <td>5 kg dumbbells — engage core</td>
+              </tr>
+              <tr>
+                <td>Bicep Curls</td>
+                <td>3 × 12</td>
+                <td>5 kg dumbbells — controlled</td>
+              </tr>
+              <tr>
+                <td>Hammer Curls</td>
+                <td>3 × 12</td>
+                <td>5 kg dumbbells</td>
+              </tr>
+              <tr>
+                <td>Front Raise</td>
+                <td>3 × 10</td>
+                <td>1.2 kg rods — slow, no swing</td>
+              </tr>
+              <tr>
+                <td>Lateral Raise</td>
+                <td>3 × 10</td>
+                <td>1.2 kg rods — raise just above shoulder</td>
+              </tr>
+              <tr>
+                <td>Wall Angels</td>
+                <td>3 × 10</td>
+                <td>Posture drill — back on wall</td>
+              </tr>
+              <tr>
+                <td>Hand Gripper</td>
+                <td>3 × 15 / hand</td>
+                <td>Grip strength</td>
+              </tr>
+            </table>
+            <p class="note">
+              <strong>Ab Finisher (×2 rounds):</strong> 30s plank → 20 Russian
+              twists (1.2kg) → 15 leg raises.
+            </p>
+          </details>
+
+          <details>
+            <summary class="day-title">
+              2. Day 2 — Lower Body + Core Stability 🦵
+            </summary>
+            <table>
+              <tr>
+                <th>Exercise</th>
+                <th>Sets × Reps</th>
+                <th>Equipment / Notes</th>
+              </tr>
+              <tr>
+                <td>Bodyweight Squats</td>
+                <td>3 × 15</td>
+                <td>Chest up, knees behind toes</td>
+              </tr>
+              <tr>
+                <td>Forward Lunges</td>
+                <td>3 × 10 / leg</td>
+                <td>Optional 5kg dumbbells</td>
+              </tr>
+              <tr>
+                <td>Glute Bridge</td>
+                <td>3 × 15</td>
+                <td>Hold 2s at top</td>
+              </tr>
+              <tr>
+                <td>Calf Raises</td>
+                <td>3 × 20</td>
+                <td>Full range</td>
+              </tr>
+              <tr>
+                <td>Plank</td>
+                <td>3 × 30s</td>
+                <td>Core tight</td>
+              </tr>
+              <tr>
+                <td>Side Plank</td>
+                <td>3 × 30s / side</td>
+                <td>Obliques</td>
+              </tr>
+            </table>
+            <p class="note">
+              <strong>Ab Finisher (×2 rounds):</strong> 30s plank jacks → 20
+              bicycle crunches → 15 flutter kicks.
+            </p>
+          </details>
+
+          <details>
+            <summary class="day-title">
+              3. Day 3 — HIIT + Core + Mobility 🔥
+            </summary>
+            <table>
+              <tr>
+                <th>Exercise</th>
+                <th>Sets × Duration</th>
+                <th>Notes</th>
+              </tr>
+              <tr>
+                <td>Jumping Jacks</td>
+                <td>3 × 45s</td>
+                <td>Warm‑up</td>
+              </tr>
+              <tr>
+                <td>High Knees</td>
+                <td>3 × 30s</td>
+                <td>Cardio burst</td>
+              </tr>
+              <tr>
+                <td>Mountain Climbers</td>
+                <td>3 × 30s</td>
+                <td>Core & shoulders</td>
+              </tr>
+              <tr>
+                <td>Superman Hold</td>
+                <td>3 × 30s</td>
+                <td>Strengthen spine</td>
+              </tr>
+              <tr>
+                <td>Cat‑Cow Stretch</td>
+                <td>3 × 10</td>
+                <td>Spine mobility</td>
+              </tr>
+              <tr>
+                <td>Chin Tucks</td>
+                <td>3 × 15</td>
+                <td>Neck posture</td>
+              </tr>
+            </table>
+            <p class="note">
+              <strong>Ab Finisher (×2 rounds):</strong> 30s plank → 20 Russian
+              twists → 15 leg raises.
+            </p>
+          </details>
+
+          <details>
+            <summary class="day-title">
+              4. Day 4 — Full Body Strength + Core 💪
+            </summary>
+            <table>
+              <tr>
+                <th>Exercise</th>
+                <th>Sets × Reps</th>
+                <th>Equipment / Notes</th>
+              </tr>
+              <tr>
+                <td>Burpees</td>
+                <td>3 × 10</td>
+                <td>Explosive, full‑body</td>
+              </tr>
+              <tr>
+                <td>Dumbbell Bench Press</td>
+                <td>3 × 12</td>
+                <td>5 kg dumbbells</td>
+              </tr>
+              <tr>
+                <td>Bent‑Over Rows</td>
+                <td>3 × 12</td>
+                <td>5 kg dumbbells — back strength</td>
+              </tr>
+              <tr>
+                <td>Dumbbell Swings</td>
+                <td>3 × 15</td>
+                <td>5 kg — hip drive</td>
+              </tr>
+              <tr>
+                <td>Farmer’s Carry</td>
+                <td>3 × 30s</td>
+                <td>5 kg dumbbells — posture</td>
+              </tr>
+              <tr>
+                <td>Front Raise</td>
+                <td>3 × 10</td>
+                <td>1.2 kg rods</td>
+              </tr>
+              <tr>
+                <td>Lateral Raise</td>
+                <td>3 × 10</td>
+                <td>1.2 kg rods</td>
+              </tr>
+            </table>
+            <p class="note">
+              <strong>Ab Finisher (×2 rounds):</strong> 30s plank → 20 crunches
+              → 15 leg raises.
+            </p>
+          </details>
+
+          <details>
+            <summary class="day-title">
+              5. Day 5 — Posture Correction + Flexibility 🧘
+            </summary>
+            <table>
+              <tr>
+                <th>Exercise</th>
+                <th>Sets × Duration</th>
+                <th>Notes</th>
+              </tr>
+              <tr>
+                <td>Shoulder Opener Stretch</td>
+                <td>3 × 30s</td>
+                <td>Use wall — open chest</td>
+              </tr>
+              <tr>
+                <td>Scapular Retractions</td>
+                <td>3 × 12</td>
+                <td>1.2 kg rods — squeeze shoulder blades</td>
+              </tr>
+              <tr>
+                <td>Chin Tucks</td>
+                <td>3 × 15</td>
+                <td>Neck alignment</td>
+              </tr>
+              <tr>
+                <td>Cat‑Cow</td>
+                <td>3 × 10</td>
+                <td>Mobility</td>
+              </tr>
+              <tr>
+                <td>Standing Forward Fold</td>
+                <td>2 × 30s</td>
+                <td>Hamstrings & spine</td>
+              </tr>
+              <tr>
+                <td>Wall Sit</td>
+                <td>3 × 30s</td>
+                <td>Leg endurance</td>
+              </tr>
+            </table>
+            <p class="note">
+              Optional: 5‑minute breathing & shoulder roll sequence.
+            </p>
+          </details>
+
+          <details>
+            <summary class="day-title">
+              6. Day 6 — Cardio + Abs Shred 💥
+            </summary>
+            <table>
+              <tr>
+                <th>Exercise</th>
+                <th>Sets × Duration</th>
+                <th>Notes</th>
+              </tr>
+              <tr>
+                <td>Jump Rope / High Knees</td>
+                <td>3 × 1 min</td>
+                <td>High intensity</td>
+              </tr>
+              <tr>
+                <td>Plank Jacks</td>
+                <td>3 × 30s</td>
+                <td>Core + cardio</td>
+              </tr>
+              <tr>
+                <td>Bicycle Crunches</td>
+                <td>3 × 20</td>
+                <td>Obliques</td>
+              </tr>
+              <tr>
+                <td>Dumbbell Side Bends</td>
+                <td>3 × 15 / side</td>
+                <td>5 kg dumbbells — shape waist</td>
+              </tr>
+              <tr>
+                <td>Russian Twists</td>
+                <td>3 × 20</td>
+                <td>1.2 kg rod — controlled</td>
+              </tr>
+              <tr>
+                <td>Leg Raises</td>
+                <td>3 × 15</td>
+                <td>Lower abs</td>
+              </tr>
+              <tr>
+                <td>Side Plank + Hip Dip</td>
+                <td>3 × 10 / side</td>
+                <td>Tone obliques</td>
+              </tr>
+            </table>
+            <p class="note">Finish with 5‑min stretch & deep breathing.</p>
+          </details>
+
+          <details>
+            <summary class="day-title">7. Day 7 — Rest & Recovery 💤</summary>
+            <p class="note">
+              Light walking or yoga, gentle stretching, 10‑min meditation,
+              hydrate and sleep well.
+            </p>
+          </details>
+        </section>
+
+        <section class="card full">
+          <h2>🍛 2‑Meal Diet (Roti + Sabji) — Simple & Effective</h2>
+          <p class="small">
+            You eat twice daily — perfect. The two meals below are designed to
+            be high in protein from dal/chana/sprouts.
+          </p>
+          <h3 style="margin-top: 8px">Meal 1 (Late‑morning / Brunch)</h3>
+          <ul>
+            <li>2 rotis + 1 bowl sabji + 1 bowl dal / chana / sprouts</li>
+            <li>
+              Small onion‑tomato salad + 1 glass buttermilk (chaas) if available
+            </li>
+            <li>
+              Optional: handful roasted peanuts or 1 boiled egg occasionally
+            </li>
+          </ul>
+
+          <h3>Optional Snack</h3>
+          <p class="small">
+            (If hungry) Tea without sugar + roasted chana / peanuts or 1 fruit.
+          </p>
+
+          <h3>Meal 2 (Evening / Dinner)</h3>
+          <ul>
+            <li>
+              2 rotis + 1 bowl sabji (light, less oily) + ½ bowl dal / sprouts
+            </li>
+            <li>Finish dinner 2 hours before sleep where possible</li>
+          </ul>
+
+          <h3 style="margin-top: 8px">Daily habits</h3>
+          <ul>
+            <li>Drink 2–3 L water daily</li>
+            <li>Limit oil to ~2 tsp/day total</li>
+            <li>Sleep 7–8 hrs — critical for fat loss & recovery</li>
+          </ul>
+        </section>
+
+        <section class="card full">
+          <h2>💡 Extra tips for faster results</h2>
+          <ul>
+            <li>
+              Consistency > intensity. Stick to the routine for 4–8 weeks.
+            </li>
+            <li>
+              Add 10‑minute ab finisher 3×/week (already included at end of key
+              days).
+            </li>
+            <li>
+              Stand up and do a 60‑second chest opener every 30 minutes while
+              working.
+            </li>
+            <li>
+              Face fat tip: hydration + sleep + calorie deficit are the main
+              drivers.
+            </li>
+          </ul>
+        </section>
+
+        <footer class="card full">
+          <strong>How to use this file:</strong> Open, print, or save. Use the
+          buttons above to print or download the HTML. Stick to the weekly loop
+          for best results 💪
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("printBtn")
+        .addEventListener("click", function () {
+          window.print();
+        });
+      document
+        .getElementById("downloadBtn")
+        .addEventListener("click", function () {
+          const blob = new Blob([document.documentElement.outerHTML], {
+            type: "text/html",
+          });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "Kalpesh_FatLoss_2Meal_WorkoutPlan.html";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        });
+    </script>
+  </body>
+</html>
