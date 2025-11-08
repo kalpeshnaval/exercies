@@ -1,317 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kalpesh — Fat-Loss • Abs • Posture Plan</title>
-    <style>
-      :root {
-        --bg: #f7f9fc;
-        --card: #ffffff;
-        --muted: #6b7280;
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalpesh — Fat-Loss • Abs • Posture Plan</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --accent: #0b84ff;
+      --accent2: #2dd4bf;
+      --muted: #6b7280;
+      --radius: 14px;
+    }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: #111;
+      scroll-behavior: smooth;
+    }
+
+    /* ===== HERO ===== */
+    header {
+      background: url('https://images.unsplash.com/photo-1579758629934-09559b71a9a5?auto=format&fit=crop&w=1600&q=80')
+        no-repeat center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px 80px;
+      box-shadow: inset 0 0 0 2000px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+    }
+    header .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 8px;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      background: var(--card);
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      padding: 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent2); }
+
+    /* ===== LAYOUT ===== */
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px dashed #e5e7eb;
+      vertical-align: top;
+    }
+    th { text-align: left; color: var(--muted); font-weight: 600; }
+    .note { color: var(--muted); font-size: 0.9rem; }
+    details summary {
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--accent);
+    }
+    details[open] summary { color: var(--accent2); }
+    .mark-done {
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--accent2);
+    }
+
+    /* ===== IMAGE BANNERS ===== */
+    .banner {
+      width: 100%;
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      nav { flex-wrap: wrap; gap: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header style="background-image: url('./andrew-kliatskyi-0gTTqEaAW3g-unsplash.jpg');">
+    <h1>🏋️‍♂️ Kalpesh’s Fat-Loss • Abs • Posture Plan</h1>
+    <p class="subtitle">6-day workout + warm-up + cool-down + 2-meal diet</p>
+  </header>
+
+  <nav>
+    <a href="#warmup">🔥 Warm-Up</a>
+    <a href="#workout">💪 Workout Plan</a>
+    <a href="#cooldown">🧘 Cool-Down</a>
+    <a href="#diet">🍛 Diet</a>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- 🔥 Warm-Up -->
+    <section id="warmup" class="card">
+      <img src="/sushil-ghimire-5UbIqV58CW8-unsplash.jpg" class="banner" alt="Warm up exercises" />
+      <h2>🔥 Warm-Up Routine (5–7 minutes)</h2>
+      <table>
+        <tr><th>Exercise</th><th>Duration</th><th>Notes</th></tr>
+        <tr><td>🌀 Neck Rotations</td><td>5 each direction</td><td>Loosen tension.</td></tr>
+        <tr><td>💪 Arm Circles</td><td>10 forward + 10 back</td><td>Activate shoulders.</td></tr>
+        <tr><td>🤸 Shoulder Shrugs</td><td>12 reps</td><td>Ease upper-back tightness.</td></tr>
+        <tr><td>🔄 Torso Twists</td><td>10 each side</td><td>Mobilize spine.</td></tr>
+        <tr><td>🦵 Hip Circles</td><td>10 each direction</td><td>Warm hips & glutes.</td></tr>
+        <tr><td>🏃 March in Place</td><td>1–2 min</td><td>Raise heart rate.</td></tr>
+      </table>
+    </section>
+
+    <!-- 💪 Workout Days -->
+    <section id="workout" class="card">
+      <h2>💪 6-Day Workout Plan (with Abs & Posture)</h2>
+
+      <!-- Day 1 -->
+      <details open>
+        <summary>Day 1 — Upper Body Strength 🧑‍💼 <span class="mark-done">✔️ Done?</span></summary>
+        <table>
+          <tr><th>Exercise</th><th>Sets×Reps</th><th>Notes</th></tr>
+          <tr><td>Push-ups</td><td>3×12</td><td>Keep spine straight.</td></tr>
+          <tr><td>Dumbbell Shoulder Press</td><td>3×10</td><td>5 kg dumbbells.</td></tr>
+          <tr><td>Bicep Curls</td><td>3×12</td><td>5 kg, controlled.</td></tr>
+          <tr><td>Front Raise</td><td>3×10</td><td>1.2 kg rods.</td></tr>
+          <tr><td>Lateral Raise</td><td>3×10</td><td>1.2 kg rods.</td></tr>
+          <tr><td>Wall Angels</td><td>3×10</td><td>Posture drill.</td></tr>
+        </table>
+        <p class="note"><strong>Ab Finisher:</strong> 30s plank → 20 twists → 15 leg raises.</p>
+      </details>
+
+      <!-- Day 2 -->
+      <details>
+        <summary>Day 2 — Lower Body + Core 🦵 <span class="mark-done">✔️ Done?</span></summary>
+        <table>
+          <tr><td>Bodyweight Squats</td><td>3×15</td><td>Chest up.</td></tr>
+          <tr><td>Lunges</td><td>3×10/leg</td><td>Optional 5 kg.</td></tr>
+          <tr><td>Glute Bridge</td><td>3×15</td><td>Hold 2s top.</td></tr>
+          <tr><td>Plank</td><td>3×30s</td><td>Core tight.</td></tr>
+        </table>
+        <p class="note">Ab Finisher: 30s plank jacks → 20 crunches → 15 flutter kicks.</p>
+      </details>
+
+      <!-- Day 3 -->
+      <details>
+        <summary>Day 3 — HIIT + Mobility 🔥</summary>
+        <table>
+          <tr><td>Jumping Jacks</td><td>3×45s</td><td>Warm-up cardio.</td></tr>
+          <tr><td>Mountain Climbers</td><td>3×30s</td><td>Core & shoulders.</td></tr>
+          <tr><td>Cat-Cow Stretch</td><td>3×10</td><td>Spine mobility.</td></tr>
+          <tr><td>Superman Hold</td><td>3×30s</td><td>Strengthen back.</td></tr>
+        </table>
+      </details>
+
+      <!-- Day 4 -->
+      <details>
+        <summary>Day 4 — Full Body 💪</summary>
+        <table>
+          <tr><td>Burpees</td><td>3×10</td><td>Explosive full-body.</td></tr>
+          <tr><td>Dumbbell Rows</td><td>3×12</td><td>5 kg dumbbells.</td></tr>
+          <tr><td>Dumbbell Swings</td><td>3×15</td><td>Hip drive.</td></tr>
+          <tr><td>Farmer’s Carry</td><td>3×30s</td><td>Posture focus.</td></tr>
+        </table>
+      </details>
+
+      <!-- Day 5 -->
+      <details>
+        <summary>Day 5 — Posture + Flexibility 🧘</summary>
+        <table>
+          <tr><td>Shoulder Opener</td><td>3×30s</td><td>Wall chest open.</td></tr>
+          <tr><td>Scapular Retractions</td><td>3×12</td><td>1.2 kg rods.</td></tr>
+          <tr><td>Chin Tucks</td><td>3×15</td><td>Neck alignment.</td></tr>
+          <tr><td>Cat-Cow</td><td>3×10</td><td>Mobility.</td></tr>
+        </table>
+      </details>
+
+      <!-- Day 6 -->
+      <details>
+        <summary>Day 6 — Cardio + Abs Shred 💥</summary>
+        <table>
+          <tr><td>Jump Rope</td><td>3×1 min</td><td>High intensity.</td></tr>
+          <tr><td>Bicycle Crunches</td><td>3×20</td><td>Obliques.</td></tr>
+          <tr><td>Leg Raises</td><td>3×15</td><td>Lower abs.</td></tr>
+          <tr><td>Side Plank + Hip Dip</td><td>3×10</td><td>Tone waist.</td></tr>
+        </table>
+      </details>
+
+      <!-- Day 7 -->
+      <details>
+        <summary>Day 7 — Rest & Recovery 💤</summary>
+        <p class="note">Light walk, yoga or meditation. Hydrate and stretch.</p>
+      </details>
+    </section>
+
+    <!-- 🧘 Cool-Down -->
+    <section id="cooldown" class="card">
+      <img src="pexels-cottonbro-7690841.jpg" class="banner" alt="Cool down yoga" />
+      <h2>🧘 Cool-Down & Stretch (5 minutes)</h2>
+      <table>
+        <tr><th>Exercise</th><th>Duration</th><th>Focus</th></tr>
+        <tr><td>Shoulder Stretch</td><td>30s</td><td>Upper back.</td></tr>
+        <tr><td>Child’s Pose</td><td>45s</td><td>Lower back.</td></tr>
+        <tr><td>Forward Fold</td><td>30s</td><td>Hamstrings.</td></tr>
+        <tr><td>Quad Stretch</td><td>20s/leg</td><td>Legs.</td></tr>
+        <tr><td>Deep Breathing</td><td>1–2 min</td><td>Calm down.</td></tr>
+      </table>
+    </section>
+
+    <!-- 🍛 Diet -->
+    <section id="diet" class="card">
+      <img src="sangam-sharma-PUsVt3YpziI-unsplash.jpg" class="banner" alt="Simple meal" />
+      <h2>🍛 2-Meal Diet (Roti + Sabji)</h2>
+      <ul>
+        <li>Meal 1: 2 rotis + sabji + water</li>
+        <li>Meal 2: 2 rotis + sabji (light oil)</li>
+        <li>Optional: Tea without sugar</li>
+        <li>Sleep 7–8 hrs • 2–3 L water/day</li>
+      </ul>
+    </section>
+
+    <footer>
+      © 2025 Kalpesh | Consistency > Intensity 💪 Eat Clean • Train Smart • Sleep Well
+    </footer>
+  </div>
+
+  <script>
+    // Mark Done functionality with localStorage memory
+    document.querySelectorAll('.mark-done').forEach(btn => {
+      const id = btn.closest('summary').textContent.trim();
+      if(localStorage.getItem(id)==='done') {
+        btn.textContent = '✅ Completed';
+        btn.style.color = 'green';
       }
-      body {
-        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial;
-        background: var(--bg);
-        color: #111;
-        margin: 0;
-        padding: 24px;
-      }
-      .wrap {
-        max-width: 900px;
-        margin: 0 auto;
-      }
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 18px;
-      }
-      h1 {
-        font-size: 20px;
-        margin: 0;
-      }
-      .subtitle {
-        color: var(--muted);
-        font-size: 13px;
-      }
-      .controls {
-        display: flex;
-        gap: 8px;
-      }
-      button {
-        background: var(--card);
-        border: 1px solid #e6e9ef;
-        padding: 8px 12px;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-      .card {
-        background: var(--card);
-        padding: 18px;
-        border-radius: 12px;
-        box-shadow: 0 6px 18px rgba(12, 18, 26, 0.06);
-        margin-bottom: 12px;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr 340px;
-        gap: 12px;
-      }
-      .full {
-        grid-column: 1/-1;
-      }
-      h2 {
-        font-size: 16px;
-        margin: 0 0 8px;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      td,
-      th {
-        padding: 8px;
-        border-bottom: 1px dashed #eee;
-        vertical-align: top;
-      }
-      th {
-        text-align: left;
-        color: var(--muted);
-        font-weight: 600;
-      }
-      .note {
-        font-size: 13px;
-        color: var(--muted);
-      }
-      .pill {
-        display: inline-block;
-        padding: 6px 10px;
-        background: #eef8ff;
-        border-radius: 999px;
-        border: 1px solid #dbefff;
-        font-size: 13px;
-      }
-      footer {
-        margin-top: 18px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-      @media (max-width: 880px) {
-        .grid {
-          grid-template-columns: 1fr;
+      btn.addEventListener('click', e=>{
+        if(localStorage.getItem(id)==='done'){
+          localStorage.removeItem(id);
+          btn.textContent='✔️ Done?';
+          btn.style.color='#2dd4bf';
+        } else {
+          localStorage.setItem(id,'done');
+          btn.textContent='✅ Completed';
+          btn.style.color='green';
         }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <header>
-        <div>
-          <h1>🏋️ Fat-Loss • Abs • Posture Plan</h1>
-          <div class="subtitle">
-            6-day workout + 2-meal diet • Includes warm-up, cool-down, ab finishers & posture work
-          </div>
-        </div>
-        <div class="controls">
-          <button id="printBtn">🖨️ Print</button>
-          <button id="downloadBtn">⬇️ Download HTML</button>
-        </div>
-      </header>
-
-      <div class="grid">
-        <section class="card">
-          <h2>📅 Weekly Structure</h2>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <div class="pill">🔥 Warm-Up</div>
-            <div class="pill">Day 1 – Upper Body</div>
-            <div class="pill">Day 2 – Lower Body</div>
-            <div class="pill">Day 3 – HIIT + Mobility</div>
-            <div class="pill">Day 4 – Full Body</div>
-            <div class="pill">Day 5 – Posture</div>
-            <div class="pill">Day 6 – Cardio + Abs</div>
-            <div class="pill">🧘 Cool-Down</div>
-            <div class="pill">Day 7 – Rest</div>
-          </div>
-        </section>
-
-        <aside class="card">
-          <h2>📝 Quick Notes</h2>
-          <p class="note">
-            ⏱️ Workout ≈ 45–60 min. Warm up 5–7 min before, cool down 5 min after. Drink 2–3 L water daily & sleep 7–8 hrs.
-          </p>
-        </aside>
-
-        <!-- 🔥 WARM-UP SECTION -->
-        <section class="card full">
-          <h2>🔥 Warm-Up Routine (5–7 minutes)</h2>
-          <p class="note">Do before every workout to prepare muscles & joints.</p>
-          <table>
-            <tr><th>Exercise</th><th>Duration / Reps</th><th>Notes</th></tr>
-            <tr><td>🌀 Neck Rotations</td><td>5 each direction</td><td>Loosen neck tension from desk work.</td></tr>
-            <tr><td>💪 Arm Circles</td><td>10 fwd + 10 back</td><td>Activate shoulders.</td></tr>
-            <tr><td>🤸 Shoulder Shrugs</td><td>10–12 reps</td><td>Ease upper-back tightness.</td></tr>
-            <tr><td>🔄 Torso Twists</td><td>10 each side</td><td>Mobilize spine gently.</td></tr>
-            <tr><td>🦵 Hip Circles</td><td>10 each direction</td><td>Warm hips & glutes.</td></tr>
-            <tr><td>🏃 March in Place</td><td>1–2 min</td><td>Raise heart rate gradually.</td></tr>
-            <tr><td>🦶 Ankle Rotations</td><td>10 each side</td><td>Loosen ankle joints.</td></tr>
-            <tr><td>🧍 Side Bends</td><td>5 each side</td><td>Stretch spine & obliques.</td></tr>
-          </table>
-        </section>
-
-        <!-- 🧭 MAIN WORKOUT -->
-        <section class="card full">
-          <h2>🧭 Day-Wise Plan (with Ab Finishers)</h2>
-
-          <!-- Day 1 -->
-          <details open>
-            <summary>1. Day 1 – Upper Body Strength + Posture 🧑‍💼</summary>
-            <table>
-              <tr><th>Exercise</th><th>Sets×Reps</th><th>Equipment / Notes</th></tr>
-              <tr><td>Push-ups</td><td>3×12</td><td>Bodyweight – keep spine straight.</td></tr>
-              <tr><td>Dumbbell Shoulder Press</td><td>3×10</td><td>5 kg – engage core.</td></tr>
-              <tr><td>Bicep Curls</td><td>3×12</td><td>5 kg – controlled.</td></tr>
-              <tr><td>Hammer Curls</td><td>3×12</td><td>5 kg dumbbells.</td></tr>
-              <tr><td>Front Raise</td><td>3×10</td><td>1.2 kg rods – slow, no swing.</td></tr>
-              <tr><td>Lateral Raise</td><td>3×10</td><td>1.2 kg rods – to shoulder height.</td></tr>
-              <tr><td>Wall Angels</td><td>3×10</td><td>Posture drill – back on wall.</td></tr>
-              <tr><td>Hand Gripper</td><td>3×15 / hand</td><td>Grip strength.</td></tr>
-            </table>
-            <p class="note"><strong>Ab Finisher:</strong> 30 s plank → 20 Russian twists (1.2 kg) → 15 leg raises.</p>
-          </details>
-
-          <!-- Day 2 -->
-          <details>
-            <summary>2. Day 2 – Lower Body + Core 🦵</summary>
-            <table>
-              <tr><th>Exercise</th><th>Sets×Reps</th><th>Notes</th></tr>
-              <tr><td>Bodyweight Squats</td><td>3×15</td><td>Chest up, knees behind toes.</td></tr>
-              <tr><td>Forward Lunges</td><td>3×10/leg</td><td>Optional 5 kg dumbbells.</td></tr>
-              <tr><td>Glute Bridge</td><td>3×15</td><td>Hold 2 s at top.</td></tr>
-              <tr><td>Calf Raises</td><td>3×20</td><td>Full range movement.</td></tr>
-              <tr><td>Plank</td><td>3×30 s</td><td>Keep core tight.</td></tr>
-              <tr><td>Side Plank</td><td>3×30 s/side</td><td>Work obliques.</td></tr>
-            </table>
-            <p class="note"><strong>Ab Finisher:</strong> 30 s plank jacks → 20 bicycle crunches → 15 flutter kicks.</p>
-          </details>
-
-          <!-- Day 3 -->
-          <details>
-            <summary>3. Day 3 – HIIT + Core + Mobility 🔥</summary>
-            <table>
-              <tr><th>Exercise</th><th>Sets×Duration</th><th>Notes</th></tr>
-              <tr><td>Jumping Jacks</td><td>3×45 s</td><td>Warm-up cardio.</td></tr>
-              <tr><td>High Knees</td><td>3×30 s</td><td>Explosive movement.</td></tr>
-              <tr><td>Mountain Climbers</td><td>3×30 s</td><td>Core & shoulders.</td></tr>
-              <tr><td>Superman Hold</td><td>3×30 s</td><td>Spinal strength.</td></tr>
-              <tr><td>Cat-Cow Stretch</td><td>3×10</td><td>Spine mobility.</td></tr>
-              <tr><td>Chin Tucks</td><td>3×15</td><td>Neck alignment.</td></tr>
-            </table>
-            <p class="note"><strong>Ab Finisher:</strong> 30 s plank → 20 Russian twists → 15 leg raises.</p>
-          </details>
-
-          <!-- Day 4 -->
-          <details>
-            <summary>4. Day 4 – Full Body + Core 💪</summary>
-            <table>
-              <tr><th>Exercise</th><th>Sets×Reps</th><th>Notes</th></tr>
-              <tr><td>Burpees</td><td>3×10</td><td>Explosive full-body.</td></tr>
-              <tr><td>Dumbbell Bench Press</td><td>3×12</td><td>5 kg dumbbells.</td></tr>
-              <tr><td>Bent-Over Rows</td><td>3×12</td><td>5 kg – back strength.</td></tr>
-              <tr><td>Dumbbell Swings</td><td>3×15</td><td>5 kg – hip drive.</td></tr>
-              <tr><td>Farmer’s Carry</td><td>3×30 s</td><td>5 kg – posture stability.</td></tr>
-              <tr><td>Front Raise</td><td>3×10</td><td>1.2 kg rods.</td></tr>
-              <tr><td>Lateral Raise</td><td>3×10</td><td>1.2 kg rods.</td></tr>
-            </table>
-            <p class="note"><strong>Ab Finisher:</strong> 30 s plank → 20 crunches → 15 leg raises.</p>
-          </details>
-
-          <!-- Day 5 -->
-          <details>
-            <summary>5. Day 5 – Posture + Flexibility 🧘</summary>
-            <table>
-              <tr><th>Exercise</th><th>Sets×Duration</th><th>Notes</th></tr>
-              <tr><td>Shoulder Opener Stretch</td><td>3×30 s</td><td>Use wall – open chest.</td></tr>
-              <tr><td>Scapular Retractions</td><td>3×12</td><td>1.2 kg rods – squeeze shoulders.</td></tr>
-              <tr><td>Chin Tucks</td><td>3×15</td><td>Neck alignment.</td></tr>
-              <tr><td>Cat-Cow</td><td>3×10</td><td>Mobility.</td></tr>
-              <tr><td>Standing Forward Fold</td><td>2×30 s</td><td>Hamstrings & spine.</td></tr>
-              <tr><td>Wall Sit</td><td>3×30 s</td><td>Leg endurance.</td></tr>
-            </table>
-            <p class="note">Optional: 5-min breathing + shoulder rolls.</p>
-          </details>
-
-          <!-- Day 6 -->
-          <details>
-            <summary>6. Day 6 – Cardio + Abs Shred 💥</summary>
-            <table>
-              <tr><th>Exercise</th><th>Sets×Duration</th><th>Notes</th></tr>
-              <tr><td>Jump Rope / High Knees</td><td>3×1 min</td><td>High intensity.</td></tr>
-              <tr><td>Plank Jacks</td><td>3×30 s</td><td>Core + cardio.</td></tr>
-              <tr><td>Bicycle Crunches</td><td>3×20</td><td>Obliques.</td></tr>
-              <tr><td>Dumbbell Side Bends</td><td>3×15/side</td><td>5 kg – waist shape.</td></tr>
-              <tr><td>Russian Twists</td><td>3×20</td><td>1.2 kg rod – controlled.</td></tr>
-              <tr><td>Leg Raises</td><td>3×15</td><td>Lower abs.</td></tr>
-              <tr><td>Side Plank + Hip Dip</td><td>3×10/side</td><td>Tone obliques.</td></tr>
-            </table>
-            <p class="note">Finish with cool-down & deep breathing.</p>
-          </details>
-
-          <!-- 🧘 COOL-DOWN SECTION -->
-          <details open>
-            <summary>🧘 Cool-Down & Stretch Routine (5 min)</summary>
-            <table>
-              <tr><th>Exercise</th><th>Duration</th><th>Focus</th></tr>
-              <tr><td>🧍 Shoulder & Chest Stretch</td><td>30 s each</td><td>Fix hunching.</td></tr>
-              <tr><td>🧎 Cat–Cow Stretch</td><td>5 rounds</td><td>Mobilize spine.</td></tr>
-              <tr><td>🙆 Child’s Pose</td><td>45 s</td><td>Relax lower back.</td></tr>
-              <tr><td>🤸 Forward Fold</td><td>30 s</td><td>Hamstrings & spine.</td></tr>
-              <tr><td>🪑 Seated Twist</td><td>20 s each</td><td>Spinal mobility.</td></tr>
-              <tr><td>🦵 Quad Stretch</td><td>20 s each leg</td><td>Thigh release.</td></tr>
-              <tr><td>🧠 Deep Breathing</td><td>1–2 min</td><td>Relax & reset.</td></tr>
-            </table>
-          </details>
-
-          <!-- Day 7 -->
-          <details>
-            <summary>7. Day 7 – Rest & Recovery 💤</summary>
-            <p class="note">Walk or light yoga, gentle stretches, 10-min meditation, hydrate well.</p>
-          </details>
-        </section>
-
-        <!-- 🍛 DIET -->
-        <section class="card full">
-          <h2>🍛 2-Meal Diet (Roti + Sabji)</h2>
-          <p class="note">Simple, affordable, effective fat-loss nutrition.</p>
-          <ul>
-            <li>2 rotis + 1 bowl sabji (both meals)</li>
-            <li>Low oil (≤2 tsp/day)</li>
-            <li>Drink 2–3 L water</li>
-            <li>Sleep 7–8 hrs</li>
-          </ul>
-        </section>
-
-        <footer class="card full">
-          <strong>How to use:</strong> Warm-up → Workout → Cool-down → Eat simple → Repeat 🔁 Stay consistent for 4–6 weeks 💪
-        </footer>
-      </div>
-    </div>
-
-    <script>
-      document.getElementById("printBtn").addEventListener("click", () => window.print());
-      document.getElementById("downloadBtn").addEventListener("click", () => {
-        const blob = new Blob([document.documentElement.outerHTML], { type: "text/html" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "Kalpesh_Full_FatLoss_WorkoutPlan.html";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
-
