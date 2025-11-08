@@ -1,505 +1,459 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kalpesh — Fat-Loss • Abs • Posture Plan</title>
-    <style>
-      :root {
-        --bg: #f8fafc;
-        --card: #ffffff;
-        --accent: #0b84ff;
-        --accent2: #2dd4bf;
-        --muted: #6b7280;
-        --radius: 14px;
-      }
-      body {
-        margin: 0;
-        font-family: "Inter", system-ui, sans-serif;
-        background: var(--bg);
-        color: #111;
-        scroll-behavior: smooth;
-      }
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>2-Month — Fat → Ideal Body (Personal) 💪</title>
 
-      /* ===== HERO ===== */
-      header {
-        background: url("https://images.unsplash.com/photo-1579758629934-09559b71a9a5?auto=format&fit=crop&w=1600&q=80")
-          no-repeat center/cover;
-        color: white;
-        text-align: center;
-        padding: 100px 20px 80px;
-        box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
-      }
-      header h1 {
-        font-size: 2.8rem;
-        margin: 0;
-      }
-      header .subtitle {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        margin-top: 8px;
-      }
+<!-- React + ReactDOM + Babel (single-file dev build) -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-      /* ===== NAV ===== */
-      nav {
-        background: var(--card);
-        position: sticky;
-        top: 0;
-        z-index: 99;
-        display: flex;
-        justify-content: center;
-        gap: 14px;
-        padding: 12px;
-        border-bottom: 1px solid #e2e8f0;
-      }
-      nav a {
-        text-decoration: none;
-        color: var(--accent);
-        font-weight: 600;
-        transition: color 0.2s;
-      }
-      nav a:hover {
-        color: var(--accent2);
-      }
+<style>
+:root{
+  --bg:#060607;             /* warmer black */
+  --panel:#0d1413;
+  --muted:#9fbfc0;
+  --teal:#17c2b8;           /* teal accent */
+  --teal-2:#0aa89f;
+  --card-border: rgba(255,255,255,0.04);
+  --glass: rgba(255,255,255,0.02);
+  --success:#16a34a;
+  --danger:#ef4444;
+  --radius:14px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  background: linear-gradient(180deg,var(--bg),#030303 160%);
+  color:#e7f6f5;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:1100px;margin:24px auto;padding:18px}
+.header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid var(--card-border)}
+.title{font-size:20px;font-weight:800;color:var(--teal)}
+.subtitle{color:var(--muted);font-size:13px;margin-top:6px}
 
-      /* ===== LAYOUT ===== */
-      .wrap {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 24px;
-      }
-      .card {
-        background: var(--card);
-        border-radius: var(--radius);
-        padding: 22px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-        margin-bottom: 20px;
-        transition: transform 0.2s;
-      }
-      .card:hover {
-        transform: translateY(-3px);
-      }
+.layout{display:grid;grid-template-columns:280px 1fr;gap:16px;margin-top:16px}
+.sidebar{background:var(--panel);border:1px solid var(--card-border);padding:14px;border-radius:12px}
+.main{}
 
-      h2 {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 6px;
-      }
-      th,
-      td {
-        padding: 8px;
-        border-bottom: 1px dashed #e5e7eb;
-        vertical-align: top;
-      }
-      th {
-        text-align: left;
-        color: var(--muted);
-        font-weight: 600;
-      }
-      .note {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-      details summary {
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        padding: 8px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: var(--accent);
-      }
-      details[open] summary {
-        color: var(--accent2);
-      }
-      .mark-done {
-        font-size: 0.9rem;
-        cursor: pointer;
-        color: var(--accent2);
-      }
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.004));border-radius:12px;padding:14px;border:1px solid var(--card-border);margin-bottom:14px}
 
-      /* ===== IMAGE BANNERS ===== */
-      .banner {
-        width: 100%;
-        border-radius: var(--radius);
-        margin-bottom: 12px;
-        height: 240px;
-        object-fit: cover;
-      }
+.btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;color:inherit;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,0.012)}
+.btn-accent{background:linear-gradient(90deg,var(--teal),var(--teal-2));border:none;color:#021; font-weight:700}
+.btn-success{background:var(--success);border:none;color:white}
+.btn-danger{background:var(--danger);border:none;color:white}
 
-      /* ===== FOOTER ===== */
-      footer {
-        text-align: center;
-        color: var(--muted);
-        padding: 20px;
-        font-size: 0.9rem;
-      }
+.day-btn{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;border:1px solid transparent;background:transparent;color:inherit;cursor:pointer}
+.day-btn:hover{background:rgba(255,255,255,0.01)}
+.day-btn.active{background:linear-gradient(90deg, rgba(23,194,184,0.08), rgba(10,168,159,0.06));border:1px solid rgba(23,194,184,0.06)}
 
-      @media (max-width: 768px) {
-        header h1 {
-          font-size: 2rem;
-        }
-        nav {
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-      }
-    </style>
-  </head>
+.emoji{font-size:1.3rem}
+.small{color:var(--muted);font-size:13px}
 
-  <body>
-    <header
-      style="background-image: url('andrew-kliatskyi-0gTTqEaAW3g-unsplash.jpg')"
-    >
-      <h1>🏋️‍♂️ Kalpesh’s Fat-Loss • Abs • Posture Plan</h1>
-      <p class="subtitle">6-day workout + warm-up + cool-down + 2-meal diet</p>
-    </header>
+/* Table style */
+.table{width:100%;border-collapse:collapse;margin-top:8px}
+.table th, .table td{padding:10px;border-bottom:1px dashed rgba(255,255,255,0.03);text-align:left;font-size:0.95rem}
+.table th{color:var(--muted);font-weight:700;font-size:0.9rem}
+.tips{color:var(--muted);font-size:0.9rem}
+.section-title{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1rem;margin-bottom:8px}
+.pill{padding:6px 10px;border-radius:999px;background:var(--glass);border:1px solid var(--card-border);font-size:13px}
+.mono{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.note{color:var(--muted);font-size:13px}
 
-    <nav>
-      <a href="#warmup">🔥 Warm-Up</a>
-      <a href="#workout">💪 Workout Plan</a>
-      <a href="#cooldown">🧘 Cool-Down</a>
-      <a href="#diet">🍛 Diet</a>
-    </nav>
+/* responsive */
+@media (max-width:980px){.layout{grid-template-columns:1fr}.sidebar{order:2}.main{order:1}}
+@media print{.header,.btn{display:none!important};.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="root"></div>
 
-    <div class="wrap">
-      <!-- 🔥 Warm-Up -->
-      <section id="warmup" class="card">
-        <img
-          src="sushil-ghimire-5UbIqV58CW8-unsplash.jpg"
-          class="banner"
-          alt="Warm up exercises"
-        />
-        <h2>🔥 Warm-Up Routine (5–7 minutes)</h2>
-        <table>
-          <tr>
-            <th>Exercise</th>
-            <th>Duration</th>
-            <th>Notes</th>
-          </tr>
-          <tr>
-            <td>🌀 Neck Rotations</td>
-            <td>5 each direction</td>
-            <td>Loosen tension.</td>
-          </tr>
-          <tr>
-            <td>💪 Arm Circles</td>
-            <td>10 forward + 10 back</td>
-            <td>Activate shoulders.</td>
-          </tr>
-          <tr>
-            <td>🤸 Shoulder Shrugs</td>
-            <td>12 reps</td>
-            <td>Ease upper-back tightness.</td>
-          </tr>
-          <tr>
-            <td>🔄 Torso Twists</td>
-            <td>10 each side</td>
-            <td>Mobilize spine.</td>
-          </tr>
-          <tr>
-            <td>🦵 Hip Circles</td>
-            <td>10 each direction</td>
-            <td>Warm hips & glutes.</td>
-          </tr>
-          <tr>
-            <td>🏃 March in Place</td>
-            <td>1–2 min</td>
-            <td>Raise heart rate.</td>
-          </tr>
-        </table>
-      </section>
+<script type="text/babel">
+const { useState, useEffect } = React;
 
-      <!-- 💪 Workout Days -->
-      <section id="workout" class="card">
-        <h2>💪 6-Day Workout Plan (with Abs & Posture)</h2>
+/* Final streamlined program — 1 hour/day, tailored to your equipment and diet (roti+sabji).
+   Warm-ups customized per day; push-up alternatives included.
+*/
 
-        <!-- Day 1 -->
-        <details open>
-          <summary>
-            Day 1 — Upper Body Strength 🧑‍💼
-            <span class="mark-done">✔️ Done?</span>
-          </summary>
-          <table>
-            <tr>
-              <th>Exercise</th>
-              <th>Sets×Reps</th>
-              <th>Notes</th>
-            </tr>
-            <tr>
-              <td>Push-ups</td>
-              <td>3×12</td>
-              <td>Keep spine straight.</td>
-            </tr>
-            <tr>
-              <td>Dumbbell Shoulder Press</td>
-              <td>3×10</td>
-              <td>5 kg dumbbells.</td>
-            </tr>
-            <tr>
-              <td>Bicep Curls</td>
-              <td>3×12</td>
-              <td>5 kg, controlled.</td>
-            </tr>
-            <tr>
-              <td>Front Raise</td>
-              <td>3×10</td>
-              <td>1.2 kg rods.</td>
-            </tr>
-            <tr>
-              <td>Lateral Raise</td>
-              <td>3×10</td>
-              <td>1.2 kg rods.</td>
-            </tr>
-            <tr>
-              <td>Wall Angels</td>
-              <td>3×10</td>
-              <td>Posture drill.</td>
-            </tr>
-          </table>
-          <p class="note">
-            <strong>Ab Finisher:</strong> 30s plank → 20 twists → 15 leg raises.
-          </p>
-        </details>
+const PROGRAM = {
+  title: "2-Month — Fat → Ideal Body 💪",
+  subtitle: "Do around 9 AM after waking • 55–60 min/day • Equipment: 5 kg dumbbells, 1.2 kg rod, bench, grippers",
+  days: [
+    /* MONDAY — Upper Body + Posture */
+    {
+      id:"monday", emoji:"🧍‍♂️", name:"Upper Body + Posture",
+      warmup: [
+        {ex:"Jumping jacks", time:"60 s", tip:"Moderate pace to raise HR."},
+        {ex:"Arm circles (forward/back)", time:"10 each", tip:"Loosen shoulders."},
+        {ex:"Band/pull-apart motion with rod", time:"12 reps", tip:"Light 1.2 kg rod to activate scapulae."},
+        {ex:"Chin tucks", time:"12 reps", tip:"Activate deep neck flexors for posture."}
+      ],
+      main: [
+        {ex:"Incline push-ups (hands on bench)", sets:4, reps:"10-12", weight:"bodyweight", tip:"Keep body straight; easier than floor push-ups."},
+        {ex:"Dumbbell bent-over row", sets:4, reps:12, weight:"5 kg each", tip:"Hinge at hips; pull elbows to ribs."},
+        {ex:"Seated dumbbell shoulder press (light)", sets:3, reps:12, weight:"5 kg each", tip:"Press with control; avoid neck strain."},
+        {ex:"Reverse fly (on bench)", sets:3, reps:15, weight:"5 kg each", tip:"Keep slight elbow bend; squeeze rear delts."},
+        {ex:"Rod face-pull motion (bend over)", sets:3, reps:15, weight:"1.2 kg rod", tip:"Scapular retraction focus."}
+      ],
+      abs: [
+        {ex:"Plank", sets:3, reps:"45s", tip:"Neutral neck; chin tucked."},
+        {ex:"Flutter kicks", sets:3, reps:20, tip:"Lower back pressed into floor."},
+        {ex:"Jaw/chin lifts (face)", sets:1, reps:15, tip:"Slow controlled lifts for chin/jaw tone."}
+      ],
+      cooldown: [
+        {ex:"Doorway chest stretch", time:"30 s", tip:"Open pecs; relax shoulders."},
+        {ex:"Upper trap stretch", time:"30 s each side", tip:"Gentle pull of head to side."}
+      ]
+    },
 
-        <!-- Day 2 -->
-        <details>
-          <summary>
-            Day 2 — Lower Body + Core 🦵 <span class="mark-done">✔️ Done?</span>
-          </summary>
-          <table>
-            <tr>
-              <td>Bodyweight Squats</td>
-              <td>3×15</td>
-              <td>Chest up.</td>
-            </tr>
-            <tr>
-              <td>Lunges</td>
-              <td>3×10/leg</td>
-              <td>Optional 5 kg.</td>
-            </tr>
-            <tr>
-              <td>Glute Bridge</td>
-              <td>3×15</td>
-              <td>Hold 2s top.</td>
-            </tr>
-            <tr>
-              <td>Plank</td>
-              <td>3×30s</td>
-              <td>Core tight.</td>
-            </tr>
-          </table>
-          <p class="note">
-            Ab Finisher: 30s plank jacks → 20 crunches → 15 flutter kicks.
-          </p>
-        </details>
+    /* TUESDAY — Lower Body + Glutes */
+    {
+      id:"tuesday", emoji:"🦵", name:"Lower Body + Glutes",
+      warmup: [
+        {ex:"March in place / high knees", time:"60 s", tip:"Warm hips and heart rate."},
+        {ex:"Leg swings (front & side)", time:"12 / leg", tip:"Open hip flexors."},
+        {ex:"Bodyweight squats (slow)", time:"12 reps", tip:"Activate posterior chain."}
+      ],
+      main: [
+        {ex:"Dumbbell squats", sets:4, reps:15, weight:"5 kg each", tip:"Keep chest up; knees track toes."},
+        {ex:"Dumbbell lunges (stationary or walking)", sets:3, reps:"12 / leg", weight:"5 kg each", tip:"Longer stride for glute focus."},
+        {ex:"Romanian deadlift (single or double db)", sets:4, reps:12, weight:"5 kg each", tip:"Hinge at hips; feel hamstrings."},
+        {ex:"Step-ups (bench)", sets:3, reps:"12 / leg", weight:"5 kg each", tip:"Drive through heel to engage glutes."},
+        {ex:"Glute bridge (weighted optional)", sets:3, reps:20, weight:"bodyweight / add 5 kg", tip:"Squeeze at top, pause 1s."}
+      ],
+      abs: [
+        {ex:"Leg raises (lying)", sets:3, reps:15, tip:"Slow descent to protect low back."},
+        {ex:"Russian twists (light)", sets:3, reps:24, weight:"5 kg", tip:"Control rotation; don't yank neck."},
+        {ex:"Face balloon / cheek puff", sets:1, reps:15, tip:"Tone cheeks and jaw."}
+      ],
+      cooldown: [
+        {ex:"Hamstring stretch", time:"30 s / leg", tip:"Hinge from hips."},
+        {ex:"Figure-4 glute stretch", time:"30 s / leg", tip:"Relax shoulders and breathe."}
+      ]
+    },
 
-        <!-- Day 3 -->
-        <details>
-          <summary>Day 3 — HIIT + Mobility 🔥</summary>
-          <table>
-            <tr>
-              <td>Jumping Jacks</td>
-              <td>3×45s</td>
-              <td>Warm-up cardio.</td>
-            </tr>
-            <tr>
-              <td>Mountain Climbers</td>
-              <td>3×30s</td>
-              <td>Core & shoulders.</td>
-            </tr>
-            <tr>
-              <td>Cat-Cow Stretch</td>
-              <td>3×10</td>
-              <td>Spine mobility.</td>
-            </tr>
-            <tr>
-              <td>Superman Hold</td>
-              <td>3×30s</td>
-              <td>Strengthen back.</td>
-            </tr>
-          </table>
-        </details>
+    /* WEDNESDAY — Core + Posture Correction */
+    {
+      id:"wednesday", emoji:"🧘‍♂️", name:"Core + Posture Correction",
+      warmup: [
+        {ex:"Arm swings & band pull-aparts (rod)", time:"12", tip:"Activate upper back."},
+        {ex:"Chin tucks", time:"12", tip:"Prep neck; posture cue."},
+        {ex:"Cat–cow", time:"10 reps", tip:"Mobilize spine."},
+        {ex:"Jumping jacks", time:"45 s", tip:"Light cardio to warm core."}
+      ],
+      main: [
+        {ex:"Dumbbell side bend", sets:3, reps:"16–20 / side", weight:"5 kg", tip:"Slow inflection; feel oblique."},
+        {ex:"Russian twist", sets:3, reps:30, weight:"5 kg", tip:"Controlled rotation; brace core."},
+        {ex:"Hanging or lying knee raises", sets:3, reps:15, weight:"—", tip:"Use core to lift; no momentum."},
+        {ex:"Superman hold", sets:3, reps:"30 s", weight:"—", tip:"Squeeze glutes and upper back."},
+        {ex:"Scapular retraction (bench/rod)", sets:3, reps:15, weight:"1.2 kg rod", tip:"Pull shoulder blades together, not arms."},
+        {ex:"Chin-tuck to wall (posture drill)", sets:3, reps:15, tip:"Stand tall, glide head to wall; hold 1s."}
+      ],
+      abs: [
+        {ex:"Plank shoulder taps", sets:3, reps:20, tip:"Keep hips low; brace core."},
+        {ex:"Reverse crunch", sets:3, reps:15, tip:"Curl hips; control lowering."},
+        {ex:"Tongue push / cheek work", sets:1, reps:"10 / side", tip:"Inside-cheek pressure to tone jaw muscles."}
+      ],
+      cooldown: [
+        {ex:"Doorway chest stretch", time:"30 s", tip:"Open chest."},
+        {ex:"Neck stretch (gentle)", time:"20 s each side", tip:"Slow and relaxed."}
+      ]
+    },
 
-        <!-- Day 4 -->
-        <details>
-          <summary>Day 4 — Full Body 💪</summary>
-          <table>
-            <tr>
-              <td>Burpees</td>
-              <td>3×10</td>
-              <td>Explosive full-body.</td>
-            </tr>
-            <tr>
-              <td>Dumbbell Rows</td>
-              <td>3×12</td>
-              <td>5 kg dumbbells.</td>
-            </tr>
-            <tr>
-              <td>Dumbbell Swings</td>
-              <td>3×15</td>
-              <td>Hip drive.</td>
-            </tr>
-            <tr>
-              <td>Farmer’s Carry</td>
-              <td>3×30s</td>
-              <td>Posture focus.</td>
-            </tr>
-          </table>
-        </details>
+    /* THURSDAY — Arms + Chest (push-up alternatives) */
+    {
+      id:"thursday", emoji:"💪", name:"Arms & Chest (push-up friendly)",
+      warmup: [
+        {ex:"Arm circles", time:"10 f + 10 b", tip:"Warm shoulders."},
+        {ex:"Wrist mobility", time:"12 each direction", tip:"Prep wrists for presses."},
+        {ex:"Light incline knee push-up (easy)", time:"10 reps", tip:"Bench incline to warm chest."}
+      ],
+      main: [
+        {ex:"Incline push-ups (bench) or knee push-ups", sets:4, reps:"8–12", weight:"bodyweight", tip:"Choose incline if regular push-ups are hard."},
+        {ex:"Dumbbell floor press or bench press", sets:4, reps:12, weight:"5 kg each", tip:"Elbows at ~45°, press without shoulder shrug."},
+        {ex:"Bicep curls", sets:4, reps:12, weight:"5 kg each", tip:"Full range; control the negative."},
+        {ex:"Triceps kickback", sets:3, reps:15, weight:"1.2 kg rod or light db", tip:"Elbow stationary; squeeze tricep."},
+        {ex:"Hammer curls", sets:3, reps:12, weight:"5 kg each", tip:"Neutral grip; forearm + biceps."}
+      ],
+      abs: [
+        {ex:"Side plank", sets:3, reps:"30 s / side", tip:"Stack hips; keep body straight."},
+        {ex:"Toe touches", sets:3, reps:20, tip:"Reach with chest; don't yank neck."},
+        {ex:"Jaw-lift + smile (face)", sets:1, reps:15, tip:"Hold 2s for jaw activation."}
+      ],
+      cooldown: [
+        {ex:"Triceps stretch", time:"30 s / arm", tip:"Gentle and steady."},
+        {ex:"Forearm stretch (palm up/down)", time:"20 s / side", tip:"Release wrist tension."}
+      ]
+    },
 
-        <!-- Day 5 -->
-        <details>
-          <summary>Day 5 — Posture + Flexibility 🧘</summary>
-          <table>
-            <tr>
-              <td>Shoulder Opener</td>
-              <td>3×30s</td>
-              <td>Wall chest open.</td>
-            </tr>
-            <tr>
-              <td>Scapular Retractions</td>
-              <td>3×12</td>
-              <td>1.2 kg rods.</td>
-            </tr>
-            <tr>
-              <td>Chin Tucks</td>
-              <td>3×15</td>
-              <td>Neck alignment.</td>
-            </tr>
-            <tr>
-              <td>Cat-Cow</td>
-              <td>3×10</td>
-              <td>Mobility.</td>
-            </tr>
-          </table>
-        </details>
+    /* FRIDAY — Conditioning + Cardio (fat burning) */
+    {
+      id:"friday", emoji:"⚡", name:"Conditioning & Cardio",
+      warmup: [
+        {ex:"Light jog in place / high knees", time:"60 s", tip:"Raise heart rate for conditioning."},
+        {ex:"Dynamic lunges", time:"8 / leg", tip:"Open hip flexors and warm legs."},
+        {ex:"Arm swings", time:"12", tip:"Open shoulders."}
+      ],
+      main: [
+        {ex:"Circuit (3–4 rounds): 45s work / 15s rest — Jump rope or simulated jump rope", sets:"3–4 rounds", reps:"45s per station", weight:"—", tip:"Stations: jump rope / mountain climbers / bodyweight thrusters / squat jumps — rotate."},
+        {ex:"Dumbbell thruster (if energy)", sets:3, reps:12, weight:"5 kg each", tip:"Explosive push from legs into overhead press."},
+        {ex:"Renegade row (knees on floor if needed)", sets:3, reps:"8–10 / side", weight:"5 kg each", tip:"Keep core tight; row with control."}
+      ],
+      abs: [
+        {ex:"V-ups", sets:3, reps:15, tip:"Explosive core contract; control down."},
+        {ex:"Leg-raise hold", sets:3, reps:"30 s", tip:"Brace core; avoid arching."},
+        {ex:"Face jaw press", sets:1, reps:15, tip:"Press jaw forward; smile to tone."}
+      ],
+      cooldown: [
+        {ex:"Walking 3–5 minutes slow", time:"3–5 min", tip:"Bring heart rate down."},
+        {ex:"Full body stretching (hamstring/chest/back)", time:"2–3 min", tip:"Breathe slowly."}
+      ]
+    },
 
-        <!-- Day 6 -->
-        <details>
-          <summary>Day 6 — Cardio + Abs Shred 💥</summary>
-          <table>
-            <tr>
-              <td>Jump Rope</td>
-              <td>3×1 min</td>
-              <td>High intensity.</td>
-            </tr>
-            <tr>
-              <td>Bicycle Crunches</td>
-              <td>3×20</td>
-              <td>Obliques.</td>
-            </tr>
-            <tr>
-              <td>Leg Raises</td>
-              <td>3×15</td>
-              <td>Lower abs.</td>
-            </tr>
-            <tr>
-              <td>Side Plank + Hip Dip</td>
-              <td>3×10</td>
-              <td>Tone waist.</td>
-            </tr>
-          </table>
-        </details>
+    /* SATURDAY — Mobility & Posture Reset (light) */
+    {
+      id:"saturday", emoji:"🧘", name:"Mobility & Posture Reset",
+      warmup: [
+        {ex:"Gentle walking or marching", time:"5 min", tip:"Light joint warm-up."},
+        {ex:"Neck mobility (slow)", time:"10 each way", tip:"Gentle, avoid pain."}
+      ],
+      main: [
+        {ex:"Wall angels", sets:3, reps:12, weight:"—", tip:"Keep lower back neutral; slide arms slow."},
+        {ex:"Rod pull-apart", sets:3, reps:15, weight:"1.2 kg rod", tip:"Squeeze scapulae; light resistance."},
+        {ex:"Bird dog", sets:3, reps:"12 / side", weight:"—", tip:"Slow controlled opposite arm-leg reach."},
+        {ex:"Thoracic rotation (open book)", sets:3, reps:"10 / side", weight:"—", tip:"Work thoracic mobility."}
+      ],
+      abs: [
+        {ex:"Dead bug", sets:3, reps:12, tip:"Slow; maintain neutral back."},
+        {ex:"Balloon breaths", sets:1, reps:10, tip:"Deep belly inhale; slow exhale."}
+      ],
+      cooldown: [
+        {ex:"Child's pose", time:"30 s", tip:"Relax shoulders and breathe."},
+        {ex:"Neck & shoulder rolls", time:"10 each", tip:"Gentle mobility."}
+      ]
+    },
 
-        <!-- Day 7 -->
-        <details>
-          <summary>Day 7 — Rest & Recovery 💤</summary>
-          <p class="note">
-            Light walk, yoga or meditation. Hydrate and stretch.
-          </p>
-        </details>
-      </section>
+    /* SUNDAY — Rest / Active Recovery */
+    {
+      id:"sunday", emoji:"😴", name:"Rest / Active Recovery",
+      warmup: [],
+      main: [
+        {ex:"Brisk walk", sets:1, reps:"30–40 min", tip:"Keep pace conversational; enjoy outdoors."},
+        {ex:"Light yoga or foam rolling", sets:1, reps:"15–20 min", tip:"Focus on sore areas."}
+      ],
+      abs: [
+        {ex:"Light face massage", sets:1, reps:"5 min", tip:"Helps with facial tone & puffiness."}
+      ],
+      cooldown: [
+        {ex:"Gentle full-body stretch", time:"5 min", tip:"Relax and restore."}
+      ]
+    }
+  ]
+};
 
-      <!-- 🧘 Cool-Down -->
-      <section id="cooldown" class="card">
-        <img
-          src="pexels-cottonbro-7690841.jpg"
-          class="banner"
-          alt="Cool down yoga"
-        />
-        <h2>🧘 Cool-Down & Stretch (5 minutes)</h2>
-        <table>
-          <tr>
-            <th>Exercise</th>
-            <th>Duration</th>
-            <th>Focus</th>
-          </tr>
-          <tr>
-            <td>Shoulder Stretch</td>
-            <td>30s</td>
-            <td>Upper back.</td>
-          </tr>
-          <tr>
-            <td>Child’s Pose</td>
-            <td>45s</td>
-            <td>Lower back.</td>
-          </tr>
-          <tr>
-            <td>Forward Fold</td>
-            <td>30s</td>
-            <td>Hamstrings.</td>
-          </tr>
-          <tr>
-            <td>Quad Stretch</td>
-            <td>20s/leg</td>
-            <td>Legs.</td>
-          </tr>
-          <tr>
-            <td>Deep Breathing</td>
-            <td>1–2 min</td>
-            <td>Calm down.</td>
-          </tr>
-        </table>
-      </section>
+/* local storage key */
+const STORAGE_KEY = "fat_ideal_personal_prog_v1";
 
-      <!-- 🍛 Diet -->
-      <section id="diet" class="card">
-        <img
-          src="sangam-sharma-PUsVt3YpziI-unsplash.jpg"
-          class="banner"
-          alt="Simple meal"
-        />
-        <h2>🍛 2-Meal Diet (Roti + Sabji)</h2>
-        <ul>
-          <li>Meal 1: 2 rotis + sabji + water</li>
-          <li>Meal 2: 2 rotis + sabji (light oil)</li>
-          <li>Optional: Tea without sugar</li>
-          <li>Sleep 7–8 hrs • 2–3 L water/day</li>
-        </ul>
-      </section>
+/* helpers */
+function loadDone(){
+  try{ return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
+  catch(e){ return {}; }
+}
+function saveDone(obj){ localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); }
 
-      <footer>
-        © 2025 Kalpesh | Consistency > Intensity 💪 Eat Clean • Train Smart •
-        Sleep Well
+/* React App */
+function App(){
+  const [selected, setSelected] = useState("monday");
+  const [done, setDone] = useState(loadDone());
+
+  useEffect(()=> saveDone(done), [done]);
+
+  function toggleDone(dayId){
+    setDone(prev => ({ ...prev, [dayId]: !prev[dayId] }));
+  }
+  function completedCount(){
+    return Object.values(done).filter(Boolean).length;
+  }
+
+  /* small UI helper to render warmup rows */
+  function renderWarmupRows(rows){
+    return rows.map((r, i) => (
+      <tr key={i}>
+        <td>{r.ex}</td>
+        <td>{r.time || (r.sets ? `${r.sets} sets` : "")}</td>
+        <td className="tips">{r.tip}</td>
+      </tr>
+    ));
+  }
+
+  return (
+    <div className="container" role="application" aria-label="Personal 2-Month Fat to Ideal Program">
+      <header className="header" role="banner">
+        <div>
+          <div className="title">{PROGRAM.title}</div>
+          <div className="subtitle">Personal program • Train ~9:00 AM • 55–60 minutes • Equipment: 5kg db, 1.2kg rod, bench</div>
+        </div>
+        <div style={{textAlign:"right"}}>
+          <div className="pill mono">{completedCount()}/7 days completed</div>
+          <div className="small" style={{marginTop:8}}>Diet base: roti + sabji — plan tuned for this.</div>
+        </div>
+      </header>
+
+      <div className="layout">
+        <aside className="sidebar" aria-label="Week navigation">
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+            <div style={{fontWeight:800,color:"var(--teal)"}}>Weekly Plan</div>
+            <div className="small">Saved locally</div>
+          </div>
+
+          <nav style={{display:"flex",flexDirection:"column",gap:8}}>
+            {PROGRAM.days.map(d => (
+              <button key={d.id} onClick={()=>setSelected(d.id)} className={"day-btn "+(selected===d.id?"active":"")} aria-pressed={selected===d.id}>
+                <div className="emoji">{d.emoji}</div>
+                <div style={{textAlign:"left"}}>
+                  <div style={{fontWeight:700}}>{d.name}</div>
+                  <div className="small" style={{marginTop:4}}>{ done[d.id] ? "✅ Done" : "— Not done" }</div>
+                </div>
+              </button>
+            ))}
+          </nav>
+
+          <div className="card" style={{marginTop:12}}>
+            <div style={{fontWeight:700,color:"var(--teal)"}}>Quick Rules</div>
+            <ul style={{color:"var(--muted)",lineHeight:1.6,fontSize:13,marginTop:8}}>
+              <li>1 hr total — warm-up (5–8 min) • main (35–40 min) • abs (8–10 min) • cooldown (4–5 min).</li>
+              <li>Progress weekly: add 1 set, or slightly less rest (10–15s) as you adapt.</li>
+              <li>Prefer incline or knee push-ups if floor push-ups hurt — don't force pain.</li>
+              <li>Protein focus within roti+sabji: include dal, paneer, legumes, or paneer/chana regularly.</li>
+            </ul>
+          </div>
+        </aside>
+
+        <main className="main" aria-live="polite">
+          <div className="card" style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <div>
+              <div style={{fontWeight:900,fontSize:18}}>{PROGRAM.days.find(d => d.id === selected).emoji} {PROGRAM.days.find(d => d.id === selected).name}</div>
+              <div className="small" style={{marginTop:6}}>Warm-up → Main → Abs & Face → Cool-down. Keep tempo controlled; focus on form.</div>
+            </div>
+
+            <div style={{display:"flex",flexDirection:"column",gap:8,alignItems:"flex-end"}}>
+              <button className={"btn-accent"} onClick={()=>toggleDone(selected)} style={{padding:"8px 14px"}}>
+                { done[selected] ? "✅ Day marked complete" : "✔️ Mark Day Complete" }
+              </button>
+              <div className="small" style={{marginTop:6}}>{ done[selected] ? "Nice — keep it daily!" : "Tap when finished" }</div>
+            </div>
+          </div>
+
+          {/* Warm-up */}
+          <div className="card">
+            <div className="section-title"><div style={{fontSize:18}}>🔥</div><div>Warm-up — specific for this day</div></div>
+            <table className="table" role="table" aria-label="Warm-up">
+              <thead><tr><th style={{width:"48%"}}>Move</th><th style={{width:"18%"}}>Time / Reps</th><th>Notes</th></tr></thead>
+              <tbody>
+                {PROGRAM.days.find(d => d.id === selected).warmup.map((w,i)=>(
+                  <tr key={i}><td>{w.ex}</td><td>{w.time}</td><td className="tips">{w.tip}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="note" style={{marginTop:8}}>Do warm-up smoothly — not sprinting. Warm muscles, mobilize joints.</div>
+          </div>
+
+          {/* Main */}
+          <div className="card">
+            <div className="section-title"><div style={{fontSize:18}}>🏋️‍♂️</div><div>Main Workout (compound + focus lifts)</div></div>
+            <table className="table" role="table" aria-label="Main workout">
+              <thead>
+                <tr><th style={{width:"40%"}}>Exercise</th><th style={{width:"10%"}}>Sets</th><th style={{width:"12%"}}>Reps</th><th style={{width:"14%"}}>Weight</th><th>Tip</th></tr>
+              </thead>
+              <tbody>
+                {PROGRAM.days.find(d => d.id === selected).main.map((m,i)=>(
+                  <tr key={i}>
+                    <td>{m.ex}</td>
+                    <td>{m.sets}</td>
+                    <td>{m.reps}</td>
+                    <td style={{color: m.weight && m.weight !== "—" ? "#fff" : "var(--muted)"}}>{m.weight || "—"}</td>
+                    <td className="tips">{m.tip}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="note" style={{marginTop:8}}>Rest 45–75s between sets for strength moves; 30–45s for conditioning sets. Adjust to keep workout ~35–40 min.</div>
+          </div>
+
+          {/* Abs & Face finishers */}
+          <div className="card">
+            <div className="section-title"><div style={{fontSize:18}}>💫</div><div>Abs & Face Finishers — 8–10 minutes</div></div>
+            <table className="table" role="table" aria-label="Abs and face">
+              <thead><tr><th style={{width:"40%"}}>Move</th><th style={{width:"12%"}}>Sets</th><th style={{width:"12%"}}>Reps</th><th>Tip</th></tr></thead>
+              <tbody>
+                {PROGRAM.days.find(d => d.id === selected).abs.map((a,i)=>(
+                  <tr key={i}><td>{a.ex}</td><td>{a.sets}</td><td>{a.reps}</td><td className="tips">{a.tip}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="note" style={{marginTop:8}}>Face finishers are low-effort but done daily to improve jaw/chin tone — 2–3 sets max.</div>
+          </div>
+
+          {/* Cool-down */}
+          <div className="card">
+            <div className="section-title"><div style={{fontSize:18}}>🧘‍♀️</div><div>Cool-down (4–6 minutes)</div></div>
+            <table className="table" role="table" aria-label="Cool down">
+              <thead><tr><th style={{width:"46%"}}>Move</th><th style={{width:"18%"}}>Time</th><th>Tip</th></tr></thead>
+              <tbody>
+                {PROGRAM.days.find(d => d.id === selected).cooldown.map((c,i)=>(
+                  <tr key={i}><td>{c.ex}</td><td>{c.time}</td><td className="tips">{c.tip}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="note" style={{marginTop:8}}>Light breathing & gentle stretches help recovery and posture alignment.</div>
+          </div>
+
+          {/* Posture micro-breaks */}
+          <div className="card">
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+              <div>
+                <div style={{fontWeight:800}}>🙆‍♂️ Posture Micro-Breaks (do hourly throughout day)</div>
+                <div className="small" style={{marginTop:6}}>3 quick moves — 2–3 minutes total.</div>
+              </div>
+              <div className="pill mono">~2–3 min</div>
+            </div>
+            <ol style={{marginTop:10,color:"var(--muted)",lineHeight:1.7}}>
+              <li><strong>Chin tuck ×10</strong> — sit tall, pull chin straight back, hold 1s each. (Deep neck flexors)</li>
+              <li><strong>Scapular squeeze ×12</strong> — pinch shoulder blades together, hold 2s. (Retrains upper back)</li>
+              <li><strong>Doorway chest stretch 20s</strong> — hands at shoulder height, step forward into stretch. (Opens pecs)</li>
+            </ol>
+            <div className="note" style={{marginTop:8}}>Do these after long desktop sessions (every ~60 minutes) to accelerate posture correction.</div>
+          </div>
+
+          {/* Programming notes */}
+          <div className="card">
+            <div style={{fontWeight:800}}>📈 Programming Notes</div>
+            <ol style={{marginTop:8,color:"var(--muted)",lineHeight:1.7}}>
+              <li>Consistency beats intensity — aim to complete sessions daily rather than overloading one day.</li>
+              <li>Start with recommended sets/reps; if too easy, add 1 set or add slow tempo on eccentric (3s down).</li>
+              <li>If an exercise causes sharp pain — stop and replace (I can provide alternatives on request).</li>
+              <li>Given your roti+sabji meals: include dal/paneer/legumes in each meal for protein; avoid too much oil & fried foods.</li>
+            </ol>
+          </div>
+
+        </main>
+      </div>
+
+      <footer style={{textAlign:"center",color:"var(--muted)",marginTop:12,fontSize:13}}>
+        © {new Date().getFullYear()} • 2-Month — Fat → Ideal Body • Built for Kalpesh • Train safe — progress steadily 💪
       </footer>
     </div>
+  );
+}
 
-    <script>
-      // Mark Done functionality with localStorage memory
-      document.querySelectorAll(".mark-done").forEach((btn) => {
-        const id = btn.closest("summary").textContent.trim();
-        if (localStorage.getItem(id) === "done") {
-          btn.textContent = "✅ Completed";
-          btn.style.color = "green";
-        }
-        btn.addEventListener("click", (e) => {
-          if (localStorage.getItem(id) === "done") {
-            localStorage.removeItem(id);
-            btn.textContent = "✔️ Done?";
-            btn.style.color = "#2dd4bf";
-          } else {
-            localStorage.setItem(id, "done");
-            btn.textContent = "✅ Completed";
-            btn.style.color = "green";
-          }
-        });
-      });
-    </script>
-  </body>
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
 </html>
