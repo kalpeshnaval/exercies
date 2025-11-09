@@ -3,126 +3,420 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>6-Day Home Workout — 8-Week Plan</title>
+  <title>6-Day Home Workout — Complete 8-Week Plan</title>
   <style>
     :root{
       --bg:#0b0f12;
+      --card:#0f1720;
+      --muted:#9aa6af;
       --teal:#06b6d4;
       --accent:#14b8a6;
-      --muted:#9aa6af;
+      --glass: rgba(255,255,255,0.03);
       --radius:14px;
-      font-family:Inter, ui-sans-serif, system-ui;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    body{margin:0;background:linear-gradient(180deg,var(--bg),#071018);color:#e6eef2;}
     *{box-sizing:border-box}
-    .app{max-width:1100px;margin:auto;padding:20px;display:grid;grid-template-columns:1fr 380px;gap:18px}
-    header{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
-    .brand{display:flex;align-items:center;gap:10px}
-    .logo{width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--accent));display:flex;align-items:center;justify-content:center;font-size:22px}
-    .card{background:rgba(255,255,255,0.05);padding:15px;border-radius:var(--radius)}
+    html,body,#root{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#071018);color:#e6eef2;-webkit-font-smoothing:antialiased}
+    .app{max-width:1100px;margin:28px auto;padding:20px;display:grid;grid-template-columns:1fr 380px;gap:18px}
+    header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--accent));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6);}
     .muted{color:var(--muted);font-size:13px}
-    .day-btn{border:none;padding:8px 12px;margin:3px;border-radius:8px;background:rgba(255,255,255,0.05);color:var(--muted);cursor:pointer}
-    .day-btn.active{background:linear-gradient(90deg,var(--teal),var(--accent));color:#000;font-weight:600}
-    .ex-item{display:flex;justify-content:space-between;align-items:center;padding:10px;margin-top:8px;background:rgba(255,255,255,0.03);border-radius:10px}
-    .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}
-    .cal-day{padding:8px;text-align:center;border-radius:10px;background:rgba(255,255,255,0.05);cursor:pointer}
-    .cal-day.checked{background:linear-gradient(90deg,var(--teal),var(--accent));color:#000}
-    @media(max-width:900px){.app{grid-template-columns:1fr}}
+
+    /* navigation */
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+    .tab.active{background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(20,184,166,0.08));border-color:rgba(6,182,212,0.18);color:var(--teal);font-weight:600}
+
+    .ex-list{margin-top:12px;display:grid;gap:8px}
+    .ex-item{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.02)}
+    .ex-left{display:flex;flex-direction:column}
+    .ex-name{font-weight:600}
+    .ex-meta{color:var(--muted);font-size:13px}
+    .small-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:6px 8px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+    /* right column */
+    .sticky{position:sticky;top:24px}
+    .stats{display:flex;gap:10px;margin-bottom:12px}
+    .stat{flex:1;padding:10px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));text-align:center}
+    .stat h3{margin:0;color:var(--teal)}
+    .stat p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+
+    .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:8px}
+    .cal-day{padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);text-align:center;border:1px solid rgba(255,255,255,0.02);cursor:pointer}
+    .cal-day .date{font-weight:700}
+    .cal-day.checked{background:linear-gradient(90deg, rgba(6,182,212,0.12), rgba(20,184,166,0.06));border-color:rgba(6,182,212,0.18);color:var(--teal)}
+
+    .notes{font-size:13px;color:var(--muted);line-height:1.45}
+
+    .big-cta{display:inline-block;padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--teal),var(--accent));color:#021019;font-weight:700;border:none;cursor:pointer}
+
+    @media(max-width:980px){.app{grid-template-columns:1fr;padding:14px}.sticky{position:static}}
   </style>
 </head>
 <body>
   <div id="root"></div>
+
+  <!-- React + Babel UMD -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script type="text/babel">
-    const {useState,useEffect}=React;
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
 
-    const PLAN={
-      title:'6-Day Home Workout — 8-Week Plan',
-      overview:'Lose 7–8 kg in 2 months safely with dumbbells & bench. 6 days training + 1 rest day.',
-      days:[
-        {id:1,name:'Day 1 — Upper Body & Posture',exercises:[
-          {n:'Dumbbell Shoulder Press',s:3,r:12},
-          {n:'Dumbbell Bicep Curl',s:3,r:12},
-          {n:'Bent-over Row',s:3,r:12},
-          {n:'Chest Press',s:3,r:10},
-          {n:'Reverse Fly',s:2,r:10},
-          {n:'Hand Grip',s:3,r:20}
-        ]},
-        {id:2,name:'Day 2 — Beginner Leg Activation',exercises:[
-          {n:'Seated Leg Extension',s:3,r:15},
-          {n:'Glute Bridge',s:3,r:12},
-          {n:'Calf Raises',s:3,r:15},
-          {n:'Wall Sit (mini)',s:3,r:8},
-          {n:'Side Leg Raise',s:3,r:10},
-          {n:'Step-Ups',s:3,r:8}
-        ]},
-        {id:3,name:'Day 3 — Core & Abs',exercises:[
-          {n:'Seated Knee Raises',s:3,r:10},
-          {n:'Side Bends',s:3,r:15},
-          {n:'Bird Dog',s:3,r:10},
-          {n:'Leg Taps',s:3,r:12},
-          {n:'Crunch Reach',s:3,r:10}
-        ]},
-        {id:4,name:'Day 4 — Full Body Fat Burn',exercises:[
-          {n:'Dumbbell Deadlift',s:3,r:12},
-          {n:'Front Raise',s:3,r:10},
-          {n:'Standing Punch',s:3,r:20},
-          {n:'Step-Ups',s:3,r:10},
-          {n:'Wall Push-ups',s:3,r:12}
-        ]},
-        {id:5,name:'Day 5 — Posture & Core Stability',exercises:[
-          {n:'Cat-Cow',s:3,r:10},
-          {n:'Superman Hold',s:3,r:10},
-          {n:'Wall Angels',s:3,r:10},
-          {n:'Plank on Knees',s:3,r:10}
-        ]},
-        {id:6,name:'Day 6 — Fat-Burning Circuit',exercises:[
-          {n:'Standing Punch',s:3,r:20},
-          {n:'Side Steps',s:3,r:20},
-          {n:'Curl',s:3,r:12},
-          {n:'Step-Ups',s:3,r:8}
-        ]},
-        {id:7,name:'Day 7 — Rest & Recovery',exercises:[]}
+  <script type="text/babel">
+    const {useState,useEffect} = React;
+
+    // Full detailed PLAN (copied and expanded to include all tips, diet, weight guide, face extras)
+    const PLAN = {
+      title: '6-Day Home Workout — 8-Week Plan',
+      overview: 'Goal: Lose 7-8 kg in 2 months. Equipment: 5 kg & 1.2 kg dumbbells, bench, hand grips. Rep-based program. Safe for weak legs. Dark-mode teal theme.',
+      days: [
+        {
+          id:1, name:'Day 1 — Upper Body & Posture', warmup:true, warmupList:[
+            'Arm circles × 15 each direction', 'Shoulder rolls × 15', 'Wall push-ups × 10', 'Neck side stretches × 10 each'
+          ], exercises:[
+            {name:'Dumbbell Shoulder Press',sets:3,reps:12,weight:'Start 1.2 kg → progress to 5 kg',notes:'Sit on bench, keep core tight. Exhale on press.'},
+            {name:'Dumbbell Bicep Curl',sets:3,reps:12,weight:'1.2–5 kg',notes:'Alternate arms, slow negative.'},
+            {name:'Bent-over Row',sets:3,reps:12,weight:'1.2–5 kg',notes:'Hinge at hips; keep back flat.'},
+            {name:'Dumbbell Chest Press (bench)',sets:3,reps:10,weight:'1.2–5 kg',notes:'Controlled motion; squeeze at top.'},
+            {name:'Reverse Fly',sets:2,reps:10,weight:'1.2 kg',notes:'Light — posture focus.'},
+            {name:'Hand Grip Squeezes',sets:3,reps:20,weight:'hand grip',notes:'Slow full closures.'}
+          ]
+        },
+        {
+          id:2, name:'Day 2 — Beginner Leg Activation', warmup:true, warmupList:[
+            'March in place × 50', 'Ankle rotations × 15 each', 'Light calf raises × 10'
+          ], exercises:[
+            {name:'Seated Leg Extension',sets:3,reps:15,weight:'Bodyweight',notes:'Sit and lift leg slowly.'},
+            {name:'Glute Bridge',sets:3,reps:12,weight:'Bodyweight → add 1.2 kg on pelvis',notes:'Squeeze glutes at top.'},
+            {name:'Standing Calf Raises',sets:3,reps:15,weight:'Bodyweight',notes:'Hold wall for balance.'},
+            {name:'Wall Sit (mini)',sets:3,reps:8,weight:'Bodyweight',notes:'Short holds — no strain.'},
+            {name:'Side Leg Raise',sets:3,reps:10,weight:'Bodyweight',notes:'Controlled movement.'},
+            {name:'Step-Ups on Bench',sets:3,reps:8,weight:'Bodyweight → add 1.2 kg if ready',notes:'Use hand support if needed.'}
+          ]
+        },
+        {
+          id:3, name:'Day 3 — Core & Abs (Face support)', warmup:false, exercises:[
+            {name:'Seated Knee Raises',sets:3,reps:10,weight:'Bodyweight',notes:'Keep back straight; draw belly in.'},
+            {name:'Standing Side Bend (1.2 kg)',sets:3,reps:15,weight:'1.2 kg',notes:'Slow controlled tilt.'},
+            {name:'Bird-Dog',sets:3,reps:10,weight:'Bodyweight',notes:'Balance & core stability.'},
+            {name:'Leg Taps (lying)',sets:3,reps:12,weight:'Bodyweight',notes:'Alternate legs gently.'},
+            {name:'Crunch Reach',sets:3,reps:10,weight:'Bodyweight',notes:'Small controlled movement.'},
+            {name:'Face Yoga (cheek puff, fish lips, neck lift)',sets:3,reps:15,weight:'—',notes:'Do 2×/day for face tone.'}
+          ]
+        },
+        {
+          id:4, name:'Day 4 — Full Body Fat Burn', warmup:true, warmupList:[
+            'March in place × 50', 'Arm swings × 15'
+          ], exercises:[
+            {name:'Dumbbell Deadlift (light)',sets:3,reps:12,weight:'1.2–5 kg',notes:'Hinge at hips; keep back neutral.'},
+            {name:'Front Raise',sets:3,reps:10,weight:'1.2–5 kg',notes:'Slow, shoulders only.'},
+            {name:'Standing Punches (1.2 kg)',sets:3,reps:20,weight:'1.2 kg',notes:'Fast rhythmic punches.'},
+            {name:'Step-Ups (bench)',sets:3,reps:10,weight:'Bodyweight → add 1.2 kg',notes:'Use wall for balance.'},
+            {name:'Wall Push-ups',sets:3,reps:12,weight:'Bodyweight',notes:'Keep body rigid.'},
+            {name:'Dumbbell Curl → Press (combo)',sets:3,reps:8,weight:'1.2–5 kg',notes:'One curl into press = 1 rep.'}
+          ]
+        },
+        {
+          id:5, name:'Day 5 — Posture & Core Stability', warmup:false, exercises:[
+            {name:'Cat-Cow',sets:3,reps:10,weight:'—',notes:'Move with breath.'},
+            {name:'Superman Hold',sets:3,reps:10,weight:'—',notes:'Lift opposite arm+leg.'},
+            {name:'Wall Angels',sets:3,reps:10,weight:'—',notes:'Back flat to wall; improves shoulder alignment.'},
+            {name:'Plank on Knees',sets:3,reps:10,weight:'—',notes:'Hold core; avoid sagging.'},
+            {name:'Glute Bridge (add 1.2 kg)',sets:3,reps:10,weight:'1.2 kg',notes:'Squeeze glutes.'},
+            {name:'Bird-Dog (repeat)',sets:2,reps:8,weight:'—',notes:'Reinforce posture.'}
+          ]
+        },
+        {
+          id:6, name:'Day 6 — Fat-Burning Circuit', warmup:false, exercises:[
+            {name:'Standing Punches',sets:3,reps:20,weight:'1.2 kg optional',notes:'Circuit style.'},
+            {name:'Side Steps',sets:3,reps:20,weight:'—',notes:'Low-impact lateral step.'},
+            {name:'Dumbbell Curl',sets:3,reps:12,weight:'1.2–5 kg',notes:'Controlled curls.'},
+            {name:'Wall Push-ups',sets:3,reps:10,weight:'—',notes:'Chest activation.'},
+            {name:'Step-Ups',sets:3,reps:8,weight:'—',notes:'Controlled step.'},
+            {name:'Glute Bridge',sets:3,reps:12,weight:'—',notes:'Squeeze at top.'}
+          ]
+        },
+        {
+          id:7, name:'Day 7 — Recovery / Light Movement', warmup:false, exercises:[], notes:'15 min gentle stretching, 10 min slow walking, face yoga & deep breathing.'
+        }
+      ],
+      weightGuide:[
+        'Weeks 1–2: use 1.2 kg for most upper-body moves; legs mostly bodyweight',
+        'Weeks 3–4: progress upper body to 5 kg when comfortable; add 1.2 kg to some lower moves',
+        'Weeks 5–8: 5 kg steady for upper body; use 1.2–5 kg for lower body as strength improves'
+      ],
+      diet:[
+        'Primary diet: roti + sabji (no extra daal, paneer, or meat). Keep 2 rotis per meal max; increase non-starchy vegetables.',
+        'Avoid fried foods, potatoes, biscuits, and added sugar.',
+        'Limit oil and salt — cook sabji with minimal oil.',
+        'Drink warm water before and after workouts. Stay hydrated during the day.',
+        'If available, 4–5 soaked almonds or 1 banana after workout helps recovery.'
+      ],
+      tips:[
+        'Prioritise form over speed — move slow and controlled.',
+        'Exhale during exertion (lifting/pressing) and inhale during lowering.',
+        'Use a wall or bench for support when balance is unsure; do not rush into heavy leg work.',
+        'Start with lighter weights (1.2 kg) for the first 2 weeks and progress based on comfort.',
+        'If you feel sharp pain, stop immediately. Slight muscle ache is normal; sharp joint pain is not.',
+        'Reduce salt slightly to help with face bloating and water retention.'
+      ],
+      faceExtras:[
+        'Face yoga sequence: cheek puff (10 reps), fish lips (10 reps), neck lift (10 reps) — 2× daily',
+        'Practice abdominal breathing for 3–5 minutes after each session to reduce stress and aid digestion.'
       ]
     };
 
-    function App(){
-      const [current,setCurrent]=useState(1);
-      const [done,setDone]=useState(()=>JSON.parse(localStorage.getItem('done')||'{}'));
-      const toggleDay=id=>{const k=`day${id}`;const d={...done,[k]:!done[k]};setDone(d);localStorage.setItem('done',JSON.stringify(d));};
-
-      const d=PLAN.days.find(x=>x.id===current)||PLAN.days[0];
-      return(
-        <div className="app">
-          <header>
-            <div className="brand"><div className="logo">💪</div><div><h2>{PLAN.title}</h2><div className="muted">{PLAN.overview}</div></div></div>
-            <button className="day-btn" onClick={()=>localStorage.clear()}>Reset</button>
-          </header>
-          <main>
-            <div className="card">
-              <div style={{marginBottom:'10px'}}>
-                {PLAN.days.map(x=>(<button key={x.id} className={`day-btn ${current===x.id?'active':''}`} onClick={()=>setCurrent(x.id)}>{x.name.split('—')[0]}</button>))}
-              </div>
-              <h3>{d.name}</h3>
-              {d.exercises.length===0?<div className="muted">Rest & gentle stretching 🌿</div>:
-                d.exercises.map((e,i)=>(<div key={i} className="ex-item"><div>{e.n}</div><div>{e.s}×{e.r}</div></div>))}
-            </div>
-          </main>
-          <aside>
-            <div className="card">
-              <h4>Progress</h4>
-              <div className="calendar">
-                {PLAN.days.map(x=>(<div key={x.id} className={`cal-day ${done[`day${x.id}`]?'checked':''}`} onClick={()=>toggleDay(x.id)}>Day {x.id}</div>))}
-              </div>
-            </div>
-          </aside>
-        </div>
-      )
+    // small safe helpers
+    function safeFindDay(id){
+      return PLAN.days.find(d=>d.id===id) || null;
     }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    function useLocalState(key, initial){
+      const [s,setS] = useState(()=>{try{return JSON.parse(localStorage.getItem(key)) ?? initial}catch(e){return initial}});
+      useEffect(()=>{try{localStorage.setItem(key,JSON.stringify(s))}catch(e){}},[key,s]);
+      return [s,setS];
+    }
+
+    function App(){
+      const [currentDay,setCurrentDay] = useState(1);
+      const [completed,setCompleted] = useLocalState('hw_completed',{});
+      const [week,setWeek] = useLocalState('hw_week',1);
+
+      // toggle completion for a day in current week
+      function toggleDone(dayId){
+        const key = `w${week}_d${dayId}`;
+        const copy = {...completed};
+        copy[key] = !copy[key];
+        setCompleted(copy);
+      }
+
+      function markDone(dayId){
+        const key = `w${week}_d${dayId}`;
+        const copy = {...completed}; copy[key]=true; setCompleted(copy);
+      }
+
+      const dayObj = safeFindDay(currentDay) || {id:currentDay,name:'Unknown Day',exercises:[],warmup:false};
+
+      // calendar days 1..7
+      const calendarDays = Array.from({length:7},(_,i)=>({dayId:i+1,checked:!!completed[`w${week}_d${i+1}`]}));
+
+      return (
+        <div className="app">
+          <header>
+            <div className="brand">
+              <div className="logo">💪</div>
+              <div>
+                <h1>{PLAN.title}</h1>
+                <p className="lead">{PLAN.overview}</p>
+              </div>
+            </div>
+
+            <div style={{display:'flex',gap:10,alignItems:'center'}}>
+              <div className="muted">Week</div>
+              <input type="number" min={1} max={8} value={week} onChange={(e)=>setWeek(Number(e.target.value)||1)} style={{width:72,padding:8,borderRadius:10,background:'#071018',border:'1px solid rgba(255,255,255,0.04)',color:'#e6eef2'}} />
+              <button className="big-cta" onClick={()=>{localStorage.clear();location.reload();}}>Reset Progress</button>
+            </div>
+          </header>
+
+          <main>
+            <div className="card">
+              <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                <strong>Plan — Day Tabs</strong>
+                <div className="muted">Rep-only format • Up to 60 min/session</div>
+              </div>
+
+              <div style={{marginTop:12}} className="tabs">
+                {PLAN.days.map(d=> (
+                  <button key={d.id} className={`tab ${currentDay===d.id? 'active':''}`} onClick={()=>setCurrentDay(d.id)}>{d.name.split('—')[0]}</button>
+                ))}
+                <button className="tab" onClick={()=>setCurrentDay('all')}>📋 Full Plan</button>
+              </div>
+
+              <div style={{marginTop:14}}>
+                {currentDay === 'all' ? (
+                  <div>
+                    {PLAN.days.map(d=> (
+                      <div key={d.id} style={{marginBottom:12}} className="card">
+                        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                          <div><strong>{d.name}</strong> <div className="muted">{d.exercises?.length || 0} exercises</div></div>
+                          <div>
+                            <button className="small-btn" onClick={()=>markDone(d.id)}>Mark day done ✅</button>
+                          </div>
+                        </div>
+
+                        {d.warmup && d.warmupList && (
+                          <div style={{marginTop:8}} className="notes"><strong>Warm-up:</strong> {d.warmupList.join(' • ')}</div>
+                        )}
+
+                        <div style={{marginTop:8}} className="ex-list">
+                          {d.exercises && d.exercises.length>0 ? d.exercises.map((ex,idx)=>(
+                            <div className="ex-item" key={idx}>
+                              <div className="ex-left"><div className="ex-name">{ex.name}</div><div className="ex-meta">{ex.sets} × {ex.reps} • {ex.weight ? ex.weight : ''} {ex.notes?(' • '+ex.notes):''}</div></div>
+                              <div><button className="small-btn" onClick={()=>alert(`${ex.name}\nSets: ${ex.sets} × ${ex.reps}\nWeight: ${ex.weight || '—'}\nNotes: ${ex.notes || '—'}`)}>ℹ️</button></div>
+                            </div>
+                          )) : <div className="muted" style={{padding:8}}>No exercises — recovery day.</div>}
+                        </div>
+
+                      </div>
+                    ))}
+
+                    <div className="card" style={{marginTop:8}}>
+                      <strong>Weight Progression Guide</strong>
+                      <ul className="notes" style={{marginTop:8}}>
+                        {PLAN.weightGuide.map((w,i)=>(<li key={i}>• {w}</li>))}
+                      </ul>
+                    </div>
+
+                    <div className="card" style={{marginTop:8}}>
+                      <strong>Diet — Roti & Sabji</strong>
+                      <ul className="notes" style={{marginTop:8}}>
+                        {PLAN.diet.map((d,i)=>(<li key={i}>• {d}</li>))}
+                      </ul>
+                    </div>
+
+                    <div className="card" style={{marginTop:8}}>
+                      <strong>Important Tips</strong>
+                      <ul className="notes" style={{marginTop:8}}>
+                        {PLAN.tips.map((t,i)=>(<li key={i}>• {t}</li>))}
+                      </ul>
+                    </div>
+
+                    <div className="card" style={{marginTop:8}}>
+                      <strong>Face & Abs Extras</strong>
+                      <ul className="notes" style={{marginTop:8}}>
+                        {PLAN.faceExtras.map((f,i)=>(<li key={i}>• {f}</li>))}
+                      </ul>
+                    </div>
+
+                  </div>
+                ) : (
+                  <div>
+                    {/* single day view */}
+                    <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                      <div>
+                        <strong style={{fontSize:18}}>{dayObj.name}</strong>
+                        <div className="muted" style={{marginTop:6}}>Sets × reps shown. Warm-up: {dayObj.warmup? 'Yes':'No'}</div>
+                      </div>
+                      <div>
+                        <button className="small-btn" onClick={()=>toggleDone(dayObj.id)}>{completed[`w${week}_d${dayObj.id}`] ? 'Undo ✅' : 'Mark done ✅'}</button>
+                      </div>
+                    </div>
+
+                    {dayObj.warmup && dayObj.warmupList && (
+                      <div style={{marginTop:12}} className="card">
+                        <div className="muted" style={{fontWeight:700,marginBottom:8}}>Warm-up</div>
+                        <div className="notes">{dayObj.warmupList.map((s,i)=>(<div key={i}>• {s}</div>))}</div>
+                      </div>
+                    )}
+
+                    <div style={{marginTop:12}} className="ex-list">
+                      {dayObj.exercises && dayObj.exercises.length>0 ? dayObj.exercises.map((ex,idx)=>(
+                        <div className="ex-item" key={idx}>
+                          <div className="ex-left">
+                            <div className="ex-name">{ex.name}</div>
+                            <div className="ex-meta">{ex.sets} × {ex.reps} • {ex.weight?ex.weight:''} {ex.notes?(' • '+ex.notes):''}</div>
+                          </div>
+                          <div>
+                            <button className="small-btn" onClick={()=>alert(`${ex.name}\nSets: ${ex.sets} × ${ex.reps}\nWeight: ${ex.weight || '—'}\nNotes: ${ex.notes || '—'}`)}>ℹ️</button>
+                          </div>
+                        </div>
+                      )) : <div className="muted">{dayObj.notes || 'Recovery day — do light stretching or walk.'}</div>}
+                    </div>
+
+                    <div style={{marginTop:12}} className="muted">Tips: Move slow and controlled • Exhale on exertion • Use wall support when needed</div>
+                  </div>
+                )}
+              </div>
+
+            </div>
+          </main>
+
+          <aside>
+            <div className="sticky">
+              <div className="card">
+                <div className="section-title" style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                  <strong>Progress</strong>
+                  <div className="muted">Tap to mark</div>
+                </div>
+
+                <div className="stats" style={{marginTop:10}}>
+                  <div className="stat"><h3>Week {week}</h3><p className="muted">Training week</p></div>
+                  <div className="stat"><h3>{Object.keys(completed).filter(k=>k.startsWith(`w${week}_`)).length}</h3><p className="muted">Days done</p></div>
+                </div>
+
+                <div style={{marginTop:8}}>
+                  <div className="calendar">
+                    {calendarDays.map(cd=>{
+                      const dayLabel = (safeFindDay(cd.dayId)?.name || (cd.dayId===7? 'Rest Day' : 'Unknown Day')).split('—')[0];
+                      return (
+                        <div key={cd.dayId} className={`cal-day ${cd.checked? 'checked':''}`} onClick={()=>toggleDone(cd.dayId)}>
+                          <div className="date">Day {cd.dayId}</div>
+                          <div className="muted" style={{marginTop:6}}>{dayLabel}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div style={{marginTop:12,display:'flex',gap:8}}>
+                  <button className="small-btn" onClick={()=>{setCurrentDay('all');}}>View Full Plan</button>
+                  <button className="small-btn" onClick={()=>{setCompleted({});}}>Clear week</button>
+                </div>
+              </div>
+
+              <div style={{height:12}} />
+
+              <div className="card">
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                  <strong>Diet & Tips</strong>
+                  <div className="muted">Summary</div>
+                </div>
+                <div style={{marginTop:8}}>
+                  <strong className="muted">Diet</strong>
+                  <ul className="notes" style={{marginTop:8}}>
+                    {PLAN.diet.map((d,i)=>(<li key={i}>• {d}</li>))}
+                  </ul>
+
+                  <strong className="muted" style={{marginTop:8,display:'block'}}>Weights & Tips</strong>
+                  <ul className="notes" style={{marginTop:8}}>
+                    {PLAN.weightGuide.map((w,i)=>(<li key={i}>• {w}</li>))}
+                    {PLAN.tips.map((t,i)=>(<li key={i}>• {t}</li>))}
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </aside>
+
+          <footer style={{gridColumn:'1/-1',marginTop:12,textAlign:'center',color:'var(--muted)'}}>
+            Created for you — dark mode + teal accents • Full plan included • Equipment: 5kg, 1.2kg, bench, hand grips. ❤️
+          </footer>
+        </div>
+      );
+    }
+
+    // Mount helper with fallback for environments without createRoot
+    (function mount(){
+      const rootEl = document.getElementById('root');
+      try{
+        if(window.ReactDOM && typeof ReactDOM.createRoot === 'function'){
+          ReactDOM.createRoot(rootEl).render(<App />);
+        } else if(window.ReactDOM && typeof ReactDOM.render === 'function'){
+          ReactDOM.render(<App />, rootEl);
+        } else {
+          rootEl.innerText = 'React or ReactDOM not available in this environment.';
+        }
+      }catch(err){
+        console.error('Mount error',err);
+        rootEl.innerHTML = `<div style="padding:16px;background:#2b0b0b;color:#ffdede;border-radius:8px;">Error mounting app: ${String(err)}</div>`;
+      }
+    })();
+
   </script>
 </body>
 </html>
