@@ -1,344 +1,351 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>6-Day Home Workout — Complete 8-Week Plan</title>
-  <style>
-    :root{
-      --bg:#0b0f12;
-      --card:#0f1720;
-      --muted:#9aa6af;
-      --teal:#06b6d4;
-      --accent:#14b8a6;
-      --glass: rgba(255,255,255,0.03);
-      --radius:12px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+import React, { useState, useEffect } from "react";
+
+// Default export React component (single-file, responsive, dark theme with teal accents)
+// Uses Tailwind-style utility classes for layout — if your environment doesn't have Tailwind,
+// the included <style> at the bottom provides fallback CSS that matches the visual design.
+
+const WEEK_KEY = "hw_progress_v1";
+
+const plan = [
+  {
+    id: "day1",
+    title: "Day 1 — Posture Foundation + Upper Body Activation",
+    bench: "Notch 2 (upright support)",
+    warmup: [
+      "Arm circles (2 × 20 each direction)",
+      "Neck rolls (2 × 10 each side)",
+      "March in place (2 min)",
+      "Shoulder rolls (2 × 15)",
+    ],
+    exercises: [
+      { name: "Seated Dumbbell Shoulder Press", sets: "3 × 12", weight: "1.2 kg → 5 kg progression", equip: "Bench (Notch 2), 1.2 kg / 5 kg" },
+      { name: "Incline Dumbbell Row", sets: "3 × 12", weight: "5 kg", equip: "Bench (Notch 3), 5 kg" },
+      { name: "Chest Press (Flat Bench)", sets: "3 × 10", weight: "5 kg", equip: "Bench (Flat), 5 kg" },
+      { name: "Reverse Fly (Seated)", sets: "3 × 10", weight: "1.2 kg", equip: "Bench (Notch 2), 1.2 kg" },
+      { name: "Hand Grip Squeezes", sets: "3 × 20", weight: "Bodyweight", equip: "Hand grips" },
+      { name: "Wall Angels", sets: "3 × 10", weight: "Bodyweight", equip: "Wall" },
+    ],
+    cooldown: ["Wall stretch for chest – 30 sec each side", "Neck side bends – 10 reps", "Shoulder stretch – 30 sec"],
+    tips: [
+      "Keep your chest slightly lifted and shoulders back when seated.",
+      "Use the bench backrest to maintain a neutral spine and avoid neck jutting.",
+    ],
+  },
+  {
+    id: "day2",
+    title: "Day 2 — Core & Lower Body Stability",
+    bench: "Notch 4 (low incline)",
+    warmup: ["Step-ups (low) – 2 × 10", "Standing torso twist – 2 × 15", "Ankle rolls – 1 min"],
+    exercises: [
+      { name: "Step-Ups (Bench)", sets: "3 × 10 per leg", weight: "Bodyweight or 1.2 kg", equip: "Bench (Notch 4), optional 1.2 kg" },
+      { name: "Seated Leg Extension (Bench)", sets: "3 × 15", weight: "Bodyweight", equip: "Bench (Flat)" },
+      { name: "Glute Bridge (Flat)", sets: "3 × 12", weight: "Bodyweight / optional 1.2 kg on hips", equip: "Floor / Bench flat" },
+      { name: "Standing Calf Raises", sets: "3 × 15", weight: "Bodyweight", equip: "Floor" },
+      { name: "Wall Sit", sets: "3 × 20 sec", weight: "Bodyweight", equip: "Wall" },
+      { name: "Plank (Knees or Full)", sets: "3 × 25 sec", weight: "Bodyweight", equip: "Floor" },
+    ],
+    cooldown: ["Hamstring stretch seated – 30 sec each", "Calf stretch on wall – 30 sec each"],
+    tips: ["Drive through the heel during step-ups to protect the knee.", "Keep your ribs down and pelvis neutral during glute bridges."],
+  },
+  {
+    id: "day3",
+    title: "Day 3 — Full Body Tone + Abs Boost",
+    bench: "Notch 3 (mid incline)",
+    warmup: ["March or step side to side – 2 min", "Shoulder shrugs – 20 reps", "Arm cross stretch – 10 per side"],
+    exercises: [
+      { name: "Dumbbell Deadlift (Light)", sets: "3 × 12", weight: "5 kg", equip: "5 kg dumbbells" },
+      { name: "Front Raise", sets: "3 × 12", weight: "1.2 kg", equip: "1.2 kg dumbbells" },
+      { name: "Curl → Press Combo", sets: "3 × 8", weight: "1.2–5 kg", equip: "5 kg if controlled" },
+      { name: "Wall Push-ups", sets: "3 × 10", weight: "Bodyweight", equip: "Wall" },
+      { name: "Leg Taps (lying)", sets: "3 × 12", weight: "Bodyweight", equip: "Floor" },
+      { name: "Crunch Reach (on Bench)", sets: "3 × 10", weight: "Bodyweight", equip: "Bench (Flat)" },
+      { name: "Plank", sets: "3 × 30 sec", weight: "Bodyweight", equip: "Floor" },
+    ],
+    cooldown: ["Full-body stretch – 2 min", "Chest opening stretch – 30 sec"],
+    tips: ["Lead movements with your chest and keep a small bend in the elbows for presses.", "Brace your core before any standing lift."],
+  },
+  {
+    id: "day4",
+    title: "Day 4 — Posture Correction & Core Focus",
+    bench: "Notch 1 (upright)",
+    warmup: ["Gentle arm swings – 2 × 20", "Neck tilts – 10 reps", "Cat-Cow (on floor) – 3 × 10"],
+    exercises: [
+      { name: "Seated Dumbbell Shrugs", sets: "3 × 12", weight: "5 kg", equip: "Bench (Notch 1), 5 kg" },
+      { name: "Superman Hold (flat floor)", sets: "3 × 10 (hold 3 sec)", weight: "Bodyweight", equip: "Floor" },
+      { name: "Seated Side Bend", sets: "3 × 15 each side", weight: "1.2 kg", equip: "Bench (Notch 1), 1.2 kg" },
+      { name: "Bird-Dog", sets: "3 × 10", weight: "Bodyweight", equip: "Floor" },
+      { name: "Glute Bridge (Flat)", sets: "3 × 12", weight: "Bodyweight / optional 1.2 kg", equip: "Floor" },
+      { name: "Plank (Elbows)", sets: "3 × 30 sec", weight: "Bodyweight", equip: "Floor" },
+    ],
+    cooldown: ["Shoulder rolls – 15 reps", "Cobra stretch – 30 sec", "Deep breathing – 1 min"],
+    tips: ["Use the upright bench for seated exercises to keep the back vertical.", "Perform bird-dog slowly to keep hips level."],
+  },
+  {
+    id: "day5",
+    title: "Day 5 — Fat Burn + Arms + Abs",
+    bench: "Notch 2 (incline)",
+    warmup: ["Arm swings – 20", "Side steps – 2 × 30 sec", "Neck rotation – 10"],
+    exercises: [
+      { name: "Standing Punches", sets: "3 × 20", weight: "1.2 kg", equip: "1.2 kg dumbbells" },
+      { name: "Incline Chest Press (Bench)", sets: "3 × 10", weight: "5 kg", equip: "Bench (Notch 2), 5 kg" },
+      { name: "Bent-Over Row (Flat Bench)", sets: "3 × 12", weight: "5 kg", equip: "5 kg dumbbells" },
+      { name: "Dumbbell Curl", sets: "3 × 12", weight: "5 kg", equip: "5 kg dumbbells" },
+      { name: "Crunch Reach (Flat Bench)", sets: "3 × 12", weight: "Bodyweight", equip: "Bench (Flat)" },
+      { name: "Leg Raise (lying)", sets: "3 × 10", weight: "Bodyweight", equip: "Floor" },
+      { name: "Plank Hold", sets: "3 × 30 sec", weight: "Bodyweight", equip: "Floor" },
+    ],
+    cooldown: ["Standing stretch + deep breaths – 2 min", "Shoulder and arm stretch – 1 min"],
+    tips: ["Control tempo on curls and rows; avoid swinging.", "Squeeze glutes at the top of leg raises to protect the lumbar spine."],
+  },
+  {
+    id: "day6",
+    title: "Day 6 — Light Mobility + Face & Core Focus",
+    bench: "Notch 3 (mid incline)",
+    warmup: ["Gentle marching – 2 min", "Arm circles – 15", "Neck mobility – 1 min"],
+    exercises: [
+      { name: "Face Yoga Routine (3 rounds)", sets: "Varied holds", weight: "Bodyweight", equip: "No equipment" },
+      { name: "Seated Twist (Bench)", sets: "3 × 10", weight: "Bodyweight", equip: "Bench (Notch 3)" },
+      { name: "Knee Raise (Seated)", sets: "3 × 12", weight: "Bodyweight", equip: "Bench (Notch 3)" },
+      { name: "Wall Angels", sets: "3 × 10", weight: "Bodyweight", equip: "Wall" },
+      { name: "Glute Bridge (Flat)", sets: "3 × 12", weight: "Bodyweight", equip: "Floor" },
+      { name: "Short Plank (Knees)", sets: "3 × 20 sec", weight: "Bodyweight", equip: "Floor" },
+    ],
+    cooldown: ["Deep neck stretches – 2 min", "Face relaxation (jaw massage)"],
+    tips: ["Soft, consistent face yoga movements help reduce facial puffiness over time.", "Breathe calmly during seated twists to increase mobility."],
+  },
+  {
+    id: "day7",
+    title: "Day 7 — Recovery / Stretching & Posture Reset",
+    bench: "No bench (walking & floor)",
+    warmup: ["10 min walk"],
+    exercises: [
+      { name: "Cat-Cow × 10", sets: "1", weight: "Bodyweight", equip: "Floor" },
+      { name: "Seated forward fold × 20 sec", sets: "1", weight: "Bodyweight", equip: "Floor" },
+      { name: "Shoulder stretch × 20 sec", sets: "1", weight: "Bodyweight", equip: "Floor" },
+      { name: "Chest open stretch × 20 sec", sets: "1", weight: "Bodyweight", equip: "Wall" },
+      { name: "Wall posture reset × 10 reps", sets: "1", weight: "Bodyweight", equip: "Wall" },
+      { name: "Face Yoga (repeat)", sets: "Varied", weight: "Bodyweight", equip: "No equipment" },
+    ],
+    cooldown: ["Deep breathing 5 min"],
+    tips: ["Use this day to restore mobility and practice slow breathing for recovery."],
+  },
+];
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(WEEK_KEY);
+    if (!raw) return {};
+    return JSON.parse(raw);
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveProgress(data) {
+  localStorage.setItem(WEEK_KEY, JSON.stringify(data));
+}
+
+export default function WorkoutApp() {
+  const [progress, setProgress] = useState(loadProgress());
+  const [selectedDay, setSelectedDay] = useState(plan[0].id);
+
+  useEffect(() => {
+    saveProgress(progress);
+  }, [progress]);
+
+  const toggleExercise = (dayId, exIndex) => {
+    setProgress((p) => {
+      const copy = { ...(p || {}) };
+      const day = copy[dayId] ? [...copy[dayId]] : Array(plan.find(d => d.id === dayId).exercises.length).fill(false);
+      day[exIndex] = !day[exIndex];
+      copy[dayId] = day;
+      return copy;
+    });
+  };
+
+  const markDayDone = (dayId) => {
+    const day = plan.find(d => d.id === dayId);
+    const allDone = day.exercises.map(() => true);
+    setProgress((p) => ({ ...(p || {}), [dayId]: allDone }));
+  };
+
+  const resetProgress = () => {
+    if (confirm('Reset all progress? This will clear saved checks.')) {
+      localStorage.removeItem(WEEK_KEY);
+      setProgress({});
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:linear-gradient(180deg,var(--bg),#071018);color:#e6eef2}
+  };
 
-    /* lists sleek */
-    ul{list-style:none;padding:0;margin:0}
-    .list-card ul{padding:12px 0}
-    .list-card li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
-    .list-card li:last-child{border-bottom:none}
-    .dot{width:8px;height:8px;border-radius:99px;background:linear-gradient(180deg,var(--teal),var(--accent));flex:0 0 12px;margin-top:6px}
+  const renderExerciseTable = (day) => (
+    <div className="overflow-x-auto mt-4">
+      <table className="w-full table-auto text-sm">
+        <thead>
+          <tr>
+            <th className="text-left">Exercise</th>
+            <th className="text-left">Sets</th>
+            <th className="text-left">Weight</th>
+            <th className="text-left">Equipment / Bench</th>
+            <th className="text-left">Done</th>
+          </tr>
+        </thead>
+        <tbody>
+          {day.exercises.map((ex, i) => (
+            <tr key={i} className="border-t">
+              <td>{ex.name}</td>
+              <td>{ex.sets}</td>
+              <td>{ex.weight}</td>
+              <td>{ex.equip}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={progress[day.id] ? !!progress[day.id][i] : false}
+                  onChange={() => toggleExercise(day.id, i)}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 
-    .container{max-width:1100px;margin:28px auto;padding:18px;display:grid;grid-template-columns:1fr 360px;gap:18px}
-    header{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--accent));display:flex;align-items:center;justify-content:center;font-size:20px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(0,0,0,0.35)}
-    .muted{color:var(--muted);font-size:13px}
-    .tabs{display:flex;flex-wrap:wrap;gap:8px}
-    .tab{padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);cursor:pointer;transition:all .18s}
-    .tab:hover{background:rgba(6,182,212,0.08);color:var(--teal)}
-    .tab.active{background:linear-gradient(90deg,var(--teal),var(--accent));color:#021019;font-weight:700}
-    .ex-list{margin-top:12px;display:flex;flex-direction:column;gap:12px}
-    .ex-item{display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);transition:all .15s}
-    .ex-item:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(2,6,23,0.6)}
-    .ex-name{font-weight:700;font-size:15px}
-    .ex-meta{color:var(--muted);font-size:13px}
-    .small-btn{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:7px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
-    .small-btn:hover{background:rgba(6,182,212,0.08);color:var(--teal)}
+  const progressPercent = () => {
+    const total = plan.reduce((acc, d) => acc + d.exercises.length, 0);
+    const done = plan.reduce((acc, d) => {
+      const arr = progress[d.id] || [];
+      return acc + arr.filter(Boolean).length;
+    }, 0);
+    return Math.round((done / total) * 100) || 0;
+  };
 
-    .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:10px}
-    .cal-day{padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);text-align:center;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
-    .cal-day .date{font-weight:700}
-    .cal-day.checked{background:linear-gradient(90deg,var(--teal),var(--accent));color:#021019}
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-[#041218] to-[#061821] text-gray-100 p-4">
+      <div className="max-w-4xl mx-auto">
+        <header className="flex items-center justify-between mb-4">
+          <h1 className="text-2xl font-semibold">6-Day Home Workout — 1-Week Cycle</h1>
+          <div className="text-sm text-teal-300">Progress: {progressPercent()}%</div>
+        </header>
 
-    .notes{color:var(--muted);font-size:13px;line-height:1.6}
-    .list-card{background:rgba(255,255,255,0.01);padding:12px;border-radius:10px;margin-top:12px}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <nav className="md:col-span-1 bg-[#07242d] p-3 rounded-lg">
+            <div className="text-sm text-teal-200 font-medium mb-2">Days</div>
+            <ul>
+              {plan.map((d) => (
+                <li key={d.id} className={`mb-2 text-sm ${selectedDay === d.id ? 'text-white' : 'text-teal-200'}`}>
+                  <button className="w-full text-left" onClick={() => setSelectedDay(d.id)}>{d.title}</button>
+                </li>
+              ))}
+            </ul>
 
-    footer{grid-column:1/-1;margin-top:12px;text-align:center;color:var(--muted)}
-    @media(max-width:980px){.container{grid-template-columns:1fr;padding:12px}.calendar{grid-template-columns:repeat(3,1fr)}}
-  </style>
-</head>
-<body>
-  <div class="container" id="app">
-    <header>
-      <div class="brand">
-        <div class="logo">💪</div>
-        <div>
-          <h1 id="title">6-Day Home Workout — Complete 8-Week Plan</h1>
-          <div class="muted" id="overview">Lose 7–8 kg in 2 months. Equipment: 5 kg & 1.2 kg dumbbells, bench, hand grips.</div>
+            <div className="mt-4">
+              <button className="w-full bg-teal-500 text-black py-2 rounded mb-2" onClick={() => markDayDone(selectedDay)}>Mark Day Done</button>
+              <button className="w-full bg-transparent border border-teal-600 text-teal-200 py-2 rounded" onClick={resetProgress}>Reset Progress</button>
+            </div>
+
+            <div className="mt-4 text-xs text-teal-100">Tip: Use the bench notches to keep your back supported — upright notches help posture during seated presses.</div>
+          </nav>
+
+          <main className="md:col-span-3 bg-[#05272f] p-4 rounded-lg">
+            {plan.map((day) => (
+              <section key={day.id} className={`${selectedDay === day.id ? '' : 'hidden'}`}>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h2 className="text-xl font-semibold">{day.title}</h2>
+                    <div className="text-sm text-teal-200">Bench: {day.bench}</div>
+                  </div>
+                  <div>
+                    <button
+                      className="bg-transparent border border-teal-500 text-teal-200 px-3 py-1 rounded text-sm"
+                      onClick={() => markDayDone(day.id)}
+                    >
+                      Mark Complete
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-[#062c33] p-3 rounded">
+                    <h3 className="font-medium">Warm-Up</h3>
+                    <ul className="list-disc list-inside text-sm mt-2">
+                      {day.warmup.map((w, i) => <li key={i}>{w}</li>)}
+                    </ul>
+                  </div>
+
+                  <div className="bg-[#062c33] p-3 rounded">
+                    <h3 className="font-medium">Cooldown</h3>
+                    <ul className="list-disc list-inside text-sm mt-2">
+                      {day.cooldown.map((c, i) => <li key={i}>{c}</li>)}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-4 bg-[#072f35] p-3 rounded">
+                  <h3 className="font-medium">Exercises</h3>
+                  {renderExerciseTable(day)}
+                </div>
+
+                <div className="mt-4 bg-[#062f35] p-3 rounded text-sm">
+                  <h3 className="font-medium">Tips</h3>
+                  <ul className="list-disc list-inside mt-2">
+                    {day.tips.map((t, i) => <li key={i}>{t}</li>)}
+                  </ul>
+                </div>
+
+                <div className="mt-4 flex gap-2">
+                  <button className="bg-teal-500 text-black px-3 py-2 rounded" onClick={() => markDayDone(day.id)}>Mark Day Done</button>
+                  <button className="bg-transparent border border-teal-600 text-teal-200 px-3 py-2 rounded" onClick={() => setProgress((p) => ({ ...(p || {}), [day.id]: Array(day.exercises.length).fill(false) }))}>Clear Day</button>
+                </div>
+
+              </section>
+            ))}
+
+            <div className="mt-6 bg-[#052f34] p-4 rounded text-sm">
+              <h3 className="font-medium">Weekly Notes & Guidelines</h3>
+              <ul className="list-disc list-inside mt-2">
+                <li>Repeat this 1-week cycle for 8 weeks. Increase reps or weight slowly every 2 weeks.</li>
+                <li>Use 1.2 kg for early weeks and controlled motions. Move to 5 kg for strength work after 2–3 weeks.</li>
+                <li>Daily plank and face-yoga are included — consistency helps belly and face fat reduction.</li>
+                <li>Prioritize form and use bench notches to keep your back supported — especially for seated presses and rows.</li>
+              </ul>
+            </div>
+
+          </main>
         </div>
-      </div>
-      <div style="display:flex;gap:10px;align-items:center">
-        <label class="muted">Week</label>
-        <input id="weekInput" type="number" min="1" max="8" value="1" style="width:70px;padding:8px;border-radius:8px;background:#071018;border:1px solid rgba(255,255,255,0.04);color:#e6eef2" />
-        <button id="resetBtn" class="small-btn">Reset Progress</button>
-      </div>
-    </header>
 
-    <main class="card" id="mainCard" style="min-height:360px">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <strong>Plan — Day Tabs</strong>
-        <div class="muted">Rep-only format • Up to 60 min/session</div>
+        <footer className="mt-6 text-xs text-teal-200">
+          <div className="flex items-center justify-between">
+            <div>Made for: Posture, belly-fat reduction, face-fat reduction & beginner-safe training.</div>
+            <div>Local progress is saved to your browser.</div>
+          </div>
+        </footer>
       </div>
 
-      <div id="tabs" class="tabs" style="margin-top:12px"></div>
-
-      <div id="contentArea" style="margin-top:14px"></div>
-    </main>
-
-    <aside class="card" id="side" style="height:100%">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <strong>Progress</strong>
-        <div class="muted">Tap to mark</div>
-      </div>
-      <div style="margin-top:12px" id="statsArea"></div>
-      <div style="margin-top:10px">
-        <div class="calendar" id="calendar"></div>
-      </div>
-      <div style="margin-top:12px;display:flex;gap:8px">
-        <button id="viewFull" class="small-btn">View Full Plan</button>
-        <button id="clearWeek" class="small-btn">Clear Week</button>
-      </div>
-
-      <div style="margin-top:12px">
-        <div style="display:flex;justify-content:space-between;align-items:center"><strong>Diet & Tips</strong><div class="muted">Summary</div></div>
-        <div id="dietTips" style="margin-top:10px"></div>
-      </div>
-    </aside>
-
-    <footer>Created for you — Full plan includes • Equipment: 5kg, 1.2kg, bench, hand grips. ❤️</footer>
-  </div>
-
-  <script>
-    // Full detailed PLAN (complete) — includes all tips, weights, diet, face extras
-    const PLAN = {
-      title: '6-Day Home Workout — 8-Week Plan',
-      overview: 'Goal: Lose 7-8 kg in 2 months. Equipment: 5 kg & 1.2 kg dumbbells, bench, hand grips. Rep-based program. Safe for weak legs.',
-      days: [
-        { id:1, name:'Day 1 — Upper Body & Posture', warmup:true, warmupList:['Arm circles × 15 each direction','Shoulder rolls × 15','Wall push-ups × 10','Neck side stretches × 10 each'], exercises:[
-          {name:'Dumbbell Shoulder Press',sets:3,reps:12,weight:'Start 1.2 kg → progress to 5 kg',notes:'Sit on bench, keep core tight. Exhale on press.'},
-          {name:'Dumbbell Bicep Curl',sets:3,reps:12,weight:'1.2–5 kg',notes:'Alternate arms, slow negative.'},
-          {name:'Bent-over Row',sets:3,reps:12,weight:'1.2–5 kg',notes:'Hinge at hips; keep back flat.'},
-          {name:'Dumbbell Chest Press (bench)',sets:3,reps:10,weight:'1.2–5 kg',notes:'Controlled motion; squeeze at top.'},
-          {name:'Reverse Fly',sets:2,reps:10,weight:'1.2 kg',notes:'Light — posture focus.'},
-          {name:'Hand Grip Squeezes',sets:3,reps:20,weight:'hand grip',notes:'Slow full closures.'}
-        ]},
-        { id:2, name:'Day 2 — Beginner Leg Activation', warmup:true, warmupList:['March in place × 50','Ankle rotations × 15 each','Light calf raises × 10'], exercises:[
-          {name:'Seated Leg Extension',sets:3,reps:15,weight:'Bodyweight',notes:'Sit and lift leg slowly.'},
-          {name:'Glute Bridge',sets:3,reps:12,weight:'Bodyweight → add 1.2 kg on pelvis',notes:'Squeeze glutes at top.'},
-          {name:'Standing Calf Raises',sets:3,reps:15,weight:'Bodyweight',notes:'Hold wall for balance.'},
-          {name:'Wall Sit (mini)',sets:3,reps:8,weight:'Bodyweight',notes:'Short holds — no strain.'},
-          {name:'Side Leg Raise',sets:3,reps:10,weight:'Bodyweight',notes:'Controlled movement.'},
-          {name:'Step-Ups on Bench',sets:3,reps:8,weight:'Bodyweight → add 1.2 kg if ready',notes:'Use hand support if needed.'}
-        ]},
-        { id:3, name:'Day 3 — Core & Abs (Face support)', warmup:false, exercises:[
-          {name:'Seated Knee Raises',sets:3,reps:10,weight:'Bodyweight',notes:'Keep back straight; draw belly in.'},
-          {name:'Standing Side Bend (1.2 kg)',sets:3,reps:15,weight:'1.2 kg',notes:'Slow controlled tilt.'},
-          {name:'Bird-Dog',sets:3,reps:10,weight:'Bodyweight',notes:'Balance & core stability.'},
-          {name:'Leg Taps (lying)',sets:3,reps:12,weight:'Bodyweight',notes:'Alternate legs gently.'},
-          {name:'Crunch Reach',sets:3,reps:10,weight:'Bodyweight',notes:'Small controlled movement.'},
-          {name:'Face Yoga (cheek puff, fish lips, neck lift)',sets:3,reps:15,weight:'—',notes:'Do 2×/day for face tone.'}
-        ]},
-        { id:4, name:'Day 4 — Full Body Fat Burn', warmup:true, warmupList:['March in place × 50','Arm swings × 15'], exercises:[
-          {name:'Dumbbell Deadlift (light)',sets:3,reps:12,weight:'1.2–5 kg',notes:'Hinge at hips; keep back neutral.'},
-          {name:'Front Raise',sets:3,reps:10,weight:'1.2–5 kg',notes:'Slow, shoulders only.'},
-          {name:'Standing Punches (1.2 kg)',sets:3,reps:20,weight:'1.2 kg',notes:'Fast rhythmic punches.'},
-          {name:'Step-Ups (bench)',sets:3,reps:10,weight:'Bodyweight → add 1.2 kg',notes:'Use wall for balance.'},
-          {name:'Wall Push-ups',sets:3,reps:12,weight:'Bodyweight',notes:'Keep body rigid.'},
-          {name:'Dumbbell Curl → Press (combo)',sets:3,reps:8,weight:'1.2–5 kg',notes:'One curl into press = 1 rep.'}
-        ]},
-        { id:5, name:'Day 5 — Posture & Core Stability', warmup:false, exercises:[
-          {name:'Cat-Cow',sets:3,reps:10,weight:'—',notes:'Move with breath.'},
-          {name:'Superman Hold',sets:3,reps:10,weight:'—',notes:'Lift opposite arm+leg.'},
-          {name:'Wall Angels',sets:3,reps:10,weight:'—',notes:'Back flat to wall; improves shoulder alignment.'},
-          {name:'Plank on Knees',sets:3,reps:10,weight:'—',notes:'Hold core; avoid sagging.'},
-          {name:'Glute Bridge (add 1.2 kg)',sets:3,reps:10,weight:'1.2 kg',notes:'Squeeze glutes.'},
-          {name:'Bird-Dog (repeat)',sets:2,reps:8,weight:'—',notes:'Reinforce posture.'}
-        ]},
-        { id:6, name:'Day 6 — Fat-Burning Circuit', warmup:false, exercises:[
-          {name:'Standing Punches',sets:3,reps:20,weight:'1.2 kg optional',notes:'Circuit style.'},
-          {name:'Side Steps',sets:3,reps:20,weight:'—',notes:'Low-impact lateral step.'},
-          {name:'Dumbbell Curl',sets:3,reps:12,weight:'1.2–5 kg',notes:'Controlled curls.'},
-          {name:'Wall Push-ups',sets:3,reps:10,weight:'—',notes:'Chest activation.'},
-          {name:'Step-Ups',sets:3,reps:8,weight:'—',notes:'Controlled step.'},
-          {name:'Glute Bridge',sets:3,reps:12,weight:'—',notes:'Squeeze at top.'}
-        ]},
-        { id:7, name:'Day 7 — Recovery / Light Movement', warmup:false, exercises:[], notes:'15 min gentle stretching, 10 min slow walking, face yoga & deep breathing.' }
-      ],
-      weightGuide:[
-        'Weeks 1–2: use 1.2 kg for most upper-body moves; legs mostly bodyweight',
-        'Weeks 3–4: progress upper body to 5 kg when comfortable; add 1.2 kg to some lower moves',
-        'Weeks 5–8: 5 kg steady for upper body; use 1.2–5 kg for lower body as strength improves'
-      ],
-      diet:[
-        'Primary diet: roti + sabji (no extra daal, paneer, or meat). Keep 2 rotis per meal max; increase non-starchy vegetables.',
-        'Avoid fried foods, potatoes, biscuits, and added sugar.',
-        'Limit oil and salt — cook sabji with minimal oil.',
-        'Drink warm water before and after workouts. Stay hydrated during the day.',
-        'If available, 4–5 soaked almonds or 1 banana after workout helps recovery.'
-      ],
-      tips:[
-        'Prioritise form over speed — move slow and controlled.',
-        'Exhale during exertion (lifting/pressing) and inhale during lowering.',
-        'Use a wall or bench for support when balance is unsure; do not rush into heavy leg work.',
-        'Start with lighter weights (1.2 kg) for the first 2 weeks and progress based on comfort.',
-        'If you feel sharp pain, stop immediately. Slight muscle ache is normal; sharp joint pain is not.',
-        'Reduce salt slightly to help with face bloating and water retention.'
-      ],
-      faceExtras:[
-        'Face yoga sequence: cheek puff (10 reps), fish lips (10 reps), neck lift (10 reps) — 2× daily',
-        'Practice abdominal breathing for 3–5 minutes after each session to reduce stress and aid digestion.'
-      ]
-    };
-
-    // lightweight state (uses localStorage)
-    const state = {
-      week: Number(localStorage.getItem('hw_week')) || 1,
-      completed: JSON.parse(localStorage.getItem('hw_completed') || '{}'),
-      currentView: 'day',
-      currentDay: Number(localStorage.getItem('hw_currentDay')) || 1
-    };
-
-    // DOM refs
-    const tabsEl = document.getElementById('tabs');
-    const contentEl = document.getElementById('contentArea');
-    const weekInput = document.getElementById('weekInput');
-    const calendarEl = document.getElementById('calendar');
-    const statsArea = document.getElementById('statsArea');
-    const dietTipsEl = document.getElementById('dietTips');
-
-    // init UI text
-    document.getElementById('title').innerText = PLAN.title;
-    document.getElementById('overview').innerText = PLAN.overview;
-    weekInput.value = state.week;
-
-    // helpers
-    function saveState(){
-      try{ localStorage.setItem('hw_week', String(state.week)); localStorage.setItem('hw_completed', JSON.stringify(state.completed)); localStorage.setItem('hw_currentDay', String(state.currentDay)); }catch(e){console.warn('localStorage error',e)}
-    }
-    function safeFindDay(id){ return PLAN.days.find(d=>d.id===id) || null }
-
-    // render functions
-    function renderTabs(){
-      tabsEl.innerHTML = '';
-      PLAN.days.forEach(day=>{
-        const btn = document.createElement('button'); btn.className='tab' + ((state.currentView==='day' && state.currentDay===day.id)?' active':''); btn.innerText = day.name.split('—')[0];
-        btn.onclick = ()=>{ state.currentView='day'; state.currentDay=day.id; saveState(); renderAll(); };
-        tabsEl.appendChild(btn);
-      });
-      const allBtn = document.createElement('button'); allBtn.className='tab' + (state.currentView==='all' ? ' active':''); allBtn.innerText='📋 Full Plan'; allBtn.onclick = ()=>{ state.currentView='all'; saveState(); renderAll(); };
-      tabsEl.appendChild(allBtn);
-    }
-
-    function renderDay(day){
-      contentEl.innerHTML = '';
-      const wrap = document.createElement('div');
-      const header = document.createElement('div'); header.style.display='flex'; header.style.justifyContent='space-between'; header.style.alignItems='center';
-      const left = document.createElement('div'); const title = document.createElement('strong'); title.style.fontSize='18px'; title.innerText = day.name; const meta = document.createElement('div'); meta.className='muted'; meta.style.marginTop='6px'; meta.innerText = `Sets × reps shown. Warm-up: ${day.warmup? 'Yes':'No'}`; left.appendChild(title); left.appendChild(meta);
-      const right = document.createElement('div'); const key = `w${state.week}_d${day.id}`; const doneBtn = document.createElement('button'); doneBtn.className='small-btn'; doneBtn.innerText = state.completed[key] ? 'Undo ✅' : 'Mark done ✅'; doneBtn.onclick = ()=>{ state.completed[key] = !state.completed[key]; saveState(); renderAll(); }; right.appendChild(doneBtn);
-      header.appendChild(left); header.appendChild(right); wrap.appendChild(header);
-
-      if(day.warmup && day.warmupList){
-        const warm = document.createElement('div'); warm.className='list-card'; warm.style.marginTop='12px'; const wtitle=document.createElement('div'); wtitle.className='muted'; wtitle.style.fontWeight='700'; wtitle.style.marginBottom='8px'; wtitle.innerText='Warm-up'; warm.appendChild(wtitle);
-        const ul = document.createElement('ul'); day.warmupList.forEach(s=>{ const li=document.createElement('li'); const dot=document.createElement('div'); dot.className='dot'; li.appendChild(dot); const span=document.createElement('div'); span.innerText = s; li.appendChild(span); ul.appendChild(li); }); warm.appendChild(ul); wrap.appendChild(warm);
-      }
-
-      const exWrap = document.createElement('div'); exWrap.className='ex-list'; exWrap.style.marginTop='12px';
-      if(day.exercises && day.exercises.length){
-        day.exercises.forEach(ex=>{
-          const item = document.createElement('div'); item.className='ex-item';
-          const leftc = document.createElement('div'); leftc.innerHTML = `<div class='ex-name'>${ex.name}</div><div class='ex-meta'>${ex.sets} × ${ex.reps} • ${ex.weight?ex.weight:''}${ex.notes?(' • '+ex.notes):''}</div>`;
-          const rightc = document.createElement('div'); const info = document.createElement('button'); info.className='small-btn'; info.innerText='ℹ️'; info.onclick = ()=>alert(`${ex.name}
-Sets: ${ex.sets} × ${ex.reps}
-Weight: ${ex.weight||'—'}
-Notes: ${ex.notes||'—'}`);
-          rightc.appendChild(info); item.appendChild(leftc); item.appendChild(rightc); exWrap.appendChild(item);
-        });
-      } else {
-        const no = document.createElement('div'); no.className='muted'; no.style.padding='8px'; no.innerText = day.notes || 'Recovery day — do light stretching or walk.'; exWrap.appendChild(no);
-      }
-      wrap.appendChild(exWrap);
-
-      const tips = document.createElement('div'); tips.className='muted'; tips.style.marginTop='12px'; tips.innerText = 'Tips: Move slow and controlled • Exhale on exertion • Use wall support when needed'; wrap.appendChild(tips);
-
-      contentEl.appendChild(wrap);
-    }
-
-    function renderFull(){
-      contentEl.innerHTML=''; const container = document.createElement('div');
-      PLAN.days.forEach(day=>{
-        const card = document.createElement('div'); card.className='card'; card.style.marginBottom='12px';
-        const head = document.createElement('div'); head.style.display='flex'; head.style.justifyContent='space-between'; head.style.alignItems='center';
-        const left = document.createElement('div'); left.innerHTML = `<strong>${day.name}</strong><div class='muted' style='margin-top:6px'>${(day.exercises||[]).length} exercises</div>`;
-        const right = document.createElement('div'); const mk = document.createElement('button'); mk.className='small-btn'; mk.innerText='Mark day done ✅'; mk.onclick = ()=>{ state.completed[`w${state.week}_d${day.id}`] = true; saveState(); renderAll(); }; right.appendChild(mk);
-        head.appendChild(left); head.appendChild(right); card.appendChild(head);
-
-        if(day.warmup && day.warmupList){ const w = document.createElement('div'); w.className='list-card'; w.style.marginTop='8px'; const wt = document.createElement('div'); wt.className='muted'; wt.style.fontWeight='700'; wt.style.marginBottom='6px'; wt.innerText='Warm-up'; w.appendChild(wt); const ul=document.createElement('ul'); day.warmupList.forEach(s=>{ const li=document.createElement('li'); const dot=document.createElement('div'); dot.className='dot'; li.appendChild(dot); const span=document.createElement('div'); span.innerText=s; li.appendChild(span); ul.appendChild(li); }); w.appendChild(ul); card.appendChild(w); }
-
-        const exList = document.createElement('div'); exList.className='ex-list'; exList.style.marginTop='8px';
-        if(day.exercises && day.exercises.length){ day.exercises.forEach(ex=>{ const item=document.createElement('div'); item.className='ex-item'; const leftc=document.createElement('div'); leftc.innerHTML=`<div class='ex-name'>${ex.name}</div><div class='ex-meta'>${ex.sets} × ${ex.reps} • ${ex.weight?ex.weight:''}${ex.notes?(' • '+ex.notes):''}</div>`; const rightc=document.createElement('div'); const info=document.createElement('button'); info.className='small-btn'; info.innerText='ℹ️'; info.onclick=()=>alert(`${ex.name}
-Sets: ${ex.sets} × ${ex.reps}
-Weight: ${ex.weight||'—'}
-Notes: ${ex.notes||'—'}`); rightc.appendChild(info); item.appendChild(leftc); item.appendChild(rightc); exList.appendChild(item); }); } else { const no=document.createElement('div'); no.className='muted'; no.style.padding='8px'; no.innerText='No exercises — recovery day.'; exList.appendChild(no); }
-        card.appendChild(exList);
-        container.appendChild(card);
-      });
-
-      // weight guide
-      const wg = document.createElement('div'); wg.className='card'; wg.style.marginTop='12px'; wg.innerHTML = '<strong>Weight Progression Guide</strong>';
-      const wul = document.createElement('ul'); wul.className='notes'; wul.style.marginTop='8px'; PLAN.weightGuide.forEach(w=>{ const li=document.createElement('li'); li.innerText='• '+w; wul.appendChild(li); }); wg.appendChild(wul); container.appendChild(wg);
-
-      // diet
-      const diet = document.createElement('div'); diet.className='card'; diet.style.marginTop='12px'; diet.innerHTML='<strong>Diet — Roti & Sabji</strong>';
-      const di = document.createElement('ul'); di.className='notes'; di.style.marginTop='8px'; PLAN.diet.forEach(d=>{ const li=document.createElement('li'); li.innerText='• '+d; di.appendChild(li); }); diet.appendChild(di); container.appendChild(diet);
-
-      // tips
-      const tipsCard = document.createElement('div'); tipsCard.className='card'; tipsCard.style.marginTop='12px'; tipsCard.innerHTML='<strong>Important Tips</strong>';
-      const tu = document.createElement('ul'); tu.className='notes'; tu.style.marginTop='8px'; PLAN.tips.forEach(t=>{ const li=document.createElement('li'); li.innerText='• '+t; tu.appendChild(li); }); tipsCard.appendChild(tu); container.appendChild(tipsCard);
-
-      // face extras
-      const fe = document.createElement('div'); fe.className='card'; fe.style.marginTop='12px'; fe.innerHTML='<strong>Face & Abs Extras</strong>';
-      const fu = document.createElement('ul'); fu.className='notes'; fu.style.marginTop='8px'; PLAN.faceExtras.forEach(f=>{ const li=document.createElement('li'); li.innerText='• '+f; fu.appendChild(li); }); fe.appendChild(fu); container.appendChild(fe);
-
-      contentEl.appendChild(container);
-    }
-
-    function renderStatsAndCalendar(){
-      statsArea.innerHTML = '';
-      const statWrap = document.createElement('div'); statWrap.style.display='flex'; statWrap.style.gap='8px';
-      const s1 = document.createElement('div'); s1.className='card'; s1.style.flex='1'; s1.innerHTML = `<div style="text-align:center"><h3 style="margin:0;color:var(--teal)">Week ${state.week}</h3><div class='muted' style='margin-top:6px'>Training week</div></div>`;
-      const doneCount = Object.keys(state.completed).filter(k=>k.startsWith(`w${state.week}_`) && state.completed[k]).length;
-      const s2 = document.createElement('div'); s2.className='card'; s2.style.flex='1'; s2.innerHTML = `<div style="text-align:center"><h3 style="margin:0;color:var(--teal)">${doneCount}</h3><div class='muted' style='margin-top:6px'>Days done</div></div>`;
-      statWrap.appendChild(s1); statWrap.appendChild(s2); statsArea.appendChild(statWrap);
-
-      calendarEl.innerHTML = '';
-      for(let i=1;i<=7;i++){
-        const key = `w${state.week}_d${i}`;
-        const checked = !!state.completed[key];
-        const day = safeFindDay(i);
-        const label = day ? day.name.split('—')[0] : (i===7?'Rest Day':'Unknown Day');
-        const cell = document.createElement('div'); cell.className='cal-day' + (checked? ' checked':''); cell.innerHTML = `<div class='date'>Day ${i}</div><div class='muted' style='margin-top:6px'>${label}</div>`;
-        cell.onclick = ()=>{ state.completed[key] = !state.completed[key]; saveState(); renderAll(); };
-        calendarEl.appendChild(cell);
-      }
-    }
-
-    function renderDietTips(){
-      dietTipsEl.innerHTML = '';
-      const dietTitle = document.createElement('div'); dietTitle.className='muted'; dietTitle.innerText='Diet'; dietTipsEl.appendChild(dietTitle);
-      const ul = document.createElement('ul'); ul.className='notes'; ul.style.marginTop='8px'; PLAN.diet.forEach(d=>{ const li=document.createElement('li'); li.innerText='• '+d; ul.appendChild(li); }); dietTipsEl.appendChild(ul);
-
-      const wt = document.createElement('div'); wt.className='muted'; wt.style.marginTop='8px'; wt.innerText='Weights & Tips'; dietTipsEl.appendChild(wt);
-      const uit = document.createElement('ul'); uit.className='notes'; uit.style.marginTop='8px'; PLAN.weightGuide.forEach(w=>{ const li=document.createElement('li'); li.innerText='• '+w; uit.appendChild(li); }); PLAN.tips.forEach(t=>{ const li=document.createElement('li'); li.innerText='• '+t; uit.appendChild(li); }); dietTipsEl.appendChild(uit);
-    }
-
-    function renderAll(){ renderTabs(); renderStatsAndCalendar(); renderDietTips(); if(state.currentView==='all'){ renderFull(); } else { const day = safeFindDay(state.currentDay) || {id:state.currentDay,name:'Unknown Day',exercises:[],warmup:false}; renderDay(day); } }
-
-    // events
-    document.getElementById('resetBtn').onclick = ()=>{ if(confirm('Clear all progress and reload?')){ localStorage.clear(); state.week=1; state.completed={}; state.currentDay=1; saveState(); weekInput.value=1; renderAll(); }};
-    document.getElementById('viewFull').onclick = ()=>{ state.currentView='all'; renderAll(); };
-    document.getElementById('clearWeek').onclick = ()=>{ if(confirm('Clear this week progress?')){ Object.keys(state.completed).forEach(k=>{ if(k.startsWith(`w${state.week}_`)) delete state.completed[k]; }); saveState(); renderAll(); }};
-    weekInput.onchange = (e)=>{ state.week = Number(e.target.value) || 1; saveState(); renderAll(); };
-
-    // initial render
-    renderAll();
-  </script>
-</body>
-</html>
+      <style>{`
+        /* Fallback CSS if Tailwind isn't present. Uses teal + dark palette. */
+        :root{--bg:#041218;--card:#062f33;--muted:#9fd8d1;--accent:#17b7a6}
+        body{background:linear-gradient(180deg,var(--bg),#061821);font-family:Inter,ui-sans-serif,system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+        .text-teal-200{color:var(--muted)}
+        .text-teal-300{color:#64d9cc}
+        .bg-teal-500{background:var(--accent)}
+        .bg-[#041218]{background:#041218}
+        .bg-[#05272f]{background:#05272f}
+        .bg-[#062c33]{background:#062c33}
+        .bg-[#07242d]{background:#07242d}
+        .bg-[#072f35]{background:#072f35}
+        .bg-[#052f34]{background:#052f34}
+        .border-teal-600{border-color:#17b7a6}
+        table{width:100%;border-collapse:collapse}
+        thead th{padding:8px 6px;color:#bdeae2;font-weight:600;font-size:13px}
+        tbody td{padding:10px 6px}
+        tr.border-t td{border-top:1px solid rgba(255,255,255,0.04)}
+        input[type=checkbox]{width:18px;height:18px}
+        button{cursor:pointer}
+        @media (max-width:768px){
+          .md\\:grid-cols-4{grid-template-columns:1fr}
+          .md\\:col-span-3{grid-column:span 1}
+          .md\\:col-span-1{grid-column:span 1}
+        }
+      `}</style>
+    </div>
+  );
+}
