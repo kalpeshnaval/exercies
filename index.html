@@ -1,351 +1,283 @@
-import React, { useState, useEffect } from "react";
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6-Day Home Workout — Dark Theme</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[#041218] text-gray-100 min-h-screen">
+    <div id="root"></div>
 
-// Default export React component (single-file, responsive, dark theme with teal accents)
-// Uses Tailwind-style utility classes for layout — if your environment doesn't have Tailwind,
-// the included <style> at the bottom provides fallback CSS that matches the visual design.
+    <script type="text/babel">
+      const plan = [
+        {
+          id: 'day1',
+          title: 'Day 1 — Posture Foundation + Upper Body Activation',
+          bench: 'Notch 2 (upright support)',
+          warmup: [
+            'Arm circles (2 × 20 each direction)',
+            'Neck rolls (2 × 10 each side)',
+            'March in place (2 min)',
+            'Shoulder rolls (2 × 15)',
+          ],
+          exercises: [
+            { name: 'Seated Dumbbell Shoulder Press', sets: '3 × 12', equip: 'Bench (Notch 2), 1.2–5 kg' },
+            { name: 'Incline Dumbbell Row', sets: '3 × 12', equip: 'Bench (Notch 3), 5 kg' },
+            { name: 'Chest Press (Flat Bench)', sets: '3 × 10', equip: 'Bench Flat, 5 kg' },
+            { name: 'Reverse Fly (Seated)', sets: '3 × 10', equip: 'Bench (Notch 2), 1.2 kg' },
+            { name: 'Hand Grip Squeezes', sets: '3 × 20', equip: 'Hand grips' },
+            { name: 'Wall Angels', sets: '3 × 10', equip: 'Wall' },
+          ],
+          cooldown: ['Wall stretch for chest – 30 sec each side', 'Neck side bends – 10 reps', 'Shoulder stretch – 30 sec'],
+          tips: [
+            'Keep chest slightly lifted and shoulders back when seated.',
+            'Use bench backrest to maintain a neutral spine.',
+          ],
+        },
+        {
+          id: 'day2',
+          title: 'Day 2 — Core & Lower Body Stability',
+          bench: 'Notch 4 (low incline)',
+          warmup: ['Step-ups (low) – 2 × 10', 'Standing torso twist – 2 × 15', 'Ankle rolls – 1 min'],
+          exercises: [
+            { name: 'Step-Ups (Bench)', sets: '3 × 10 per leg', equip: 'Bench (Notch 4), bodyweight or 1.2 kg' },
+            { name: 'Seated Leg Extension', sets: '3 × 15', equip: 'Bench (Flat)' },
+            { name: 'Glute Bridge', sets: '3 × 12', equip: 'Flat Bench / Floor' },
+            { name: 'Standing Calf Raises', sets: '3 × 15', equip: 'Floor' },
+            { name: 'Wall Sit', sets: '3 × 20 sec', equip: 'Wall' },
+            { name: 'Plank (Knees or Full)', sets: '3 × 25 sec', equip: 'Floor' },
+          ],
+          cooldown: ['Hamstring stretch seated – 30 sec each', 'Calf stretch on wall – 30 sec each'],
+          tips: [
+            'Drive through the heel during step-ups.',
+            'Keep ribs down and pelvis neutral during glute bridges.',
+          ],
+        },
+        {
+          id: 'day3',
+          title: 'Day 3 — Full Body Tone + Abs Boost',
+          bench: 'Notch 3 (mid incline)',
+          warmup: ['March in place – 2 min', 'Shoulder shrugs – 20 reps', 'Arm cross stretch – 10 per side'],
+          exercises: [
+            { name: 'Dumbbell Deadlift (Light)', sets: '3 × 12', equip: '5 kg dumbbells' },
+            { name: 'Front Raise', sets: '3 × 12', equip: '1.2 kg dumbbells' },
+            { name: 'Curl → Press Combo', sets: '3 × 8', equip: '1.2–5 kg' },
+            { name: 'Wall Push-ups', sets: '3 × 10', equip: 'Wall' },
+            { name: 'Leg Taps (Lying)', sets: '3 × 12', equip: 'Floor' },
+            { name: 'Crunch Reach (on Bench)', sets: '3 × 10', equip: 'Bench (Flat)' },
+            { name: 'Plank', sets: '3 × 30 sec', equip: 'Floor' },
+          ],
+          cooldown: ['Full-body stretch – 2 min', 'Chest opening stretch – 30 sec'],
+          tips: [
+            'Lead with chest and keep a soft bend in elbows.',
+            'Brace core before standing lifts.',
+          ],
+        },
+        {
+          id: 'day4',
+          title: 'Day 4 — Posture Correction & Core Focus',
+          bench: 'Notch 1 (upright)',
+          warmup: ['Arm swings – 2 × 20', 'Neck tilts – 10 reps', 'Cat-Cow (on floor) – 3 × 10'],
+          exercises: [
+            { name: 'Seated Dumbbell Shrugs', sets: '3 × 12', equip: 'Bench (Notch 1), 5 kg' },
+            { name: 'Superman Hold', sets: '3 × 10 (hold 3s)', equip: 'Floor' },
+            { name: 'Seated Side Bend', sets: '3 × 15 each side', equip: 'Bench (Notch 1), 1.2 kg' },
+            { name: 'Bird-Dog', sets: '3 × 10', equip: 'Floor' },
+            { name: 'Glute Bridge', sets: '3 × 12', equip: 'Floor / 1.2 kg optional' },
+            { name: 'Plank (Elbows)', sets: '3 × 30 sec', equip: 'Floor' },
+          ],
+          cooldown: ['Shoulder rolls – 15 reps', 'Cobra stretch – 30 sec', 'Deep breathing – 1 min'],
+          tips: [
+            'Use upright bench to keep back vertical.',
+            'Perform bird-dog slowly to keep hips level.',
+          ],
+        },
+        {
+          id: 'day5',
+          title: 'Day 5 — Fat Burn + Arms + Abs',
+          bench: 'Notch 2 (incline)',
+          warmup: ['Arm swings – 20', 'Side steps – 2 × 30 sec', 'Neck rotation – 10'],
+          exercises: [
+            { name: 'Standing Punches', sets: '3 × 20', equip: '1.2 kg dumbbells' },
+            { name: 'Incline Chest Press', sets: '3 × 10', equip: 'Bench (Notch 2), 5 kg' },
+            { name: 'Bent-Over Row', sets: '3 × 12', equip: '5 kg dumbbells' },
+            { name: 'Dumbbell Curl', sets: '3 × 12', equip: '5 kg dumbbells' },
+            { name: 'Crunch Reach', sets: '3 × 12', equip: 'Bench (Flat)' },
+            { name: 'Leg Raise', sets: '3 × 10', equip: 'Floor' },
+            { name: 'Plank Hold', sets: '3 × 30 sec', equip: 'Floor' },
+          ],
+          cooldown: ['Standing stretch – 2 min', 'Shoulder stretch – 1 min'],
+          tips: [
+            'Control curls and rows; avoid swinging.',
+            'Squeeze glutes during leg raises.',
+          ],
+        },
+        {
+          id: 'day6',
+          title: 'Day 6 — Light Mobility + Face & Core Focus',
+          bench: 'Notch 3 (mid incline)',
+          warmup: ['Marching – 2 min', 'Arm circles – 15', 'Neck mobility – 1 min'],
+          exercises: [
+            { name: 'Face Yoga Routine (3 rounds)', sets: 'Varied holds', equip: 'None' },
+            { name: 'Seated Twist', sets: '3 × 10', equip: 'Bench (Notch 3)' },
+            { name: 'Knee Raise (Seated)', sets: '3 × 12', equip: 'Bench (Notch 3)' },
+            { name: 'Wall Angels', sets: '3 × 10', equip: 'Wall' },
+            { name: 'Glute Bridge', sets: '3 × 12', equip: 'Floor' },
+            { name: 'Short Plank (Knees)', sets: '3 × 20 sec', equip: 'Floor' },
+          ],
+          cooldown: ['Neck stretches – 2 min', 'Face relaxation – 2 min'],
+          tips: [
+            'Soft, consistent face yoga helps reduce facial puffiness.',
+            'Breathe calmly during seated twists.',
+          ],
+        },
+        {
+          id: 'day7',
+          title: 'Day 7 — Recovery / Stretching & Posture Reset',
+          bench: 'No bench (floor)',
+          warmup: ['10 min walk'],
+          exercises: [
+            { name: 'Cat-Cow × 10', sets: '1', equip: 'Floor' },
+            { name: 'Seated Forward Fold × 20 sec', sets: '1', equip: 'Floor' },
+            { name: 'Shoulder Stretch × 20 sec', sets: '1', equip: 'Floor' },
+            { name: 'Chest Open Stretch × 20 sec', sets: '1', equip: 'Wall' },
+            { name: 'Wall Posture Reset × 10', sets: '1', equip: 'Wall' },
+            { name: 'Face Yoga (repeat)', sets: 'Varied', equip: 'None' },
+          ],
+          cooldown: ['Deep breathing – 5 min'],
+          tips: ['Use this day to restore mobility and calm the body.'],
+        },
+      ];
 
-const WEEK_KEY = "hw_progress_v1";
+      function App() {
+        const [selectedDay, setSelectedDay] = React.useState('day1');
+        const [progress, setProgress] = React.useState(() => JSON.parse(localStorage.getItem('progress') || '{}'));
 
-const plan = [
-  {
-    id: "day1",
-    title: "Day 1 — Posture Foundation + Upper Body Activation",
-    bench: "Notch 2 (upright support)",
-    warmup: [
-      "Arm circles (2 × 20 each direction)",
-      "Neck rolls (2 × 10 each side)",
-      "March in place (2 min)",
-      "Shoulder rolls (2 × 15)",
-    ],
-    exercises: [
-      { name: "Seated Dumbbell Shoulder Press", sets: "3 × 12", weight: "1.2 kg → 5 kg progression", equip: "Bench (Notch 2), 1.2 kg / 5 kg" },
-      { name: "Incline Dumbbell Row", sets: "3 × 12", weight: "5 kg", equip: "Bench (Notch 3), 5 kg" },
-      { name: "Chest Press (Flat Bench)", sets: "3 × 10", weight: "5 kg", equip: "Bench (Flat), 5 kg" },
-      { name: "Reverse Fly (Seated)", sets: "3 × 10", weight: "1.2 kg", equip: "Bench (Notch 2), 1.2 kg" },
-      { name: "Hand Grip Squeezes", sets: "3 × 20", weight: "Bodyweight", equip: "Hand grips" },
-      { name: "Wall Angels", sets: "3 × 10", weight: "Bodyweight", equip: "Wall" },
-    ],
-    cooldown: ["Wall stretch for chest – 30 sec each side", "Neck side bends – 10 reps", "Shoulder stretch – 30 sec"],
-    tips: [
-      "Keep your chest slightly lifted and shoulders back when seated.",
-      "Use the bench backrest to maintain a neutral spine and avoid neck jutting.",
-    ],
-  },
-  {
-    id: "day2",
-    title: "Day 2 — Core & Lower Body Stability",
-    bench: "Notch 4 (low incline)",
-    warmup: ["Step-ups (low) – 2 × 10", "Standing torso twist – 2 × 15", "Ankle rolls – 1 min"],
-    exercises: [
-      { name: "Step-Ups (Bench)", sets: "3 × 10 per leg", weight: "Bodyweight or 1.2 kg", equip: "Bench (Notch 4), optional 1.2 kg" },
-      { name: "Seated Leg Extension (Bench)", sets: "3 × 15", weight: "Bodyweight", equip: "Bench (Flat)" },
-      { name: "Glute Bridge (Flat)", sets: "3 × 12", weight: "Bodyweight / optional 1.2 kg on hips", equip: "Floor / Bench flat" },
-      { name: "Standing Calf Raises", sets: "3 × 15", weight: "Bodyweight", equip: "Floor" },
-      { name: "Wall Sit", sets: "3 × 20 sec", weight: "Bodyweight", equip: "Wall" },
-      { name: "Plank (Knees or Full)", sets: "3 × 25 sec", weight: "Bodyweight", equip: "Floor" },
-    ],
-    cooldown: ["Hamstring stretch seated – 30 sec each", "Calf stretch on wall – 30 sec each"],
-    tips: ["Drive through the heel during step-ups to protect the knee.", "Keep your ribs down and pelvis neutral during glute bridges."],
-  },
-  {
-    id: "day3",
-    title: "Day 3 — Full Body Tone + Abs Boost",
-    bench: "Notch 3 (mid incline)",
-    warmup: ["March or step side to side – 2 min", "Shoulder shrugs – 20 reps", "Arm cross stretch – 10 per side"],
-    exercises: [
-      { name: "Dumbbell Deadlift (Light)", sets: "3 × 12", weight: "5 kg", equip: "5 kg dumbbells" },
-      { name: "Front Raise", sets: "3 × 12", weight: "1.2 kg", equip: "1.2 kg dumbbells" },
-      { name: "Curl → Press Combo", sets: "3 × 8", weight: "1.2–5 kg", equip: "5 kg if controlled" },
-      { name: "Wall Push-ups", sets: "3 × 10", weight: "Bodyweight", equip: "Wall" },
-      { name: "Leg Taps (lying)", sets: "3 × 12", weight: "Bodyweight", equip: "Floor" },
-      { name: "Crunch Reach (on Bench)", sets: "3 × 10", weight: "Bodyweight", equip: "Bench (Flat)" },
-      { name: "Plank", sets: "3 × 30 sec", weight: "Bodyweight", equip: "Floor" },
-    ],
-    cooldown: ["Full-body stretch – 2 min", "Chest opening stretch – 30 sec"],
-    tips: ["Lead movements with your chest and keep a small bend in the elbows for presses.", "Brace your core before any standing lift."],
-  },
-  {
-    id: "day4",
-    title: "Day 4 — Posture Correction & Core Focus",
-    bench: "Notch 1 (upright)",
-    warmup: ["Gentle arm swings – 2 × 20", "Neck tilts – 10 reps", "Cat-Cow (on floor) – 3 × 10"],
-    exercises: [
-      { name: "Seated Dumbbell Shrugs", sets: "3 × 12", weight: "5 kg", equip: "Bench (Notch 1), 5 kg" },
-      { name: "Superman Hold (flat floor)", sets: "3 × 10 (hold 3 sec)", weight: "Bodyweight", equip: "Floor" },
-      { name: "Seated Side Bend", sets: "3 × 15 each side", weight: "1.2 kg", equip: "Bench (Notch 1), 1.2 kg" },
-      { name: "Bird-Dog", sets: "3 × 10", weight: "Bodyweight", equip: "Floor" },
-      { name: "Glute Bridge (Flat)", sets: "3 × 12", weight: "Bodyweight / optional 1.2 kg", equip: "Floor" },
-      { name: "Plank (Elbows)", sets: "3 × 30 sec", weight: "Bodyweight", equip: "Floor" },
-    ],
-    cooldown: ["Shoulder rolls – 15 reps", "Cobra stretch – 30 sec", "Deep breathing – 1 min"],
-    tips: ["Use the upright bench for seated exercises to keep the back vertical.", "Perform bird-dog slowly to keep hips level."],
-  },
-  {
-    id: "day5",
-    title: "Day 5 — Fat Burn + Arms + Abs",
-    bench: "Notch 2 (incline)",
-    warmup: ["Arm swings – 20", "Side steps – 2 × 30 sec", "Neck rotation – 10"],
-    exercises: [
-      { name: "Standing Punches", sets: "3 × 20", weight: "1.2 kg", equip: "1.2 kg dumbbells" },
-      { name: "Incline Chest Press (Bench)", sets: "3 × 10", weight: "5 kg", equip: "Bench (Notch 2), 5 kg" },
-      { name: "Bent-Over Row (Flat Bench)", sets: "3 × 12", weight: "5 kg", equip: "5 kg dumbbells" },
-      { name: "Dumbbell Curl", sets: "3 × 12", weight: "5 kg", equip: "5 kg dumbbells" },
-      { name: "Crunch Reach (Flat Bench)", sets: "3 × 12", weight: "Bodyweight", equip: "Bench (Flat)" },
-      { name: "Leg Raise (lying)", sets: "3 × 10", weight: "Bodyweight", equip: "Floor" },
-      { name: "Plank Hold", sets: "3 × 30 sec", weight: "Bodyweight", equip: "Floor" },
-    ],
-    cooldown: ["Standing stretch + deep breaths – 2 min", "Shoulder and arm stretch – 1 min"],
-    tips: ["Control tempo on curls and rows; avoid swinging.", "Squeeze glutes at the top of leg raises to protect the lumbar spine."],
-  },
-  {
-    id: "day6",
-    title: "Day 6 — Light Mobility + Face & Core Focus",
-    bench: "Notch 3 (mid incline)",
-    warmup: ["Gentle marching – 2 min", "Arm circles – 15", "Neck mobility – 1 min"],
-    exercises: [
-      { name: "Face Yoga Routine (3 rounds)", sets: "Varied holds", weight: "Bodyweight", equip: "No equipment" },
-      { name: "Seated Twist (Bench)", sets: "3 × 10", weight: "Bodyweight", equip: "Bench (Notch 3)" },
-      { name: "Knee Raise (Seated)", sets: "3 × 12", weight: "Bodyweight", equip: "Bench (Notch 3)" },
-      { name: "Wall Angels", sets: "3 × 10", weight: "Bodyweight", equip: "Wall" },
-      { name: "Glute Bridge (Flat)", sets: "3 × 12", weight: "Bodyweight", equip: "Floor" },
-      { name: "Short Plank (Knees)", sets: "3 × 20 sec", weight: "Bodyweight", equip: "Floor" },
-    ],
-    cooldown: ["Deep neck stretches – 2 min", "Face relaxation (jaw massage)"],
-    tips: ["Soft, consistent face yoga movements help reduce facial puffiness over time.", "Breathe calmly during seated twists to increase mobility."],
-  },
-  {
-    id: "day7",
-    title: "Day 7 — Recovery / Stretching & Posture Reset",
-    bench: "No bench (walking & floor)",
-    warmup: ["10 min walk"],
-    exercises: [
-      { name: "Cat-Cow × 10", sets: "1", weight: "Bodyweight", equip: "Floor" },
-      { name: "Seated forward fold × 20 sec", sets: "1", weight: "Bodyweight", equip: "Floor" },
-      { name: "Shoulder stretch × 20 sec", sets: "1", weight: "Bodyweight", equip: "Floor" },
-      { name: "Chest open stretch × 20 sec", sets: "1", weight: "Bodyweight", equip: "Wall" },
-      { name: "Wall posture reset × 10 reps", sets: "1", weight: "Bodyweight", equip: "Wall" },
-      { name: "Face Yoga (repeat)", sets: "Varied", weight: "Bodyweight", equip: "No equipment" },
-    ],
-    cooldown: ["Deep breathing 5 min"],
-    tips: ["Use this day to restore mobility and practice slow breathing for recovery."],
-  },
-];
+        React.useEffect(() => {
+          localStorage.setItem('progress', JSON.stringify(progress));
+        }, [progress]);
 
-function loadProgress() {
-  try {
-    const raw = localStorage.getItem(WEEK_KEY);
-    if (!raw) return {};
-    return JSON.parse(raw);
-  } catch (e) {
-    return {};
-  }
-}
+        const toggleExercise = (day, index) => {
+          setProgress((prev) => {
+            const copy = { ...prev };
+            const arr = copy[day] || [];
+            arr[index] = !arr[index];
+            copy[day] = arr;
+            return copy;
+          });
+        };
 
-function saveProgress(data) {
-  localStorage.setItem(WEEK_KEY, JSON.stringify(data));
-}
+        const markDayDone = (day) => {
+          const arr = Array(plan.find((d) => d.id === day).exercises.length).fill(true);
+          setProgress((p) => ({ ...p, [day]: arr }));
+        };
 
-export default function WorkoutApp() {
-  const [progress, setProgress] = useState(loadProgress());
-  const [selectedDay, setSelectedDay] = useState(plan[0].id);
+        const resetAll = () => {
+          if (confirm('Reset all progress?')) {
+            localStorage.removeItem('progress');
+            setProgress({});
+          }
+        };
 
-  useEffect(() => {
-    saveProgress(progress);
-  }, [progress]);
+        const percent = () => {
+          const total = plan.reduce((a, d) => a + d.exercises.length, 0);
+          const done = plan.reduce((a, d) => a + (progress[d.id]?.filter(Boolean).length || 0), 0);
+          return Math.round((done / total) * 100) || 0;
+        };
 
-  const toggleExercise = (dayId, exIndex) => {
-    setProgress((p) => {
-      const copy = { ...(p || {}) };
-      const day = copy[dayId] ? [...copy[dayId]] : Array(plan.find(d => d.id === dayId).exercises.length).fill(false);
-      day[exIndex] = !day[exIndex];
-      copy[dayId] = day;
-      return copy;
-    });
-  };
+        return (
+          <div className="max-w-5xl mx-auto p-4">
+            <header className="flex flex-col md:flex-row justify-between items-center mb-4">
+              <h1 className="text-2xl font-bold text-teal-400">6-Day Home Workout</h1>
+              <div className="text-sm text-teal-300">Progress: {percent()}%</div>
+            </header>
 
-  const markDayDone = (dayId) => {
-    const day = plan.find(d => d.id === dayId);
-    const allDone = day.exercises.map(() => true);
-    setProgress((p) => ({ ...(p || {}), [dayId]: allDone }));
-  };
-
-  const resetProgress = () => {
-    if (confirm('Reset all progress? This will clear saved checks.')) {
-      localStorage.removeItem(WEEK_KEY);
-      setProgress({});
-    }
-  };
-
-  const renderExerciseTable = (day) => (
-    <div className="overflow-x-auto mt-4">
-      <table className="w-full table-auto text-sm">
-        <thead>
-          <tr>
-            <th className="text-left">Exercise</th>
-            <th className="text-left">Sets</th>
-            <th className="text-left">Weight</th>
-            <th className="text-left">Equipment / Bench</th>
-            <th className="text-left">Done</th>
-          </tr>
-        </thead>
-        <tbody>
-          {day.exercises.map((ex, i) => (
-            <tr key={i} className="border-t">
-              <td>{ex.name}</td>
-              <td>{ex.sets}</td>
-              <td>{ex.weight}</td>
-              <td>{ex.equip}</td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={progress[day.id] ? !!progress[day.id][i] : false}
-                  onChange={() => toggleExercise(day.id, i)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-
-  const progressPercent = () => {
-    const total = plan.reduce((acc, d) => acc + d.exercises.length, 0);
-    const done = plan.reduce((acc, d) => {
-      const arr = progress[d.id] || [];
-      return acc + arr.filter(Boolean).length;
-    }, 0);
-    return Math.round((done / total) * 100) || 0;
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-[#041218] to-[#061821] text-gray-100 p-4">
-      <div className="max-w-4xl mx-auto">
-        <header className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-semibold">6-Day Home Workout — 1-Week Cycle</h1>
-          <div className="text-sm text-teal-300">Progress: {progressPercent()}%</div>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <nav className="md:col-span-1 bg-[#07242d] p-3 rounded-lg">
-            <div className="text-sm text-teal-200 font-medium mb-2">Days</div>
-            <ul>
+            <nav className="flex overflow-x-auto space-x-2 mb-4 pb-2 border-b border-teal-800">
               {plan.map((d) => (
-                <li key={d.id} className={`mb-2 text-sm ${selectedDay === d.id ? 'text-white' : 'text-teal-200'}`}>
-                  <button className="w-full text-left" onClick={() => setSelectedDay(d.id)}>{d.title}</button>
-                </li>
+                <button
+                  key={d.id}
+                  onClick={() => setSelectedDay(d.id)}
+                  className={`px-3 py-1 rounded text-sm ${selectedDay === d.id ? 'bg-teal-500 text-black' : 'bg-[#062f33] text-teal-200'}`}
+                >
+                  {d.title.split('—')[0]}
+                </button>
               ))}
-            </ul>
+              <button onClick={resetAll} className="ml-auto text-xs border border-teal-500 text-teal-300 px-2 py-1 rounded">Reset</button>
+            </nav>
 
-            <div className="mt-4">
-              <button className="w-full bg-teal-500 text-black py-2 rounded mb-2" onClick={() => markDayDone(selectedDay)}>Mark Day Done</button>
-              <button className="w-full bg-transparent border border-teal-600 text-teal-200 py-2 rounded" onClick={resetProgress}>Reset Progress</button>
-            </div>
-
-            <div className="mt-4 text-xs text-teal-100">Tip: Use the bench notches to keep your back supported — upright notches help posture during seated presses.</div>
-          </nav>
-
-          <main className="md:col-span-3 bg-[#05272f] p-4 rounded-lg">
             {plan.map((day) => (
-              <section key={day.id} className={`${selectedDay === day.id ? '' : 'hidden'}`}>
-                <div className="flex items-start justify-between">
+              <div key={day.id} className={`${selectedDay === day.id ? '' : 'hidden'} bg-[#05272f] p-4 rounded-lg`}> 
+                <div className="flex justify-between items-center">
                   <div>
-                    <h2 className="text-xl font-semibold">{day.title}</h2>
-                    <div className="text-sm text-teal-200">Bench: {day.bench}</div>
+                    <h2 className="text-xl font-semibold text-white">{day.title}</h2>
+                    <p className="text-teal-300 text-sm">Bench: {day.bench}</p>
                   </div>
-                  <div>
-                    <button
-                      className="bg-transparent border border-teal-500 text-teal-200 px-3 py-1 rounded text-sm"
-                      onClick={() => markDayDone(day.id)}
-                    >
-                      Mark Complete
-                    </button>
-                  </div>
+                  <button onClick={() => markDayDone(day.id)} className="bg-teal-500 text-black px-3 py-1 rounded text-sm">Mark Done</button>
                 </div>
 
-                <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-[#062c33] p-3 rounded">
-                    <h3 className="font-medium">Warm-Up</h3>
+                <div className="grid md:grid-cols-2 gap-4 mt-3">
+                  <div className="bg-[#062f33] p-3 rounded">
+                    <h3 className="font-semibold">Warm-Up</h3>
                     <ul className="list-disc list-inside text-sm mt-2">
                       {day.warmup.map((w, i) => <li key={i}>{w}</li>)}
                     </ul>
                   </div>
-
-                  <div className="bg-[#062c33] p-3 rounded">
-                    <h3 className="font-medium">Cooldown</h3>
+                  <div className="bg-[#062f33] p-3 rounded">
+                    <h3 className="font-semibold">Cooldown</h3>
                     <ul className="list-disc list-inside text-sm mt-2">
                       {day.cooldown.map((c, i) => <li key={i}>{c}</li>)}
                     </ul>
                   </div>
                 </div>
 
-                <div className="mt-4 bg-[#072f35] p-3 rounded">
-                  <h3 className="font-medium">Exercises</h3>
-                  {renderExerciseTable(day)}
+                <div className="mt-4">
+                  <h3 className="font-semibold mb-2">Exercises</h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm border-collapse">
+                      <thead>
+                        <tr className="text-teal-300">
+                          <th className="text-left p-2">Exercise</th>
+                          <th className="text-left p-2">Sets</th>
+                          <th className="text-left p-2">Equipment</th>
+                          <th className="p-2">Done</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {day.exercises.map((ex, i) => (
+                          <tr key={i} className="border-t border-teal-900">
+                            <td className="p-2">{ex.name}</td>
+                            <td className="p-2">{ex.sets}</td>
+                            <td className="p-2">{ex.equip}</td>
+                            <td className="text-center p-2">
+                              <input type="checkbox" checked={progress[day.id]?.[i] || false} onChange={() => toggleExercise(day.id, i)} />
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
 
-                <div className="mt-4 bg-[#062f35] p-3 rounded text-sm">
-                  <h3 className="font-medium">Tips</h3>
-                  <ul className="list-disc list-inside mt-2">
+                <div className="mt-4 bg-[#062f33] p-3 rounded">
+                  <h3 className="font-semibold mb-2">Tips</h3>
+                  <ul className="list-disc list-inside text-sm">
                     {day.tips.map((t, i) => <li key={i}>{t}</li>)}
                   </ul>
                 </div>
-
-                <div className="mt-4 flex gap-2">
-                  <button className="bg-teal-500 text-black px-3 py-2 rounded" onClick={() => markDayDone(day.id)}>Mark Day Done</button>
-                  <button className="bg-transparent border border-teal-600 text-teal-200 px-3 py-2 rounded" onClick={() => setProgress((p) => ({ ...(p || {}), [day.id]: Array(day.exercises.length).fill(false) }))}>Clear Day</button>
-                </div>
-
-              </section>
+              </div>
             ))}
 
-            <div className="mt-6 bg-[#052f34] p-4 rounded text-sm">
-              <h3 className="font-medium">Weekly Notes & Guidelines</h3>
-              <ul className="list-disc list-inside mt-2">
-                <li>Repeat this 1-week cycle for 8 weeks. Increase reps or weight slowly every 2 weeks.</li>
-                <li>Use 1.2 kg for early weeks and controlled motions. Move to 5 kg for strength work after 2–3 weeks.</li>
-                <li>Daily plank and face-yoga are included — consistency helps belly and face fat reduction.</li>
-                <li>Prioritize form and use bench notches to keep your back supported — especially for seated presses and rows.</li>
-              </ul>
-            </div>
-
-          </main>
-        </div>
-
-        <footer className="mt-6 text-xs text-teal-200">
-          <div className="flex items-center justify-between">
-            <div>Made for: Posture, belly-fat reduction, face-fat reduction & beginner-safe training.</div>
-            <div>Local progress is saved to your browser.</div>
+            <footer className="mt-6 text-xs text-teal-300">
+              <p>Use bench notches to keep your back straight. Repeat this 1-week cycle for 8 weeks.</p>
+            </footer>
           </div>
-        </footer>
-      </div>
+        );
+      }
 
-      <style>{`
-        /* Fallback CSS if Tailwind isn't present. Uses teal + dark palette. */
-        :root{--bg:#041218;--card:#062f33;--muted:#9fd8d1;--accent:#17b7a6}
-        body{background:linear-gradient(180deg,var(--bg),#061821);font-family:Inter,ui-sans-serif,system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
-        .text-teal-200{color:var(--muted)}
-        .text-teal-300{color:#64d9cc}
-        .bg-teal-500{background:var(--accent)}
-        .bg-[#041218]{background:#041218}
-        .bg-[#05272f]{background:#05272f}
-        .bg-[#062c33]{background:#062c33}
-        .bg-[#07242d]{background:#07242d}
-        .bg-[#072f35]{background:#072f35}
-        .bg-[#052f34]{background:#052f34}
-        .border-teal-600{border-color:#17b7a6}
-        table{width:100%;border-collapse:collapse}
-        thead th{padding:8px 6px;color:#bdeae2;font-weight:600;font-size:13px}
-        tbody td{padding:10px 6px}
-        tr.border-t td{border-top:1px solid rgba(255,255,255,0.04)}
-        input[type=checkbox]{width:18px;height:18px}
-        button{cursor:pointer}
-        @media (max-width:768px){
-          .md\\:grid-cols-4{grid-template-columns:1fr}
-          .md\\:col-span-3{grid-column:span 1}
-          .md\\:col-span-1{grid-column:span 1}
-        }
-      `}</style>
-    </div>
-  );
-}
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
