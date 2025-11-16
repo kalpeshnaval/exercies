@@ -1,440 +1,1180 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>6-Day Home Workout — Dark Theme</title>
-  <meta name="description" content="Beginner-friendly 6-day workout (repeat weekly). Posture-first, belly fat reduction, face-yoga included." />
-  <style>
-    /* === Basic reset & fonts === */
-    :root{
-      --bg:#041218;
-      --card:#072e33;
-      --muted:#9fd8d1;
-      --accent:#14b8a6;
-      --accent-2:#0fb7a0;
-      --glass: rgba(255,255,255,0.03);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:linear-gradient(180deg,var(--bg),#061821);
-      color:#e6f7f2;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:16px;
-    }
-
-    /* === Layout === */
-    .container{max-width:1100px;margin:0 auto}
-    header{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-    .top-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .title{font-size:20px;font-weight:700;color:var(--accent)}
-    .subtitle{font-size:12px;color:#9fd8d1}
-
-    /* progress */
-    .progress-wrap{width:100%;max-width:320px}
-    .progress-bar{height:12px;background:rgba(0,0,0,0.12);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
-    .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width 350ms ease}
-
-    /* nav (days) */
-    .days-nav{display:flex;gap:8px;overflow:auto;padding-bottom:6px;margin:8px 0}
-    .day-btn{flex:0 0 auto;padding:8px 12px;border-radius:10px;background:var(--glass);color:var(--muted);font-weight:600;border:1px solid rgba(255,255,255,0.03)}
-    .day-btn.active{background:linear-gradient(90deg, rgba(20,184,166,0.12), rgba(20,184,166,0.06));color:#001616;border:1px solid rgba(20,184,166,0.16)}
-
-    /* day card */
-    .day-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);margin-bottom:14px}
-    .card-grid{display:grid;grid-template-columns:1fr 320px;gap:12px}
-    @media (max-width:880px){ .card-grid{grid-template-columns:1fr} }
-
-    .small-card{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px}
-    h2{margin:0 0 6px 0;font-size:16px}
-    .bench{font-size:12px;color:var(--muted);margin-bottom:8px}
-
-    /* table */
-    table{width:100%;border-collapse:collapse;font-size:13px}
-    thead th{color:var(--muted);text-align:left;padding:8px 6px;font-weight:700}
-    tbody td{padding:8px 6px;border-top:1px solid rgba(255,255,255,0.02);vertical-align:top}
-    .equip{color:#bfeae2;font-size:12px}
-    .sets{color:#cfeee7;font-size:12px}
-    .checkbox-center{text-align:center}
-
-    /* controls */
-    .controls{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;color:var(--muted);font-weight:600}
-    .btn.primary{background:var(--accent);color:#00201d;border:none}
-    .btn.ghost{background:transparent;border:1px solid rgba(20,184,166,0.12);color:var(--muted)}
-
-    /* tips */
-    .tips{margin-top:10px;font-size:13px;color:#9fd8d1}
-    .emoji{margin-right:6px}
-
-    /* footer */
-    footer{margin-top:18px;font-size:12px;color:#9fd8d1;text-align:center}
-
-    /* small helpers */
-    .muted{color:#9fd8d1}
-    .nowrap{white-space:nowrap}
-    .center{text-align:center}
-    input[type="checkbox"]{width:18px;height:18px}
-    .badge{display:inline-block;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
-  </style>
-</head>
-<body>
-  <div class="container" id="root">
-    <header>
-      <div class="top-row">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>8-Week Home Workout — Posture, Abs & Face Slimming 💪🧘‍♂️</title>
+    <style>
+      :root {
+        --bg: #0b0f11;
+        --card: #0f1416;
+        --muted: #94a3a8;
+        --teal: #08bdb3;
+        --accent: #13c7be;
+        --glass: rgba(255, 255, 255, 0.03);
+        --success: #2ecc71;
+        --smooth: 0.18s;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        background: linear-gradient(180deg, var(--bg), #061011);
+        color: #e6f6f5;
+        font-family: Inter, system-ui, Roboto, Arial;
+        line-height: 1.35;
+        margin: 0;
+      }
+      .container {
+        max-width: 980px;
+        margin: 24px auto;
+        padding: 18px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .logo {
+        width: 60px;
+        height: 60px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--teal), #0bd0c7);
+        color: #012;
+        box-shadow: 0 6px 18px rgba(3, 22, 20, 0.6);
+        font-size: 28px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+      .subtitle {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+      }
+      button.btn {
+        background: var(--teal);
+        border: none;
+        color: #032;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 6px 16px rgba(4, 28, 26, 0.45);
+        transition: all var(--smooth);
+      }
+      button.btn:hover {
+        transform: translateY(-2px);
+      }
+      button.ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      @media (min-width: 880px) {
+        .grid {
+          grid-template-columns: 1fr 340px;
+        }
+      }
+      .card {
+        background: linear-gradient(180deg, var(--card), #081013);
+        border-radius: 12px;
+        padding: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+      }
+      .pill {
+        background: var(--glass);
+        padding: 6px 10px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 13px;
+        display: inline-block;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      thead th {
+        position: sticky;
+        top: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(2, 10, 11, 0.9),
+          rgba(2, 10, 11, 0.85)
+        );
+        font-weight: 700;
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      tbody tr {
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.03);
+      }
+      td,
+      th {
+        padding: 10px;
+        font-size: 13px;
+        color: #dff6f4;
+      }
+      .small {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .exercise-name {
+        font-weight: 700;
+        color: #e6fff8;
+      }
+      .warmup-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 6px;
+        background: rgba(8, 189, 179, 0.06);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .warmup-table th,
+      .warmup-table td {
+        padding: 8px;
+        text-align: left;
+      }
+      .warmup-header {
+        background: linear-gradient(
+          90deg,
+          rgba(10, 30, 30, 0.08),
+          rgba(8, 20, 20, 0.02)
+        );
+        padding: 8px;
+        border-left: 4px solid var(--teal);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .day-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: space-between;
+      }
+      .day-title {
+        font-weight: 800;
+      }
+      .day {
+        transition: opacity var(--smooth);
+      }
+      footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+      .hint {
+        background: linear-gradient(
+          90deg,
+          rgba(13, 46, 44, 0.12),
+          rgba(8, 23, 22, 0.06)
+        );
+        padding: 10px;
+        border-radius: 8px;
+        color: var(--muted);
+        border-left: 3px solid var(--teal);
+        margin: 12px 0;
+      }
+      .main-header {
+        background: linear-gradient(
+          90deg,
+          rgba(10, 30, 30, 0.08),
+          rgba(8, 20, 20, 0.02)
+        );
+        padding: 8px;
+        border-left: 4px solid var(--teal);
+        border-radius: 8px;
+        margin-top: 14px;
+        margin-bottom: 8px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">🏋️‍♂️</div>
         <div>
-          <div class="title">💪 6-Day Home Workout — Posture & Core</div>
-          <div class="subtitle">Beginner-friendly • Belly fat & face-yoga • Repeat weekly for 8 weeks</div>
+          <h1>8‑Week Home Workout — Posture · Abs · Face Slimming</h1>
         </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <div class="progress-wrap">
-            <div style="font-size:12px;color:var(--muted);margin-bottom:6px">Weekly Progress — <span id="progress-pct">0%</span></div>
-            <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+        <div class="controls">
+          <button class="btn" id="markAll">Mark Week Done ✅</button>
+          <button class="ghost" id="reset">Reset</button>
+        </div>
+      </header>
+
+      <div class="grid">
+        <div class="card" id="mainCol">
+          <div class="pill">
+            Goals:
+            <strong style="color: var(--accent); margin-left: 8px"
+              >Lose 7–8kg • Visible abs • Reduce double chin • Improve
+              posture</strong
+            >
+          </div>
+
+          <div id="days">
+            <!-- Day 1 -->
+            <section class="day" data-day="1">
+              <div class="day-header">
+                <div>
+                  <div class="day-title">Day 1 — Posture + Upper Body 💪</div>
+                  <div class="small">
+                    Bench Levels: Level 5 (upright), Level 3 (incline), Level 1
+                    (flat)
+                  </div>
+                </div>
+                <div><button class="btn mark-day">Mark Done ✅</button></div>
+              </div>
+
+              <div class="warmup-header">🔥 Warm-Up</div>
+              <table class="warmup-table">
+                <thead>
+                  <tr>
+                    <th>Movement</th>
+                    <th>Reps</th>
+                    <th>Tip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>March in place</td>
+                    <td>30</td>
+                    <td>Warm the whole body</td>
+                  </tr>
+                  <tr>
+                    <td>Arm circles</td>
+                    <td>12 each</td>
+                    <td>Loosen shoulders</td>
+                  </tr>
+                  <tr>
+                    <td>Neck rolls</td>
+                    <td>6 each</td>
+                    <td>Slow and gentle</td>
+                  </tr>
+                  <tr>
+                    <td>Shoulder rolls</td>
+                    <td>10</td>
+                    <td>Relax neck tension</td>
+                  </tr>
+                  <tr>
+                    <td>Cat–Cow</td>
+                    <td>6</td>
+                    <td>Increase spinal mobility</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="main-header">💪 Main Workout</div>
+              <div class="table-wrap" style="margin-top: 12px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Exercise</th>
+                      <th>Bench Level</th>
+                      <th>Equipment / Weight</th>
+                      <th>Reps</th>
+                      <th>Tips</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="exercise-name">
+                        Seated Dumbbell Shoulder Press
+                      </td>
+                      <td>Level 5</td>
+                      <td>1.2 kg</td>
+                      <td>3×12</td>
+                      <td>Sit tall; avoid arching.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Incline Chest‑Supported Row</td>
+                      <td>Level 3</td>
+                      <td>5 kg</td>
+                      <td>3×12</td>
+                      <td>Chest on bench; squeeze blades.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Flat Dumbbell Chest Press</td>
+                      <td>Level 1</td>
+                      <td>5 kg</td>
+                      <td>3×10</td>
+                      <td>Slow descent; feet on foot support.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">
+                        Chest‑Supported Rear Delt Fly
+                      </td>
+                      <td>Level 3</td>
+                      <td>1.2 kg</td>
+                      <td>3×12</td>
+                      <td>Small arc; control movement.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">EZ Bar Curls (curved)</td>
+                      <td>Standing</td>
+                      <td>~5 kg</td>
+                      <td>3×10</td>
+                      <td>No swing; slow negative.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">
+                        Plank Shoulder Taps (knees optional)
+                      </td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×15/side</td>
+                      <td>Keep hips stable.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">
+                        Face: Chin Lift & Jawline Push
+                      </td>
+                      <td>Seated</td>
+                      <td>Bodyweight</td>
+                      <td>12 + 12</td>
+                      <td>Slow and controlled neck motion.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Day 2 -->
+            <section
+              class="day"
+              data-day="2"
+              style="display: none; margin-top: 12px"
+            >
+              <div class="day-header">
+                <div>
+                  <div class="day-title">Day 2 — Leg Stability + Core 🦵</div>
+                  <div class="small">
+                    Bench Levels: Level 1 (low), Level 5 (upright)
+                  </div>
+                </div>
+                <div><button class="btn mark-day">Mark Done ✅</button></div>
+              </div>
+
+              <div class="warmup-header">🔥 Warm-Up</div>
+              <table class="warmup-table">
+                <thead>
+                  <tr>
+                    <th>Movement</th>
+                    <th>Reps</th>
+                    <th>Tip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>March</td>
+                    <td>40</td>
+                    <td>Increase blood flow</td>
+                  </tr>
+                  <tr>
+                    <td>Ankle circles</td>
+                    <td>10 each</td>
+                    <td>Protect calf</td>
+                  </tr>
+                  <tr>
+                    <td>Hip circles</td>
+                    <td>8</td>
+                    <td>Warm hip joints</td>
+                  </tr>
+                  <tr>
+                    <td>Mini squats</td>
+                    <td>8</td>
+                    <td>Gentle knee prep</td>
+                  </tr>
+                  <tr>
+                    <td>Cat–Cow</td>
+                    <td>6</td>
+                    <td>Spinal mobility</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="main-header">💪 Main Workout</div>
+              <div class="table-wrap" style="margin-top: 12px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Exercise</th>
+                      <th>Bench Level</th>
+                      <th>Equipment / Weight</th>
+                      <th>Reps</th>
+                      <th>Tips</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="exercise-name">Low Step‑Ups (low height)</td>
+                      <td>Level 1</td>
+                      <td>Bodyweight</td>
+                      <td>3×10/leg</td>
+                      <td>Full foot on bench; use hand support if needed.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">
+                        Seated Leg Extension (bodyweight)
+                      </td>
+                      <td>Level 5</td>
+                      <td>Bodyweight</td>
+                      <td>3×15</td>
+                      <td>Sit tall; control the extension.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Glute Bridge</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>Drive through heels; squeeze glutes.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Standing Calf Raise (slow)</td>
+                      <td>Standing</td>
+                      <td>Bodyweight</td>
+                      <td>3×10</td>
+                      <td>Hold wall; move slowly to avoid strain.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Mini‑Stand (wall variant)</td>
+                      <td>Wall</td>
+                      <td>Bodyweight</td>
+                      <td>3×10 stands</td>
+                      <td>Shallow sits; avoid long holds.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Dead Bug</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>Keep low back pressed to floor.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Plank Taps (knees allowed)</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×15/side</td>
+                      <td>Core tight; avoid hip drop.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Face: Tongue‑to‑Roof</td>
+                      <td>Seated</td>
+                      <td>Bodyweight</td>
+                      <td>12</td>
+                      <td>Hold 2 counts; target under‑chin.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Day 3 -->
+            <section
+              class="day"
+              data-day="3"
+              style="display: none; margin-top: 12px"
+            >
+              <div class="day-header">
+                <div>
+                  <div class="day-title">Day 3 — Full Body + Abs 🔥</div>
+                  <div class="small">Bench Levels: Level 5, Level 1</div>
+                </div>
+                <div><button class="btn mark-day">Mark Done ✅</button></div>
+              </div>
+
+              <div class="warmup-header">🔥 Warm-Up</div>
+              <table class="warmup-table">
+                <thead>
+                  <tr>
+                    <th>Movement</th>
+                    <th>Reps</th>
+                    <th>Tip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>March</td>
+                    <td>30</td>
+                    <td>Raise core temp</td>
+                  </tr>
+                  <tr>
+                    <td>Arm circles</td>
+                    <td>12</td>
+                    <td>Loosen shoulders</td>
+                  </tr>
+                  <tr>
+                    <td>Hip hinge practice</td>
+                    <td>6</td>
+                    <td>Prep for RDL</td>
+                  </tr>
+                  <tr>
+                    <td>Neck circles</td>
+                    <td>6</td>
+                    <td>Gentle mobility</td>
+                  </tr>
+                  <tr>
+                    <td>Wall retracts</td>
+                    <td>8</td>
+                    <td>Activate scapular muscles</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="main-header">💪 Main Workout</div>
+              <div class="table-wrap" style="margin-top: 12px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Exercise</th>
+                      <th>Bench Level</th>
+                      <th>Equipment / Weight</th>
+                      <th>Reps</th>
+                      <th>Tips</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="exercise-name">
+                        Barbell Romanian Deadlift (RDL)
+                      </td>
+                      <td>Standing</td>
+                      <td>Straight bar — 10 kg</td>
+                      <td>3×10</td>
+                      <td>Hinge at hips; neutral spine.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Dumbbell Front Raise</td>
+                      <td>Standing</td>
+                      <td>1.2 kg</td>
+                      <td>3×12</td>
+                      <td>Lift to shoulder height only.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Seated Curl → Press</td>
+                      <td>Level 5</td>
+                      <td>1.2–5 kg</td>
+                      <td>3×8</td>
+                      <td>Back supported; controlled flow.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Wall Push‑Ups</td>
+                      <td>Wall</td>
+                      <td>Bodyweight</td>
+                      <td>3×10</td>
+                      <td>
+                        Controlled tempo; feet further increases difficulty.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Lying Toe Taps</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>One leg at a time; brace core.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Bench Crunch Reach</td>
+                      <td>Level 1</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>Upper abs lift only.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Plank Taps</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×20/side</td>
+                      <td>Keep hips steady.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Face: Cheek Puff</td>
+                      <td>Seated</td>
+                      <td>Bodyweight</td>
+                      <td>3×10 sec</td>
+                      <td>Hold & relax.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Day 4 -->
+            <section
+              class="day"
+              data-day="4"
+              style="display: none; margin-top: 12px"
+            >
+              <div class="day-header">
+                <div>
+                  <div class="day-title">Day 4 — Posture Reset + Core 🧘‍♂️</div>
+                  <div class="small">Bench Level: Level 5 (upright)</div>
+                </div>
+                <div><button class="btn mark-day">Mark Done ✅</button></div>
+              </div>
+
+              <div class="warmup-header">🔥 Warm-Up</div>
+              <table class="warmup-table">
+                <thead>
+                  <tr>
+                    <th>Movement</th>
+                    <th>Reps</th>
+                    <th>Tip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Wall Angels</td>
+                    <td>8</td>
+                    <td>Open chest & shoulders</td>
+                  </tr>
+                  <tr>
+                    <td>Arm circles</td>
+                    <td>12</td>
+                    <td>Loosen shoulders</td>
+                  </tr>
+                  <tr>
+                    <td>March</td>
+                    <td>30</td>
+                    <td>Warm lower body</td>
+                  </tr>
+                  <tr>
+                    <td>Scap squeezes</td>
+                    <td>10</td>
+                    <td>Activate mid back</td>
+                  </tr>
+                  <tr>
+                    <td>Cat–Cow</td>
+                    <td>6</td>
+                    <td>Spinal mobility</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="main-header">💪 Main Workout</div>
+              <div class="table-wrap" style="margin-top: 12px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Exercise</th>
+                      <th>Bench Level</th>
+                      <th>Equipment / Weight</th>
+                      <th>Reps</th>
+                      <th>Tips</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="exercise-name">Seated Dumbbell Shrugs</td>
+                      <td>Level 5</td>
+                      <td>5 kg</td>
+                      <td>3×12</td>
+                      <td>Shrug straight up; avoid rolling.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Seated Side Bend</td>
+                      <td>Level 5</td>
+                      <td>1.2 kg</td>
+                      <td>3×15/side</td>
+                      <td>Keep torso tall; bend at waist.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Bird‑Dog</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>Slow opposite arm/leg reach; core tight.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Superman (small range)</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>No hyperextension; small lifts.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Glute Bridge</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>Squeeze glutes at top.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Plank Taps</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×20/side</td>
+                      <td>Maintain neutral pelvis.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">
+                        Face: Jawline Stretch + Chin Lift
+                      </td>
+                      <td>Seated</td>
+                      <td>Bodyweight</td>
+                      <td>12+12</td>
+                      <td>Slow controlled neck moves.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Day 5 -->
+            <section
+              class="day"
+              data-day="5"
+              style="display: none; margin-top: 12px"
+            >
+              <div class="day-header">
+                <div>
+                  <div class="day-title">Day 5 — Fat Burn + Belly Focus 🔥</div>
+                  <div class="small">Bench Levels: Level 3, Level 1</div>
+                </div>
+                <div><button class="btn mark-day">Mark Done ✅</button></div>
+              </div>
+
+              <div class="warmup-header">🔥 Warm-Up</div>
+              <table class="warmup-table">
+                <thead>
+                  <tr>
+                    <th>Movement</th>
+                    <th>Reps</th>
+                    <th>Tip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>March</td>
+                    <td>40</td>
+                    <td>Raise heart rate gently</td>
+                  </tr>
+                  <tr>
+                    <td>Arm swings</td>
+                    <td>12</td>
+                    <td>Loosen shoulders</td>
+                  </tr>
+                  <tr>
+                    <td>Hip mobility</td>
+                    <td>8</td>
+                    <td>Open hips</td>
+                  </tr>
+                  <tr>
+                    <td>Cat–Cow</td>
+                    <td>6</td>
+                    <td>Spine warm-up</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="main-header">💪 Main Workout</div>
+              <div class="table-wrap" style="margin-top: 12px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Exercise</th>
+                      <th>Bench Level</th>
+                      <th>Equipment / Weight</th>
+                      <th>Reps</th>
+                      <th>Tips</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="exercise-name">Dumbbell Shadow Boxing</td>
+                      <td>Standing</td>
+                      <td>1.2 kg</td>
+                      <td>3×25 punches</td>
+                      <td>Small controlled punches; breathe evenly.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Incline Dumbbell Press</td>
+                      <td>Level 3</td>
+                      <td>5 kg</td>
+                      <td>3×10</td>
+                      <td>Control descent; avoid arching.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Incline Single‑Arm Row</td>
+                      <td>Level 3</td>
+                      <td>5 kg</td>
+                      <td>3×12/side</td>
+                      <td>Chest supported; pull to hip.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">EZ Bar Curls</td>
+                      <td>Standing</td>
+                      <td>~5 kg</td>
+                      <td>3×10</td>
+                      <td>Control negatives; no swing.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Bench Crunch Reach</td>
+                      <td>Level 1</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>Upper abs focused.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">
+                        Lying Leg Raises (knee bend optional)
+                      </td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×10</td>
+                      <td>Bend knees if back feels strained.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Plank Taps</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>3×20/side</td>
+                      <td>Keep hips steady.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">
+                        Face: Chin Lift + Jawline Push
+                      </td>
+                      <td>Seated</td>
+                      <td>Bodyweight</td>
+                      <td>12 each</td>
+                      <td>Slow focus on under‑chin.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Day 6 -->
+            <section
+              class="day"
+              data-day="6"
+              style="display: none; margin-top: 12px"
+            >
+              <div class="day-header">
+                <div>
+                  <div class="day-title">
+                    Day 6 — Face Slim + Gentle Core + Mobility 🌿
+                  </div>
+                  <div class="small">Bench Level: 3 for seated moves</div>
+                </div>
+                <div><button class="btn mark-day">Mark Done ✅</button></div>
+              </div>
+
+              <div class="warmup-header">🔥 Warm-Up</div>
+              <table class="warmup-table">
+                <thead>
+                  <tr>
+                    <th>Movement</th>
+                    <th>Reps</th>
+                    <th>Tip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Neck mobility</td>
+                    <td>8 each</td>
+                    <td>Gentle range</td>
+                  </tr>
+                  <tr>
+                    <td>Shoulder rolls</td>
+                    <td>10</td>
+                    <td>Relax upper traps</td>
+                  </tr>
+                  <tr>
+                    <td>March</td>
+                    <td>20</td>
+                    <td>Lightly warm body</td>
+                  </tr>
+                  <tr>
+                    <td>Cat–Cow</td>
+                    <td>6</td>
+                    <td>Spinal mobility</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="main-header">💪 Main Workout</div>
+              <div class="table-wrap" style="margin-top: 12px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Exercise</th>
+                      <th>Bench Level</th>
+                      <th>Equipment / Weight</th>
+                      <th>Reps</th>
+                      <th>Tips</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="exercise-name">Face Yoga Circuit</td>
+                      <td>Seated</td>
+                      <td>Bodyweight</td>
+                      <td>3 rounds × 12 each</td>
+                      <td>
+                        Fish lips, tongue roll, jaw jut — slow controlled.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Seated Knee Raises</td>
+                      <td>Level 3</td>
+                      <td>Bodyweight</td>
+                      <td>3×12</td>
+                      <td>Lean back slightly; engage core.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">
+                        Seated Twist (Russian Twist)
+                      </td>
+                      <td>Level 3</td>
+                      <td>1.2 kg</td>
+                      <td>3×12</td>
+                      <td>Rotate from torso; keep spine tall.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Wall Angels</td>
+                      <td>Wall</td>
+                      <td>Bodyweight</td>
+                      <td>3×10</td>
+                      <td>Keep head & back against wall.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Knee Plank Taps</td>
+                      <td>Floor (knees)</td>
+                      <td>Bodyweight</td>
+                      <td>3×15/side</td>
+                      <td>Easier plank; core engaged.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Day 7 -->
+            <section
+              class="day"
+              data-day="7"
+              style="display: none; margin-top: 12px; margin-bottom: 18px"
+            >
+              <div class="day-header">
+                <div>
+                  <div class="day-title">
+                    Day 7 — Recovery + Stretch + Face Reset 🌙
+                  </div>
+                  <div class="small">No bench needed</div>
+                </div>
+                <div><button class="btn mark-day">Mark Done ✅</button></div>
+              </div>
+
+              <div class="warmup-header">🔥 Warm-Up</div>
+              <table class="warmup-table">
+                <thead>
+                  <tr>
+                    <th>Movement</th>
+                    <th>Reps</th>
+                    <th>Tip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Slow walk</td>
+                    <td>100 steps</td>
+                    <td>Gentle pace</td>
+                  </tr>
+                  <tr>
+                    <td>Shoulder rolls</td>
+                    <td>8</td>
+                    <td>Relax tension</td>
+                  </tr>
+                  <tr>
+                    <td>Deep breathing</td>
+                    <td>1 min</td>
+                    <td>Lower heart rate</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="main-header">💪 Main Workout</div>
+              <div class="table-wrap" style="margin-top: 12px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Exercise</th>
+                      <th>Bench Level</th>
+                      <th>Equipment / Weight</th>
+                      <th>Reps</th>
+                      <th>Tips</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="exercise-name">Slow walk</td>
+                      <td>—</td>
+                      <td>Bodyweight</td>
+                      <td>100 steps</td>
+                      <td>Stop if calf pain occurs.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Cat–Cow</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>12</td>
+                      <td>Gentle spinal mobility.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Forward Fold</td>
+                      <td>Floor</td>
+                      <td>Bodyweight</td>
+                      <td>12 breaths</td>
+                      <td>Micro‑bend knees if tight.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Chest Open Stretch</td>
+                      <td>Wall</td>
+                      <td>Bodyweight</td>
+                      <td>12 breaths</td>
+                      <td>Open pecs gently.</td>
+                    </tr>
+                    <tr>
+                      <td class="exercise-name">Face Yoga Reset</td>
+                      <td>Seated</td>
+                      <td>Bodyweight</td>
+                      <td>2 rounds × 12 each</td>
+                      <td>Finish week with face mobility.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
           </div>
         </div>
+
+        <aside class="card">
+          <h3 style="margin: 4px 0">Quick Summary ✨</h3>
+          <p class="small">
+            Repeat this 7‑day cycle for 8 weeks. If your calf hurts, skip impact
+            and reduce reps for that day.
+          </p>
+
+          <div style="margin-top: 10px">
+            <div class="pill">Your Equipment</div>
+            <ul
+              class="small"
+              style="margin: 8px 0 0 16px; padding: 0; line-height: 1.4"
+            >
+              <li>Adjustable bench (Levels 0–5) ✅</li>
+              <li>
+                Straight bar + curved (EZ) bar — adjustable plates (up to 20 kg)
+                ✅
+              </li>
+              <li>Round plates: 5kg ×4, 2.5kg ×4 ✅</li>
+              <li>Dumbbells: 1.2 kg pair, 5 kg pair ✅</li>
+              <li>Hand grips ✅</li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 12px">
+            <div class="pill">Progress Tips</div>
+            <ol class="small" style="margin: 8px 0 0 16px">
+              <li>Keep a daily face‑yoga habit (2–3 rounds).</li>
+              <li>Plank taps every day (reps) to train core safely.</li>
+              <li>Prioritize posture form over heavier weights.</li>
+            </ol>
+          </div>
+        </aside>
       </div>
 
-      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
-        <div class="days-nav" id="days-nav" aria-label="Days navigation"></div>
+      <footer class="card">Repeat weekly for 8 weeks. Good luck! 💪</footer>
+    </div>
 
-        <div style="display:flex;gap:8px;align-items:center">
-          <button id="mark-done" class="btn primary">✅ Mark Day Done</button>
-          <button id="clear-day" class="btn">🧾 Clear Day</button>
-          <button id="reset-all" class="btn ghost">♻️ Reset All</button>
-        </div>
-      </div>
-    </header>
+    <script>
+      (function () {
+        const STORAGE_KEY = "workout_full_v4";
+        const days = Array.from(document.querySelectorAll(".day"));
+        const markAllBtn = document.getElementById("markAll");
+        const resetBtn = document.getElementById("reset");
 
-    <!-- Day content will be injected here -->
-    <main id="main-content"></main>
+        function load() {
+          try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+          } catch (e) {
+            return {};
+          }
+        }
+        function save(s) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+        }
 
-    <footer>
-      <div>Repeat this 1-week cycle for 8 weeks • Increase reps or weight gradually • Saved locally in your browser</div>
-    </footer>
-  </div>
+        let state = load();
+        if (!state.completed) state.completed = {};
 
-  <script>
-  /************************************************************************
-   * Single-file app (no libraries). All exercises, equipment, warmups,
-   * cooldowns, and tips are included exactly as requested.
-   ************************************************************************/
+        function render() {
+          let firstShown = false;
+          for (const sec of days) {
+            const d = sec.dataset.day;
+            if (state.completed[d]) {
+              sec.style.display = "none";
+              continue;
+            }
+            if (!firstShown) {
+              sec.style.display = "block";
+              firstShown = true;
+            } else sec.style.display = "none";
+          }
+        }
 
-  (function(){
-    // ---- Plan data (all exercises included) ----
-    const PLAN = [
-      {
-        id: 'day1',
-        title: 'Day 1 — Posture Foundation + Upper Body Activation',
-        bench: 'Notch 2 (upright support)',
-        warmup: ['Arm circles (2 × 20 each direction)', 'Neck rolls (2 × 10 each side)', 'March in place (2 min)', 'Shoulder rolls (2 × 15)'],
-        exercises: [
-          { name: 'Seated Dumbbell Shoulder Press', sets: '3 × 12', equip: 'Bench (Notch 2), 1.2–5 kg' },
-          { name: 'Incline Dumbbell Row', sets: '3 × 12', equip: 'Bench (Notch 3), 5 kg' },
-          { name: 'Chest Press (Flat Bench)', sets: '3 × 10', equip: 'Bench (Flat), 5 kg' },
-          { name: 'Reverse Fly (Seated)', sets: '3 × 10', equip: 'Bench (Notch 2), 1.2 kg' },
-          { name: 'Hand Grip Squeezes', sets: '3 × 20', equip: 'Hand grips' },
-          { name: 'Wall Angels', sets: '3 × 10', equip: 'Wall' }
-        ],
-        cooldown: ['Wall stretch for chest – 30 sec each side', 'Neck side bends – 10 reps', 'Shoulder stretch – 30 sec'],
-        tips: ['Keep chest slightly lifted and shoulders back when seated.', 'Use bench backrest to maintain a neutral spine.']
-      },
+        document.querySelectorAll(".mark-day").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const sec = btn.closest(".day");
+            const d = sec.dataset.day;
+            state.completed[d] = true;
+            save(state);
+            render();
+          });
+        });
 
-      {
-        id: 'day2',
-        title: 'Day 2 — Core & Lower Body Stability',
-        bench: 'Notch 4 (low incline)',
-        warmup: ['Step-ups (low) – 2 × 10', 'Standing torso twist – 2 × 15', 'Ankle rolls – 1 min'],
-        exercises: [
-          { name: 'Step-Ups (Bench)', sets: '3 × 10 per leg', equip: 'Bench (Notch 4), bodyweight or 1.2 kg' },
-          { name: 'Seated Leg Extension', sets: '3 × 15', equip: 'Bench (Flat)' },
-          { name: 'Glute Bridge', sets: '3 × 12', equip: 'Flat Bench / Floor' },
-          { name: 'Standing Calf Raises', sets: '3 × 15', equip: 'Floor' },
-          { name: 'Wall Sit', sets: '3 × 20 sec', equip: 'Wall' },
-          { name: 'Plank (Knees or Full)', sets: '3 × 25 sec', equip: 'Floor' }
-        ],
-        cooldown: ['Hamstring stretch seated – 30 sec each', 'Calf stretch on wall – 30 sec each'],
-        tips: ['Drive through the heel during step-ups.', 'Keep ribs down and pelvis neutral during glute bridges.']
-      },
-
-      {
-        id: 'day3',
-        title: 'Day 3 — Full Body Tone + Abs Boost',
-        bench: 'Notch 3 (mid incline)',
-        warmup: ['March in place – 2 min', 'Shoulder shrugs – 20 reps', 'Arm cross stretch – 10 per side'],
-        exercises: [
-          { name: 'Dumbbell Deadlift (Light)', sets: '3 × 12', equip: '5 kg dumbbells' },
-          { name: 'Front Raise', sets: '3 × 12', equip: '1.2 kg dumbbells' },
-          { name: 'Curl → Press Combo', sets: '3 × 8', equip: '1.2–5 kg' },
-          { name: 'Wall Push-ups', sets: '3 × 10', equip: 'Wall' },
-          { name: 'Leg Taps (Lying)', sets: '3 × 12', equip: 'Floor' },
-          { name: 'Crunch Reach (on Bench)', sets: '3 × 10', equip: 'Bench (Flat)' },
-          { name: 'Plank', sets: '3 × 30 sec', equip: 'Floor' }
-        ],
-        cooldown: ['Full-body stretch – 2 min', 'Chest opening stretch – 30 sec'],
-        tips: ['Lead with chest and keep a soft bend in elbows.', 'Brace core before standing lifts.']
-      },
-
-      {
-        id: 'day4',
-        title: 'Day 4 — Posture Correction & Core Focus',
-        bench: 'Notch 1 (upright)',
-        warmup: ['Arm swings – 2 × 20', 'Neck tilts – 10 reps', 'Cat-Cow (on floor) – 3 × 10'],
-        exercises: [
-          { name: 'Seated Dumbbell Shrugs', sets: '3 × 12', equip: 'Bench (Notch 1), 5 kg' },
-          { name: 'Superman Hold', sets: '3 × 10 (hold 3s)', equip: 'Floor' },
-          { name: 'Seated Side Bend', sets: '3 × 15 each side', equip: 'Bench (Notch 1), 1.2 kg' },
-          { name: 'Bird-Dog', sets: '3 × 10', equip: 'Floor' },
-          { name: 'Glute Bridge', sets: '3 × 12', equip: 'Floor / 1.2 kg optional' },
-          { name: 'Plank (Elbows)', sets: '3 × 30 sec', equip: 'Floor' }
-        ],
-        cooldown: ['Shoulder rolls – 15 reps', 'Cobra stretch – 30 sec', 'Deep breathing – 1 min'],
-        tips: ['Use upright bench to keep back vertical.', 'Perform bird-dog slowly to keep hips level.']
-      },
-
-      {
-        id: 'day5',
-        title: 'Day 5 — Fat Burn + Arms + Abs',
-        bench: 'Notch 2 (incline)',
-        warmup: ['Arm swings – 20', 'Side steps – 2 × 30 sec', 'Neck rotation – 10'],
-        exercises: [
-          { name: 'Standing Punches', sets: '3 × 20', equip: '1.2 kg dumbbells' },
-          { name: 'Incline Chest Press', sets: '3 × 10', equip: 'Bench (Notch 2), 5 kg' },
-          { name: 'Bent-Over Row', sets: '3 × 12', equip: '5 kg dumbbells' },
-          { name: 'Dumbbell Curl', sets: '3 × 12', equip: '5 kg dumbbells' },
-          { name: 'Crunch Reach', sets: '3 × 12', equip: 'Bench (Flat)' },
-          { name: 'Leg Raise', sets: '3 × 10', equip: 'Floor' },
-          { name: 'Plank Hold', sets: '3 × 30 sec', equip: 'Floor' }
-        ],
-        cooldown: ['Standing stretch – 2 min', 'Shoulder stretch – 1 min'],
-        tips: ['Control curls and rows; avoid swinging.', 'Squeeze glutes during leg raises.']
-      },
-
-      {
-        id: 'day6',
-        title: 'Day 6 — Light Mobility + Face & Core Focus',
-        bench: 'Notch 3 (mid incline)',
-        warmup: ['Marching – 2 min', 'Arm circles – 15', 'Neck mobility – 1 min'],
-        exercises: [
-          { name: 'Face Yoga Routine (3 rounds)', sets: 'Varied holds', equip: 'None' },
-          { name: 'Seated Twist', sets: '3 × 10', equip: 'Bench (Notch 3)' },
-          { name: 'Knee Raise (Seated)', sets: '3 × 12', equip: 'Bench (Notch 3)' },
-          { name: 'Wall Angels', sets: '3 × 10', equip: 'Wall' },
-          { name: 'Glute Bridge', sets: '3 × 12', equip: 'Floor' },
-          { name: 'Short Plank (Knees)', sets: '3 × 20 sec', equip: 'Floor' }
-        ],
-        cooldown: ['Neck stretches – 2 min', 'Face relaxation – 2 min'],
-        tips: ['Soft, consistent face yoga helps reduce facial puffiness.', 'Breathe calmly during seated twists.']
-      },
-
-      {
-        id: 'day7',
-        title: 'Day 7 — Recovery / Stretching & Posture Reset',
-        bench: 'No bench (floor)',
-        warmup: ['10 min walk'],
-        exercises: [
-          { name: 'Cat-Cow × 10', sets: '1', equip: 'Floor' },
-          { name: 'Seated Forward Fold × 20 sec', sets: '1', equip: 'Floor' },
-          { name: 'Shoulder Stretch × 20 sec', sets: '1', equip: 'Floor' },
-          { name: 'Chest Open Stretch × 20 sec', sets: '1', equip: 'Wall' },
-          { name: 'Wall Posture Reset × 10', sets: '1', equip: 'Wall' },
-          { name: 'Face Yoga (repeat)', sets: 'Varied', equip: 'None' }
-        ],
-        cooldown: ['Deep breathing – 5 min'],
-        tips: ['Use this day to restore mobility and calm the body.']
-      }
-    ];
-
-    // ---- Storage key and state ----
-    const STORAGE_KEY = 'home_workout_v3_progress';
-    let progress = (function(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }catch(e){return{}} })();
-    let selectedDayIndex = 0;
-
-    // ---- DOM refs ----
-    const daysNav = document.getElementById('days-nav');
-    const mainContent = document.getElementById('main-content');
-    const progressFill = document.getElementById('progress-fill');
-    const progressPct = document.getElementById('progress-pct');
-    const btnMarkDone = document.getElementById('mark-done');
-    const btnClearDay = document.getElementById('clear-day');
-    const btnResetAll = document.getElementById('reset-all');
-
-    // ---- Helpers ----
-    function save() {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); } catch(e){/* ignore */ }
-    }
-
-    function calcPercent(){
-      const total = PLAN.reduce((s,d)=>s + d.exercises.length, 0);
-      const done = PLAN.reduce((s,d)=> s + (progress[d.id] ? progress[d.id].filter(Boolean).length : 0), 0);
-      return total===0?0:Math.round((done/total)*100);
-    }
-
-    // render nav buttons for days
-    function renderDaysNav(){
-      daysNav.innerHTML = '';
-      PLAN.forEach((d, idx) => {
-        const b = document.createElement('button');
-        b.className = 'day-btn' + (idx === selectedDayIndex ? ' active' : '');
-        b.setAttribute('aria-pressed', idx === selectedDayIndex ? 'true' : 'false');
-        b.textContent = (idx+1) + '. ' + d.title.replace(' —', ' —');
-        b.addEventListener('click', () => {
-          selectedDayIndex = idx;
+        markAllBtn.addEventListener("click", () => {
+          for (const sec of days) state.completed[sec.dataset.day] = true;
+          save(state);
           render();
         });
-        daysNav.appendChild(b);
-      });
-    }
 
-    // create table rows for exercises
-    function createExercisesTable(day){
-      const tbl = document.createElement('table');
-      tbl.innerHTML = '';
-      const thead = document.createElement('thead');
-      thead.innerHTML = '<tr><th>Exercise</th><th class="sets">Sets</th><th>Equipment</th><th class="checkbox-center">Done</th></tr>';
-      tbl.appendChild(thead);
-      const tbody = document.createElement('tbody');
-      day.exercises.forEach((ex, i) => {
-        const tr = document.createElement('tr');
-        const tdName = document.createElement('td'); tdName.textContent = ex.name;
-        const tdSets = document.createElement('td'); tdSets.className='sets'; tdSets.textContent = ex.sets;
-        const tdEquip = document.createElement('td'); tdEquip.className='equip'; tdEquip.textContent = ex.equip;
-        const tdChk = document.createElement('td'); tdChk.className='checkbox-center';
-        const input = document.createElement('input'); input.type='checkbox';
-        input.checked = !!(progress[day.id] && progress[day.id][i]);
-        input.addEventListener('change', () => {
-          progress[day.id] = progress[day.id] || Array(day.exercises.length).fill(false);
-          progress[day.id][i] = input.checked;
-          save(); updateProgress();
+        resetBtn.addEventListener("click", () => {
+          if (!confirm("Reset all progress?")) return;
+          state.completed = {};
+          save(state);
+          render();
         });
-        tdChk.appendChild(input);
-        tr.appendChild(tdName); tr.appendChild(tdSets); tr.appendChild(tdEquip); tr.appendChild(tdChk);
-        tbody.appendChild(tr);
-      });
-      tbl.appendChild(tbody);
-      return tbl;
-    }
 
-    // render a single day card
-    function renderDayCard(idx){
-      const day = PLAN[idx];
-      const card = document.createElement('div');
-      card.className = 'day-card';
-      const grid = document.createElement('div'); grid.className='card-grid';
-
-      // Left column (warmup, exercises, tips)
-      const left = document.createElement('div');
-
-      const head = document.createElement('div');
-      const h2 = document.createElement('h2'); h2.textContent = day.title + '  ';
-      const bench = document.createElement('div'); bench.className='bench muted'; bench.textContent = '🏷️ Bench: ' + day.bench;
-      head.appendChild(h2); head.appendChild(bench);
-      left.appendChild(head);
-
-      // Warmup & cooldown (small cards)
-      const warm = document.createElement('div'); warm.className='small-card';
-      warm.innerHTML = '<strong>🔥 Warm-Up</strong><ul style="margin:8px 0 0 16px"></ul>';
-      day.warmup.forEach(w => { const li = document.createElement('li'); li.textContent = w; warm.querySelector('ul').appendChild(li); });
-      left.appendChild(warm);
-
-      // Exercises table
-      const exCard = document.createElement('div'); exCard.style.marginTop='10px';
-      const exTitle = document.createElement('div'); exTitle.style.fontWeight='700'; exTitle.style.marginBottom='8px'; exTitle.textContent = '🏋️ Exercises & Equipment';
-      exCard.appendChild(exTitle);
-      exCard.appendChild(createExercisesTable(day));
-      left.appendChild(exCard);
-
-      // Tips block
-      const tips = document.createElement('div'); tips.className='tips';
-      tips.innerHTML = '<strong>💡 Tips</strong><ul style="margin:8px 0 0 16px"></ul>';
-      day.tips.forEach(t => { const li = document.createElement('li'); li.textContent = t; tips.querySelector('ul').appendChild(li); });
-      left.appendChild(tips);
-
-      grid.appendChild(left);
-
-      // Right column (quick info)
-      const right = document.createElement('aside');
-      right.className = 'small-card';
-      right.innerHTML = '<div style="font-weight:700;margin-bottom:8px">📋 Quick Info</div>';
-
-      const info = document.createElement('div');
-      info.innerHTML =
-        '<div style="margin-bottom:6px"><span class="badge">Warm up</span> — ' + day.warmup.length + '</div>' +
-        '<div style="margin-bottom:6px"><span class="badge">Exercises</span> — ' + day.exercises.length + '</div>' +
-        '<div style="margin-bottom:6px"><span class="badge">Cooldown</span> — ' + day.cooldown.length + '</div>';
-
-      right.appendChild(info);
-
-      // Show cooldown list
-      const cooldown = document.createElement('div'); cooldown.style.marginTop='10px';
-      cooldown.innerHTML = '<strong>🧊 Cooldown</strong><ul style="margin:8px 0 0 16px"></ul>';
-      day.cooldown.forEach(c => { const li = document.createElement('li'); li.textContent = c; cooldown.querySelector('ul').appendChild(li); });
-      right.appendChild(cooldown);
-
-      // Face-yoga badge if day6 or day7
-      if(day.id === 'day6' || day.id === 'day7'){
-        const fy = document.createElement('div'); fy.style.marginTop='8px'; fy.innerHTML = '<div style="font-weight:700;margin-top:8px">😊 Face Yoga</div><div style="font-size:13px;color:var(--muted);margin-top:6px">Do 2–3 rounds daily — cheek puffs, fish lips, chin lifts, jawline push.</div>';
-        right.appendChild(fy);
-      }
-
-      grid.appendChild(right);
-      card.appendChild(grid);
-      return card;
-    }
-
-    // render the whole UI
-    function render(){
-      // header nav
-      renderDaysNav();
-
-      // main content
-      mainContent.innerHTML = '';
-      const card = renderDayCard(selectedDayIndex);
-      mainContent.appendChild(card);
-
-      // update progress UI
-      updateProgress();
-
-      // hook buttons
-      btnMarkDone.onclick = () => { markDayDone(PLAN[selectedDayIndex].id); render(); };
-      btnClearDay.onclick = () => { clearDay(PLAN[selectedDayIndex].id); render(); };
-      btnResetAll.onclick = () => {
-        if(confirm('Reset all progress? This will clear your saved checks.')){ progress = {}; save(); render(); }
-      };
-    }
-
-    function updateProgress(){
-      const pct = calcPercent();
-      progressFill.style.width = pct + '%';
-      progressPct.textContent = pct + '%';
-    }
-
-    function markDayDone(dayId){
-      const day = PLAN.find(d => d.id === dayId);
-      if(!day) return;
-      progress[dayId] = Array(day.exercises.length).fill(true);
-      save();
-      updateProgress();
-    }
-
-    function clearDay(dayId){
-      const day = PLAN.find(d => d.id === dayId);
-      if(!day) return;
-      progress[dayId] = Array(day.exercises.length).fill(false);
-      save();
-      updateProgress();
-    }
-
-    // initial render
-    render();
-
-    // make PLAN available for debugging from console (optional)
-    window.__WORKOUT_PLAN = PLAN;
-    window.__WORKOUT_PROGRESS = progress;
-  })();
-  </script>
-</body>
+        render();
+      })();
+    </script>
+  </body>
 </html>
